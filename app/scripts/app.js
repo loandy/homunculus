@@ -15,4 +15,32 @@ angular
     'ngSanitize',
     'ngTouch',
     'ui.router'
+  ])
+  .config(['$stateProvider', '$urlRouterProvider',
+    function ($stateProvider, $urlRouterProvider) {
+      // Default path.
+      $urlRouterProvider.otherwise('/');
+
+      $stateProvider
+        .state('main', {
+          'abstract': true,
+          'views': {
+            'header@': {
+              'templateUrl': 'views/header.html',
+            },
+            'footer@': {
+              'templateUrl': 'views/footer.html'
+            }
+          }
+        })
+        .state('main.home', {
+          'url': '/',
+          'views': {
+            'content@': {
+              'templateUrl': 'views/home.html',
+              'controller': 'MainCtrl'
+            }
+          }
+        });
+    }
   ]);
