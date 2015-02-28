@@ -13,5 +13,6 @@ angular
     'ngAnimate',
     'ngResource',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ui.router'
   ]);
