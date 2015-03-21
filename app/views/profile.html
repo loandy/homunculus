@@ -1,0 +1,33 @@
+<div class="jumbotron">
+  <h1>Profile</h1>
+</div>
+
+<div class="row">
+
+  <div ui-view="alerts"></div>
+
+  <div class="well">
+    <button type="button" class="btn btn-primary btn-lg" ng-click="ProfileController.showCreateProfileForm = !ProfileController.showCreateProfileForm">
+      <i class="fa fa-minus" ng-show="ProfileController.showCreateProfileForm"></i>
+      <i class="fa fa-plus" ng-show="!ProfileController.showCreateProfileForm"></i>
+      <span>Create New Profile</span>
+    </button>
+
+    <!-- CREATE PROFILE FORM -->
+    <div class="well" ng-show="ProfileController.showCreateProfileForm">
+    <form class="create-profile-form" id="create-profile-form" name="createProfileForm" ng-show="ProfileController.showCreateProfileForm" novalidate>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="profile-name" name="name" placeholder="Enter a name..." ng-model="profile.name" required>
+        <span ng-show="createProfileForm.name.$error.required && (createProfileForm.name.$dirty || ProfileController.submittedCreateProfileForm)" class="help-block">Please provide a name.</span>
+      </div>
+      <button id="create-profile-form-submit-button" class="btn btn-primary" ng-click="ProfileController.create(createProfileForm.$valid, profile)">Create Profile</button>
+    </form>
+    </div>
+  </div>
+
+  <div class="well">
+    <h2>Select a profile</h2>
+    <select id="profiles" ng-model="ProfileController.selectedProfile" ng-options="profile.name for profile in ProfileController.profiles | orderBy: 'name'"></select>
+  </div>
+</div>

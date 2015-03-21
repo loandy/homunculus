@@ -24,25 +24,66 @@ angular
       // Default path.
       $urlRouterProvider.otherwise('/');
 
-      $stateProvider
-        .state('main', {
+      $stateProvider.
+        state('main', {
           'abstract': true,
           'views': {
             'header@': {
-              'templateUrl': 'views/header.html',
+              'templateUrl': 'views/header.html'
             },
             'footer@': {
               'templateUrl': 'views/footer.html'
+            },
+            'alerts@': {
+              'templateUrl': 'views/alerts.html',
+              'controller': 'AlertController',
+              'controllerAs': 'AlertController'
             }
           }
-        })
-        .state('main.home', {
+        }).
+        state('main.home', {
           'url': '/',
           'views': {
             'content@': {
               'templateUrl': 'views/home.html',
               'controller': 'MainCtrl'
             }
+          }
+        })
+        .state('main.profile', {
+          'url': '/profile',
+          'views': {
+            'content@': {
+              'templateUrl': 'views/profile.html',
+              'controller': 'ProfileController',
+              'controllerAs': 'ProfileController'
+            }
+          },
+          'resolve': {
+            'initialData': ['$q', 'ProfileService',
+              function ($q, ProfileService) {
+                // Retrieve list of profiles.
+                var profileData = ProfileService.getAllProfiles().then(function (results) {
+                  return JSON.parse(JSON.stringify(results));
+                });
+
+                // Wait on and compile all requested all.
+                return $q.all([profileData]).then(function (results) {
+
+                  var profiles = [];
+
+                  results[0].results[0].data.forEach(function (profile) {
+                    profiles.push(profile.row[0]);
+                  });
+
+                  return {
+                    'profiles': profiles
+                  };
+
+                });
+
+              }
+            ]
           }
         });
     }
