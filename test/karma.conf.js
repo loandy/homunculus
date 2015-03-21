@@ -24,6 +24,12 @@ module.exports = function(config) {
       'bower_components/angular-resource/angular-resource.js',
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-touch/angular-touch.js',
+      'bower_components/angular-ui-router/release/angular-ui-router.js',
+      'bower_components/angular-ui-sortable/sortable.js',
+      'app/scripts/app.js',
+      'app/scripts/modules/*.js',
+      'app/scripts/controllers/*.js',
+      'app/scripts/services/*.js',
       'app/scripts/**/*.js',
       'test/mock/**/*.js',
       'test/spec/**/*.js'
