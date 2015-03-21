@@ -15,6 +15,7 @@ angular
     'ngSanitize',
     'ngTouch',
     'ui.router',
+    'ui.sortable',
     'homunculusApp.controllers',
     'homunculusApp.services'
   ])
