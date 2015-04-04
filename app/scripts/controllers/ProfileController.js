@@ -53,7 +53,6 @@ angular.module('homunculusApp.controllers')
 
         ProfileService.getAllProfiles().then(function (results) {
 
-          console.log(results);
           self.profiles = results;
 
         }, function (error) {
