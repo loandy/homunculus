@@ -175,6 +175,13 @@ module.exports = function (grunt) {
       }
     },
 
+    browserify: {
+        js: {
+            src: 'modules.js',
+            dest: '<%= yeoman.app %>/scripts/bundle.js'
+        }
+    },
+
     // Compiles Sass to CSS and generates necessary files if requested
     compass: {
       options: {
@@ -447,6 +454,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'wiredep',
+    'browserify:js',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
