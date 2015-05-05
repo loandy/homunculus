@@ -45,8 +45,7 @@ angular
           'url': '/',
           'views': {
             'content@': {
-              'templateUrl': 'views/home.html',
-              'controller': 'MainCtrl'
+              'templateUrl': 'views/home.html'
             }
           }
         })
