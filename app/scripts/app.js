@@ -14,6 +14,7 @@ angular
     'ngResource',
     'ngSanitize',
     'ngTouch',
+    'ui.bootstrap',
     'ui.router',
     'ui.sortable',
     'angular-uuid',
