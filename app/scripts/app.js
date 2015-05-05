@@ -35,11 +35,6 @@ angular
             },
             'footer@': {
               'templateUrl': 'views/footer.html'
-            },
-            'alerts@': {
-              'templateUrl': 'views/alerts.html',
-              'controller': 'AlertController',
-              'controllerAs': 'AlertController'
             }
           }
         }).
@@ -58,6 +53,11 @@ angular
               'templateUrl': 'views/profile.html',
               'controller': 'ProfileController',
               'controllerAs': 'ProfileController'
+            },
+            'alerts@main.profile': {
+              'templateUrl': 'views/alerts.html',
+              'controller': 'AlertController',
+              'controllerAs': 'AlertController'
             }
           },
           'resolve': {
