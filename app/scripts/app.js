@@ -16,6 +16,7 @@ angular
     'ngTouch',
     'ui.router',
     'ui.sortable',
+    'angular-uuid',
     'homunculusApp.controllers',
     'homunculusApp.services'
   ])
