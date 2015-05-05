@@ -17,7 +17,7 @@ angular.module('homunculusApp.services')
 
           this.alerts.push({
             'type': alert.type,
-            'msg': alert.msg
+            'message': alert.message
           });
 
         },
