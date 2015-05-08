@@ -36,6 +36,8 @@ angular.module('homunculusApp.controllers')
 
           ProfileService.createProfile(profileNode).then(function (results) {
 
+            UtilityService.insertAlpha(profileNode, self.profiles);
+
             AlertService.addAlert({
               'type': 'success',
               'message': 'Successfully created profile.'
@@ -58,6 +60,8 @@ angular.module('homunculusApp.controllers')
       this.getAll = function () {
 
         ProfileService.getAllProfiles().then(function (results) {
+
+          results.sort(ProfileService.helper.alphaSort);
 
           self.profiles = results;
 

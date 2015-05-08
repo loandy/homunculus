@@ -64,18 +64,15 @@ angular
             'initialData': ['$q', 'HomunculusProfileService',
               function ($q, ProfileService) {
                 // Retrieve list of profiles.
-                var profileData = ProfileService.getAllProfiles().then(function (results) {
-                  return JSON.parse(JSON.stringify(results));
-                });
-
-                // Wait on and compile all requested all.
-                return $q.all([profileData]).then(function (results) {
+                return ProfileService.getAllProfiles().then(function (results) {
 
                   var profiles = [];
 
-                  results[0].results[0].data.forEach(function (profile) {
+                  results.forEach(function (profile) {
                     profiles.push(profile.row[0]);
                   });
+
+                  profiles.sort(ProfileService.helper.alphaSort);
 
                   return {
                     'profiles': profiles
