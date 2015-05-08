@@ -16,6 +16,21 @@ angular.module('homunculusApp.services')
     function ($http, $q, UtilityService, configurations) {
 
       return {
+        'helper': {
+          'alphaSort': function (a, b) {
+
+            var result = 0;
+
+            if (a.name < b.name) {
+              result = -1;
+            } else if (a.name > b.name) {
+              result = 1;
+            }
+
+            return result;
+
+          }
+        },
         'getProfile': function (profileNodeUuid) {
 
           var endpoint = configurations.neo4j.serviceRoot + 'transaction/commit';
