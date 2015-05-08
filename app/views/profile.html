@@ -28,6 +28,12 @@
 
   <div class="well">
     <h2>Select a profile</h2>
-    <select id="profiles" ng-model="ProfileController.selectedProfile" ng-options="profile.name for profile in ProfileController.profiles | orderBy: 'name'"></select>
+    <form name="selectProfileForm">
+      <div ng-repeat="profile in HomunculusProfileController.profiles track by profile.uuid">
+        <input type="radio" id="{{ profile.uuid }}" name="profiles" ng-model="profile.uuid" ng-value="profile.uuid">
+        <label for="{{ profile.uuid }}">{{ profile.name }}</label>
+      </div>
+      <button class="btn btn-primary" type="submit">Select Profile</button>
+    </form>
   </div>
 </div>
