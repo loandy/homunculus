@@ -16,14 +16,14 @@ angular.module('homunculusApp.services')
     function ($http, $q, UtilityService, configurations) {
 
       return {
-        'getProfile': function (nodeId) {
+        'getProfile': function (profileNodeUuid) {
 
           var endpoint = configurations.neo4j.serviceRoot + 'transaction/commit';
           var queries = {
             'statements': [{
-              'statement': 'MATCH (p:Profile) WHERE p.id={id} RETURN p',
+              'statement': 'MATCH (p:Profile) WHERE p.uuid={uuid} RETURN p',
               'parameters': {
-                'id': nodeId
+                'uuid': profileNodeUuid
               }
             }]
           };
@@ -52,7 +52,7 @@ angular.module('homunculusApp.services')
 
           $http.post(endpoint, queries)
             .success(function (data, status, headers, config) {
-              deferred.resolve(data);
+              deferred.resolve(UtilityService.objectToArray(data.results[0].data));
             })
             .error(function (data, status, headers, config) {
               deferred.reject(status);
@@ -61,14 +61,14 @@ angular.module('homunculusApp.services')
           return deferred.promise;
 
         },
-        'createProfile': function (node) {
+        'createProfile': function (profileNode) {
 
           var endpoint = configurations.neo4j.serviceRoot + 'transaction/commit';
           var queries = {
             'statements': [{
-              'statement': 'CREATE (p:Profile {profile}) RETURN id(p)',
+              'statement': 'CREATE (p:Profile {profile}) RETURN p',
               'parameters': {
-                'profile': node
+                'profile': profileNode
               }
             }]
           };
@@ -85,14 +85,14 @@ angular.module('homunculusApp.services')
           return deferred.promise;
 
         },
-        'removeProfile': function (nodeId) {
+        'deleteProfile': function (profileNodeUuid) {
 
           var endpoint = configurations.neo4j.serviceRoot + 'transaction/commit';
           var queries = {
             'statements': [{
-              'statement': 'MATCH (p:Profile) OPTIONAL MATCH (p)-[r]-() WHERE p.id={id} DELETE p, r',
+              'statement': 'MATCH (p:Profile) OPTIONAL MATCH (p)-[r]-() WHERE p.uuid={uuid} DELETE p, r',
               'parameters': {
-                'id': nodeId
+                'uuid': profileNodeUuid
               }
             }]
           };
