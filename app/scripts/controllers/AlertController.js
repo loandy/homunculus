@@ -2,13 +2,14 @@
 
 /**
  * @ngdoc function
- * @name homunculusApp.controllers:AlertController
+ * @name homunculusApp.controllers:HomunculusAlertController
  * @description
- * # AlertController
+ * # HomunculusAlertController
  * Controller for managing Bootstrap-styled alerts.
  */
 angular.module('homunculusApp.controllers')
-  .controller('AlertController', ['AlertService',
+  .controller('HomunculusAlertController', [
+    'HomunculusAlertService',
     function (AlertService) {
 
       var self = this;

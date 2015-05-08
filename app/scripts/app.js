@@ -51,17 +51,17 @@ angular
           'views': {
             'content@': {
               'templateUrl': 'views/profile.html',
-              'controller': 'ProfileController',
-              'controllerAs': 'ProfileController'
+              'controller': 'HomunculusProfileController',
+              'controllerAs': 'HomunculusProfileController'
             },
             'alerts@main.profile': {
               'templateUrl': 'views/alerts.html',
-              'controller': 'AlertController',
-              'controllerAs': 'AlertController'
+              'controller': 'HomunculusAlertController',
+              'controllerAs': 'HomunculusAlertController'
             }
           },
           'resolve': {
-            'initialData': ['$q', 'ProfileService',
+            'initialData': ['$q', 'HomunculusProfileService',
               function ($q, ProfileService) {
                 // Retrieve list of profiles.
                 var profileData = ProfileService.getAllProfiles().then(function (results) {

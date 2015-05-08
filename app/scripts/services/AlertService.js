@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc service
- * @name homunculusApp.services:AlertService
+ * @name homunculusApp.services:HomunculusAlertService
  * @description
- * # AlertService
+ * # HomunculusAlertService
  * Service for managing Bootstrap alerts.
  */
 angular.module('homunculusApp.services')
-  .factory('AlertService', [
+  .factory('HomunculusAlertService', [
     function () {
 
       return {

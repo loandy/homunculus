@@ -2,14 +2,18 @@
 
 /**
  * @ngdoc service
- * @name homunculusApp.services:ProfileService
+ * @name homunculusApp.services:HomunculusProfileService
  * @description
- * # ProfileService
+ * # HomunculusProfileService
  * Service for managing profiles.
  */
 angular.module('homunculusApp.services')
-  .factory('ProfileService', ['$http', '$q', 'configurations',
-    function ($http, $q, configurations) {
+  .factory('HomunculusProfileService', [
+    '$http',
+    '$q',
+    'HomunculusUtilityService',
+    'configurations',
+    function ($http, $q, UtilityService, configurations) {
 
       return {
         'getProfile': function (nodeId) {

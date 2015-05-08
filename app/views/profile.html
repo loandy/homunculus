@@ -7,21 +7,21 @@
   <div ui-view="alerts"></div>
 
   <div class="well">
-    <button type="button" class="btn btn-primary btn-lg" ng-click="ProfileController.showCreateProfileForm = !ProfileController.showCreateProfileForm">
-      <i class="fa fa-minus" ng-show="ProfileController.showCreateProfileForm"></i>
-      <i class="fa fa-plus" ng-show="!ProfileController.showCreateProfileForm"></i>
+    <button type="button" class="btn btn-primary btn-lg" ng-click="HomunculusProfileController.showCreateProfileForm = !HomunculusProfileController.showCreateProfileForm">
+      <i class="fa fa-minus" ng-show="HomunculusProfileController.showCreateProfileForm"></i>
+      <i class="fa fa-plus" ng-show="!HomunculusProfileController.showCreateProfileForm"></i>
       <span>Create New Profile</span>
     </button>
 
     <!-- CREATE PROFILE FORM -->
-    <div class="well" ng-show="ProfileController.showCreateProfileForm">
-    <form class="create-profile-form" id="create-profile-form" name="createProfileForm" ng-show="ProfileController.showCreateProfileForm" novalidate>
+    <div class="well" ng-show="HomunculusProfileController.showCreateProfileForm">
+    <form class="create-profile-form" id="create-profile-form" name="createProfileForm" ng-show="HomunculusProfileController.showCreateProfileForm" novalidate>
       <div class="form-group">
         <label for="name">Name</label>
         <input type="text" class="form-control" id="profile-name" name="name" placeholder="Enter a name..." ng-model="profile.name" required>
-        <span ng-show="createProfileForm.name.$error.required && (createProfileForm.name.$dirty || ProfileController.submittedCreateProfileForm)" class="help-block">Please provide a name.</span>
+        <span ng-show="createProfileForm.name.$error.required && (createProfileForm.name.$dirty || HomunculusProfileController.submittedCreateProfileForm)" class="help-block">Please provide a name.</span>
       </div>
-      <button id="create-profile-form-submit-button" class="btn btn-primary" ng-click="ProfileController.create(createProfileForm.$valid, profile)">Create Profile</button>
+      <button id="create-profile-form-submit-button" class="btn btn-primary" ng-click="HomunculusProfileController.create(createProfileForm.$valid, profile)">Create Profile</button>
     </form>
     </div>
   </div>

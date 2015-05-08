@@ -2,14 +2,19 @@
 
 /**
  * @ngdoc function
- * @name homunculusApp.controllers:ProfileController
+ * @name homunculusApp.controllers:HomunculusProfileController
  * @description
- * # ProfileController
+ * # HomunculusProfileController
  * Controller for managing profiles.
  */
 angular.module('homunculusApp.controllers')
-  .controller('ProfileController', ['AlertService', 'ProfileService', 'initialData',
-    function (AlertService, ProfileService, initialData) {
+  .controller('HomunculusProfileController', [
+    'HomunculusProfileService',
+    'HomunculusAlertService',
+    'HomunculusUtilityService',
+    'uuid',
+    'initialData',
+    function (ProfileService, AlertService, UtilityService, uuid, initialData) {
 
       var self = this;
 
