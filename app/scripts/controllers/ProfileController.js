@@ -76,5 +76,11 @@ angular.module('homunculusApp.controllers')
 
       };
 
+      this.select = function (profile) {
+
+        ProfileService.currentProfile = profile;
+
+      };
+
     }
   ]);

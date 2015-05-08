@@ -16,6 +16,7 @@ angular.module('homunculusApp.services')
     function ($http, $q, UtilityService, configurations) {
 
       return {
+        'currentProfile': false,
         'helper': {
           'alphaSort': function (a, b) {
 

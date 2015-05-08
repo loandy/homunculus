@@ -28,7 +28,7 @@
 
   <div class="well">
     <h2>Select a profile</h2>
-    <form name="selectProfileForm">
+    <form name="selectProfileForm" ng-submit="HomunculusProfileController.select(profile)" novalidate>
       <div ng-repeat="profile in HomunculusProfileController.profiles track by profile.uuid">
         <input type="radio" id="{{ profile.uuid }}" name="profiles" ng-model="profile.uuid" ng-value="profile.uuid">
         <label for="{{ profile.uuid }}">{{ profile.name }}</label>
