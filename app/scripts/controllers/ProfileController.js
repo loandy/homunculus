@@ -30,6 +30,7 @@ angular.module('homunculusApp.controllers')
           self.submittedCreateProfileForm = false;
 
           var profileNode = {
+            'uuid': uuid.v1(),
             'name': form.name
           };
 
