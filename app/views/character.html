@@ -1,0 +1,580 @@
+<div class="jumbotron">
+  <h1>Character</h1>
+</div>
+
+<div class="row">
+
+  <!-- FLASH MESSAGE INTERFACE -->
+  <div ui-view="alerts"></div>
+
+  <!-- CHARACTER CREATION INTERFACE -->
+  <div class="well">
+
+    <!-- Display toggle for character creation form. -->
+    <button type="button" class="btn btn-primary btn-lg" ng-click="HomunculusCharacterController.showCreateCharacterForm = !HomunculusCharacterController.showCreateCharacterForm">
+      <i class="fa fa-minus" ng-show="HomunculusCharacterController.showCreateCharacterForm"></i>
+      <i class="fa fa-plus" ng-show="!HomunculusCharacterController.showCreateCharacterForm"></i>
+      <span>Create New Character</span>
+    </button>
+
+    <!-- CHARACTER CREATION FORM -->
+    <div class="well" ng-show="HomunculusCharacterController.showCreateCharacterForm">
+
+      <form class="form-horizontal" id="create-character-form" name="createCharacterForm" ng-show="HomunculusCharacterController.showCreateCharacterForm" novalidate>
+
+        <!-- SECTION: PROFILE -->
+        <h3>Profile</h3>
+
+        <div class="well">
+
+          <!-- NAME -->
+          <div class="form-group container-fluid" ng-class="{ 'has-error': createCharacterForm.name.$invalid && (createCharacterForm.name.$dirty || HomunculusCharacterController.submittedCreateCharacterForm) }">
+            <div class="row">
+              <label class="col-sm-3 control-label" for="name">Name</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="character-name" name="name" ng-model="HomunculusCharacterController.character.name" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-offset-3 col-sm-9">
+                <span class="text-danger" ng-show="createCharacterForm.name.$error.required && (createCharacterForm.name.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter your character's name.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- RACE -->
+          <div class="form-group container-fluid" ng-class="{ 'has-error': createCharacterForm.race.$invalid && (createCharacterForm.race.$dirty || HomunculusCharacterController.submittedCreateCharacterForm) }">
+            <div class="row">
+              <label class="col-sm-3 control-label" for="race">Race</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="character-race" name="race" ng-model="HomunculusCharacterController.character.race" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-offset-3 col-sm-9">
+                <span class="text-danger" ng-show="createCharacterForm.race.$error.required && (createCharacterForm.race.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter your character's race.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CLASS -->
+          <div class="form-group container-fluid" ng-class="{ 'has-error': createCharacterForm.class.$invalid && (createCharacterForm.class.$dirty || HomunculusCharacterController.submittedCreateCharacterForm) }">
+            <div class="row">
+              <label class="col-sm-3 control-label" for="class">Class</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="character-class" name="class" ng-model="HomunculusCharacterController.character.class" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-offset-3 col-sm-9">
+                <span class="text-danger" ng-show="createCharacterForm.class.$error.required && (createCharacterForm.class.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter your character's class.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ALIGNMENT -->
+          <div class="form-group container-fluid" ng-class="{ 'has-error': createCharacterForm.alignment.$invalid && (createCharacterForm.alignment.$dirty || HomunculusCharacterController.submittedCreateCharacterForm) }">
+            <div class="row">
+              <label class="col-sm-3 control-label" for="alignment">Alignment</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="character-alignment" name="alignment" ng-model="HomunculusCharacterController.character.alignment" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-offset-3 col-sm-9">
+                <span class="text-danger" ng-show="createCharacterForm.alignment.$error.required && (createCharacterForm.alignment.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter your character's alignment.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- EXPERIENCE POINTS -->
+          <div class="form-group container-fluid" ng-class="{ 'has-error': createCharacterForm.xp.$invalid && (createCharacterForm.xp.$dirty || HomunculusCharacterController.submittedCreateCharacterForm) }">
+            <div class="row">
+              <label class="col-sm-3 control-label" for="xp">Experience Points</label>
+              <div class="col-sm-3">
+                <input type="number" class="form-control" id="character-xp" name="xp" ng-model="HomunculusCharacterController.character.xp" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-offset-3 col-sm-9">
+                <span class="text-danger" ng-show="createCharacterForm.xp.$error.number && (createCharacterForm.xp.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter a valid numerical value.</span>
+                <span class="text-danger" ng-show="createCharacterForm.xp.$error.required && (createCharacterForm.xp.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter your character's experience point value.</span>
+              </div>
+            </div>
+          </div>
+
+        </div> <!-- END PROFILE SECTION -->
+
+        <!-- SECTION: VITALS -->
+        <h3>Vitals</h3>
+
+        <div class="well">
+
+          <!-- HEIGHT -->
+          <div class="form-group container-fluid" ng-class="{ 'has-error': (createCharacterForm.heightFeet.$invalid || createCharacterForm.heightInches.$invalid) && (createCharacterForm.heightFeet.$dirty || createCharacterForm.heightInches.$dirty || HomunculusCharacterController.submittedCreateCharacterForm) }">
+            <div class="row">
+              <label class="col-sm-3 control-label">Height</label>
+              <div class="col-sm-2">
+                <input type="number" class="form-control" id="character-height-feet" name="heightFeet" ng-model="HomunculusCharacterController.character.height.feet" ng-required="!(HomunculusCharacterController.character.height.feet || HomunculusCharacterController.character.height.inches)">
+              </div>
+              <div class="col-sm-2">
+                <span>ft.</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-offset-3 col-sm-2">
+                <input type="number" class="form-control" id="character-height-inches" name="heightInches" ng-model="HomunculusCharacterController.character.height.inches" ng-required="!(HomunculusCharacterController.character.height.feet || HomunculusCharacterController.character.height.inches)">
+              </div>
+              <div class="col-sm-2">
+                <span>in.</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-offset-3 col-sm-9">
+                <span class="text-danger" ng-show="(createCharacterForm.heightFeet.$error.number || createCharacterForm.heightInches.$error.number) && (createCharacterForm.heightFeet.$dirty || createCharacterForm.heightInches.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter a valid numerical value.</span>
+                <span class="text-danger" ng-show="(createCharacterForm.heightFeet.$error.required && createCharacterForm.heightInches.$error.required) && (createCharacterForm.heightFeet.$dirty || createCharacterForm.heightInches.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter your character's height.</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- WEIGHT -->
+          <div class="form-group container-fluid" ng-class="{ 'has-error': createCharacterForm.weight.$invalid && (createCharacterForm.weight.$dirty || HomunculusCharacterController.submittedCreateCharacterForm) }">
+            <div class="row">
+              <label class="col-sm-3 control-label" for="weight">Weight (lb.)</label>
+              <div class="col-sm-2">
+                <input type="number" class="form-control" id="character-weight" name="weight" ng-model="HomunculusCharacterController.character.weight" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-offset-3 col-sm-9">
+                <span class="text-danger" ng-show="createCharacterForm.weight.$error.number && (createCharacterForm.weight.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter a valid numerical value.</span>
+                <span class="text-danger" ng-show="createCharacterForm.weight.$error.required && (createCharacterForm.weight.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter your character's weight.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- SEX -->
+          <div class="form-group container-fluid" ng-class="{ 'has-error': createCharacterForm.sex.$invalid && (createCharacterForm.sex.$dirty || HomunculusCharacterController.submittedCreateCharacterForm) }">
+            <div class="row">
+              <label class="col-sm-3 control-label" for="sex">Sex</label>
+              <div class="col-sm-2">
+                <input type="text" class="form-control" id="character-sex" name="sex" ng-model="HomunculusCharacterController.character.sex" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-offset-3 col-sm-9">
+                <span class="text-danger" ng-show="createCharacterForm.sex.$error.required && (createCharacterForm.sex.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter your character's sex.</span>
+              </div>
+            </div>
+          </div>
+
+        </div> <!-- END VITALS SECTION -->
+
+        <!-- SECTION: ABILITY SCORES -->
+        <h3>Ability Scores</h3>
+
+        <div class="well">
+
+          <!-- STRENGTH -->
+          <div class="form-group container-fluid" ng-class="{ 'has-error': createCharacterForm.strength.$invalid && (createCharacterForm.strength.$dirty || HomunculusCharacterController.submittedCreateCharacterForm) }">
+            <div class="row">
+              <label class="col-sm-3 control-label" for="strength">Strength</label>
+              <div class="col-sm-2">
+                <input type="number" class="form-control" id="character-ability-strength" name="strength" ng-model="HomunculusCharacterController.character.ability.strength" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-offset-3 col-sm-9">
+                <span class="text-danger" ng-show="createCharacterForm.strength.$error.number && (createCharacterForm.strength.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter a valid numerical value.</span>
+                <span class="text-danger" ng-show="createCharacterForm.strength.$error.required && (createCharacterForm.strength.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter your character's strength value.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- DEXTERITY -->
+          <div class="form-group container-fluid" ng-class="{ 'has-error': createCharacterForm.dexterity.$invalid && (createCharacterForm.dexterity.$dirty || HomunculusCharacterController.submittedCreateCharacterForm) }">
+            <div class="row">
+              <label class="col-sm-3 control-label" for="dexterity">Dexterity</label>
+              <div class="col-sm-2">
+                <input type="number" class="form-control" id="character-ability-dexterity" name="dexterity" ng-model="HomunculusCharacterController.character.ability.dexterity" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-offset-3 col-sm-9">
+                <span class="text-danger" ng-show="createCharacterForm.dexterity.$error.number && (createCharacterForm.dexterity.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter a valid numerical value.</span>
+                <span class="text-danger" ng-show="createCharacterForm.dexterity.$error.required && (createCharacterForm.dexterity.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter your character's dexterity value.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CONSTITUTION -->
+          <div class="form-group container-fluid" ng-class="{ 'has-error': createCharacterForm.constitution.$invalid && (createCharacterForm.constitution.$dirty || HomunculusCharacterController.submittedCreateCharacterForm) }">
+            <div class="row">
+              <label class="col-sm-3 control-label" for="constitution">Constitution</em></label>
+              <div class="col-sm-2">
+                <input type="number" class="form-control" id="character-ability-constitution" name="constitution" ng-model="HomunculusCharacterController.character.ability.constitution" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-offset-3 col-sm-9">
+                <span class="text-danger" ng-show="createCharacterForm.constitution.$error.number && (createCharacterForm.constitution.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter a valid numerical value.</span>
+                <span class="text-danger" ng-show="createCharacterForm.constitution.$error.required && (createCharacterForm.constitution.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter your character's constitution value.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- INTELLIGENCE -->
+          <div class="form-group container-fluid" ng-class="{ 'has-error': createCharacterForm.intelligence.$invalid && (createCharacterForm.intelligence.$dirty || HomunculusCharacterController.submittedCreateCharacterForm) }">
+            <div class="row">
+              <label class="col-sm-3 control-label" for="intelligence">Intelligence</label>
+              <div class="col-sm-2">
+                <input type="number" class="form-control" id="character-ability-intelligence" name="intelligence" ng-model="HomunculusCharacterController.character.ability.intelligence" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-offset-3 col-sm-9">
+                <span class="text-danger" ng-show="createCharacterForm.intelligence.$error.number && (createCharacterForm.intelligence.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter a valid numerical value.</span>
+                <span class="text-danger" ng-show="createCharacterForm.intelligence.$error.required && (createCharacterForm.intelligence.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter your character's intelligence value.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- WISDOM -->
+          <div class="form-group container-fluid" ng-class="{ 'has-error': createCharacterForm.wisdom.$invalid && (createCharacterForm.wisdom.$dirty || HomunculusCharacterController.submittedCreateCharacterForm) }">
+            <div class="row">
+              <label class="col-sm-3 control-label" for="wisdom">Wisdom</label>
+              <div class="col-sm-2">
+                <input type="number" class="form-control" id="character-ability-wisdom" name="wisdom" ng-model="HomunculusCharacterController.character.ability.wisdom" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-offset-3 col-sm-9">
+                <span class="text-danger" ng-show="createCharacterForm.wisdom.$error.number && (createCharacterForm.wisdom.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter a valid numerical value.</span>
+                <span class="text-danger" ng-show="createCharacterForm.wisdom.$error.required && (createCharacterForm.wisdom.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter your character's wisdom value.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CHARISMA -->
+          <div class="form-group container-fluid" ng-class="{ 'has-error': createCharacterForm.charisma.$invalid && (createCharacterForm.charisma.$dirty || HomunculusCharacterController.submittedCreateCharacterForm) }">
+            <div class="row">
+              <label class="col-sm-3 control-label" for="charisma">Charisma</label>
+              <div class="col-sm-2">
+                <input type="number" class="form-control" id="character-ability-charisma" name="charisma" ng-model="HomunculusCharacterController.character.ability.charisma" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-offset-3 col-sm-9">
+                <span class="text-danger" ng-show="createCharacterForm.charisma.$error.number && (createCharacterForm.charisma.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter a valid numerical value.</span>
+                <span class="text-danger" ng-show="createCharacterForm.charisma.$error.required && (createCharacterForm.charisma.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter your character's charisma value.</span>
+              </div>
+            </div>
+          </div>
+
+        </div> <!-- END ABILITY SCORES SECTION -->
+
+        <!-- COMBAT STATISTICS -->
+        <h3>Combat Statistics</h3>
+
+        <div class="well">
+
+          <!-- ARMOR CLASS -->
+          <div class="form-group container-fluid" ng-class="{ 'has-error': createCharacterForm.armorClass.$invalid && (createCharacterForm.armorClass.$dirty || HomunculusCharacterController.submittedCreateCharacterForm) }">
+            <div class="row">
+              <label class="col-sm-3 control-label" for="armorClass">Armor Class</label>
+              <div class="col-sm-2">
+                <input type="number" class="form-control" id="character-armor-class" name="armorClass" ng-model="HomunculusCharacterController.character.armorClass" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-offset-3 col-sm-9">
+                <span class="text-danger" ng-show="createCharacterForm.armorClass.$error.number && (createCharacterForm.armorClass.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter a valid numerical value.</span>
+                <span class="text-danger" ng-show="createCharacterForm.armorClass.$error.required && (createCharacterForm.armorClass.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter your character's armor class.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- SPEED -->
+          <div class="form-group container-fluid" ng-class="{ 'has-error': createCharacterForm.speed.$invalid && (createCharacterForm.speed.$dirty || HomunculusCharacterController.submittedCreateCharacterForm) }">
+            <div class="row">
+              <label class="col-sm-3 control-label" for="speed">Speed (ft.)</label>
+              <div class="col-sm-2">
+                <input type="number" class="form-control" id="character-speed" name="speed" ng-model="HomunculusCharacterController.character.speed" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-offset-3 col-sm-9">
+                <span class="text-danger" ng-show="createCharacterForm.speed.$error.number && (createCharacterForm.speed.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter a valid numerical value.</span>
+                <span class="text-danger" ng-show="createCharacterForm.speed.$error.required && (createCharacterForm.speed.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter your character's speed in feet.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- MAXIMUM HIT POINTS -->
+          <div class="form-group container-fluid" ng-class="{ 'has-error': createCharacterForm.maxHitPoints.$invalid && (createCharacterForm.maxHitPoints.$dirty || HomunculusCharacterController.submittedCreateCharacterForm) }">
+            <div class="row">
+              <label class="col-sm-3 control-label" for="maxHitPoints">Maximum Hit Points</label>
+              <div class="col-sm-2">
+                <input type="number" class="form-control" id="character-max-hp" name="maxHitPoints" ng-model="HomunculusCharacterController.character.maxHitPoints" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-offset-3 col-sm-9">
+              <span class="text-danger" ng-show="createCharacterForm.maxHitPoints.$error.number && (createCharacterForm.maxHitPoints.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter a valid numerical value.</span>
+                <span class="text-danger" ng-show="createCharacterForm.maxHitPoints.$error.required && (createCharacterForm.maxHitPoints.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter your character's maximum hit points.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- HIT DICE -->
+          <div class="form-group container-fluid" ng-class="{ 'has-error': createCharacterForm.hitDice.$invalid && (createCharacterForm.hitDice.$dirty || HomunculusCharacterController.submittedCreateCharacterForm) }">
+            <div class="row">
+              <label class="col-sm-3 control-label" for="hitDice">Hit Dice</label>
+              <div class="col-sm-2">
+                <input type="text" class="form-control" id="character-hit-dice" name="hitDice" ng-model="HomunculusCharacterController.character.hitDice" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-offset-3 col-sm-9">
+                <span class="text-danger" ng-show="createCharacterForm.hitDice.$error.required && (createCharacterForm.hitDice.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter your character's hit dice type.</span>
+              </div>
+            </div>
+          </div>
+
+        </div> <!-- END COMBAT STATISTICS SECTION -->
+
+        <!-- SECTION: ATTACKS & SPELLCASTING -->
+        <h3>Attacks & Spellcasting</h3>
+
+        <div class="well">
+
+          <div id="character-attacks-toolbar" class="btn-toolbar">
+            <div class="btn-group" role="group">
+              <!-- REMOVE ATTACK -->
+              <button type="button" class="btn btn-primary btn-sm" ng-click="HomunculusCharacterController.removeAttack()" ng-disabled="HomunculusCharacterController.disableRemoveAttacks()"><i class="fa fa-minus"></i></button>
+
+              <!-- ADD ATTACK -->
+              <button type="button" class="btn btn-primary btn-sm" ng-click="HomunculusCharacterController.addAttack()"><i class="fa fa-plus"></i></button>
+            </div>
+          </div>
+
+          <div ng-repeat="attack in HomunculusCharacterController.character.attacks track by $index">
+            <fieldset class="container-fluid">
+
+              <legend>#{{$index + 1}}</legend>
+
+              <!-- ATTACK NAME -->
+              <div class="form-group">
+                <div class="row" ng-class="{ 'has-error': createCharacterForm.attack{{$index}}Name.$invalid && (createCharacterForm.attack{{$index}}Name.$dirty || HomunculusCharacterController.submittedCreateCharacterForm) }">
+                  <label class="col-sm-3 control-label" for="attack{{$index}}Name">Name</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="character-attack-{{$index}}-name" name="attack{{$index}}Name" ng-model="HomunculusCharacterController.character.attacks[$index].name" required>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-offset-3 col-sm-9">
+                    <span class="text-danger" ng-show="createCharacterForm.attack{{$index}}Name.$error.required && (createCharacterForm.attack{{$index}}Name.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please provide the weapon/spell name.</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ATTACK DAMAGE -->
+              <div class="form-group">
+                <div class="row" ng-class="{ 'has-error': createCharacterForm.attack{{$index}}Damage.$invalid && (createCharacterForm.attack{{$index}}Damage.$dirty || HomunculusCharacterController.submittedCreateCharacterForm) }">
+                  <label class="col-sm-3 control-label" for="attack{{$index}}Damage">Damage</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="character-attack-{{$index}}-damage" name="attack{{$index}}Damage" ng-model="HomunculusCharacterController.character.attacks[$index].damage" required>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-offset-3 col-sm-9">
+                    <span class="text-danger" ng-show="createCharacterForm.attack{{$index}}Damage.$error.required && (createCharacterForm.attack{{$index}}Damage.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please provide the weapon/spell damage.</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ATTACK DAMAGE TYPE -->
+              <div class="form-group">
+                <div class="row" ng-class="{ 'has-error': createCharacterForm.attack{{$index}}DamageType.$invalid && (createCharacterForm.attack{{$index}}DamageType.$dirty || HomunculusCharacterController.submittedCreateCharacterForm) }">
+                  <label class="col-sm-3 control-label" for="attack{{$index}}DamageType">Damage Type</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="character-attack-{{$index}}-damage-type" name="attack{{$index}}DamageType" ng-model="HomunculusCharacterController.character.attacks[$index].damageType" required>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-offset-3 col-sm-9">
+                    <span class="text-danger" ng-show="createCharacterForm.attack{{$index}}DamageType.$error.required && (createCharacterForm.attack{{$index}}DamageType.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please provide the weapon/spell damage type.</span>
+                  </div>
+                </div>
+              </div>
+
+            </fieldset>
+          </div>
+
+        </div> <!-- END ATTACKS & SPELLCASTING SECTION -->
+
+        <!-- SECTION: FEATURES & TRAITS -->
+        <h3>Features & Traits</h3>
+
+        <div class="well">
+
+          <div id="character-features-toolbar" class="btn-toolbar">
+            <div class="btn-group" role="group">
+              <!-- REMOVE FEATURE -->
+              <button type="button" class="btn btn-primary btn-sm" ng-click="HomunculusCharacterController.removeFeature()" ng-disabled="HomunculusCharacterController.disableRemoveFeature()"><i class="fa fa-minus"></i></button>
+
+              <!-- ADD FEATURE -->
+              <button type="button" class="btn btn-primary btn-sm" ng-click="HomunculusCharacterController.addFeature()"><i class="fa fa-plus"></i></button>
+            </div>
+          </div>
+
+          <div ng-repeat="feature in HomunculusCharacterController.character.features track by $index">
+            <fieldset class="container-fluid">
+
+              <legend>#{{$index + 1}}</legend>
+
+              <!-- FEATURE NAME -->
+              <div class="form-group">
+                <div class="row" ng-class="{ 'has-error': createCharacterForm.feature{{$index}}Name.$invalid && (createCharacterForm.feature{{$index}}Name.$dirty || HomunculusCharacterController.submittedCreateCharacterForm) }">
+                  <label class="col-sm-3 control-label" for="feature{{$index}}Name">Name</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="character-feature-{{$index}}-name" name="feature{{$index}}Name" ng-model="HomunculusCharacterController.character.features[$index].name" required>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-offset-3 col-sm-9">
+                    <span class="text-danger" ng-show="createCharacterForm.feature{{$index}}Name.$error.required && (createCharacterForm.feature{{$index}}Name.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please provide a feature name.</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- FEATURE DESCRIPTION -->
+              <div class="form-group">
+                <div class="row">
+                  <label class="col-sm-3 control-label" for="feature{{$index}}Description">Description</label>
+                  <div class="col-sm-9">
+                    <textarea class="form-control" id="character-feature-{{$index}}-damage" name="feature{{$index}}Description" rows="3" ng-model="HomunculusCharacterController.character.features[$index].description"></textarea>
+                  </div>
+                </div>
+              </div>
+
+            </fieldset>
+          </div>
+
+        </div> <!-- END FEATURES & TRAITS SECTION -->
+
+        <!-- SECTION: FEATS -->
+        <h3>Feats</h3>
+
+        <div class="well">
+
+          <div id="character-feats-toolbar" class="btn-toolbar">
+            <div class="btn-group" role="group">
+              <!-- REMOVE FEAT -->
+              <button type="button" class="btn btn-primary btn-sm" ng-click="HomunculusCharacterController.removeFeat()" ng-disabled="HomunculusCharacterController.disableRemoveFeat()"><i class="fa fa-minus"></i></button>
+
+              <!-- ADD FEAT -->
+              <button type="button" class="btn btn-primary btn-sm" ng-click="HomunculusCharacterController.addFeat()"><i class="fa fa-plus"></i></button>
+            </div>
+          </div>
+
+          <div ng-repeat="feat in HomunculusCharacterController.character.feats track by $index">
+            <fieldset class="container-fluid">
+
+              <legend>#{{$index + 1}}</legend>
+
+              <!-- FEAT NAME -->
+              <div class="form-group">
+                <div class="row" ng-class="{ 'has-error': createCharacterForm.feat{{$index}}Name.$invalid && (createCharacterForm.feat{{$index}}Name.$dirty || HomunculusCharacterController.submittedCreateCharacterForm) }">
+                  <label class="col-sm-3 control-label" for="feat{{$index}}Name">Name</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="character-feat-{{$index}}-name" name="feat{{$index}}Name" ng-model="HomunculusCharacterController.character.feats[$index].name" required>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-offset-3 col-sm-9">
+                    <span class="text-danger" ng-show="createCharacterForm.feat{{$index}}Name.$error.required && (createCharacterForm.feat{{$index}}Name.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please provide a feat name.</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- FEAT DESCRIPTION -->
+              <div class="form-group">
+                <div class="row">
+                  <label class="col-sm-3 control-label" for="feat{{$index}}Description">Description</label>
+                  <div class="col-sm-9">
+                    <textarea class="form-control" id="character-feat-{{$index}}-damage" name="feat{{$index}}Description" rows="3" ng-model="HomunculusCharacterController.character.feats[$index].description"></textarea>
+                  </div>
+                </div>
+              </div>
+
+            </fieldset>
+          </div>
+
+        </div> <!-- END FEATS SECTION -->
+
+        <!-- ROLEPLAYING TRAITS -->
+        <h3>Roleplaying Traits (Optional)</h3>
+
+        <div class="well">
+
+          <!-- IDEALS -->
+          <div class="container-fluid">
+            <div class="row form-group">
+              <label class="col-sm-3 control-label" for="ideals">Ideals</label>
+              <div class="col-sm-9">
+                <textarea class="form-control" id="character-ideals" name="ideals" rows="5" ng-model="character.ideals"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- BONDS -->
+          <div class="container-fluid">
+            <div class="row form-group">
+              <label class="col-sm-3 control-label" for="bonds">Bonds</label>
+              <div class="col-sm-9">
+                <textarea class="form-control" id="character-bonds" name="bonds" rows="5" ng-model="character.bonds"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- FLAWS -->
+          <div class="container-fluid">
+            <div class="row form-group">
+              <label class="col-sm-3 control-label" for="flaws">Flaws</label>
+              <div class="col-sm-9">
+                <textarea class="form-control" id="character-flaws" name="flaws" rows="5" ng-model="character.flaws"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- BACKGROUND -->
+          <div class="container-fluid">
+            <div class="row form-group">
+              <label class="col-sm-3 control-label" for="background">Background</label>
+              <div class="col-sm-9">
+                <textarea class="form-control" id="character-background" name="background" rows="5" ng-model="character.background"></textarea>
+              </div>
+            </div>
+          </div>
+
+        </div> <!-- END ROLEPLAYING TRAITS SECTION -->
+
+        <!-- SUBMIT BUTTON -->
+        <button id="create-character-form-submit-button" class="btn btn-primary btn-lg" ng-click="HomunculusCharacterController.create(createCharacterForm.$valid, HomunculusCharacterController.character)">Create Character</button>
+
+      </form>
+
+    </div> <!-- END CHARACTER CREATION FORM -->
+
+  </div> <!-- END CHARACTER CREATION INTERFACE -->
+
+  <!-- CHARACTER MANAGEMENT INTERFACE -->
+  <div class="well">
+    <h2>Select a Character</h2>
+    <div ng-repeat="character in HomunculusCharacterController.characters">
+
+    </div>
+  </div>
+</div>

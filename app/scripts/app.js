@@ -83,6 +83,21 @@ angular
               }
             ]
           }
+        })
+        .state('main.character', {
+          'url': '/character',
+          'views': {
+            'content@': {
+              'templateUrl': 'views/character.html',
+              'controller': 'HomunculusCharacterController',
+              'controllerAs': 'HomunculusCharacterController',
+            },
+            'alerts@main.character': {
+              'templateUrl': 'views/alerts.html',
+              'controller': 'HomunculusAlertController',
+              'controllerAs': 'HomunculusAlertController'
+            }
+          }
         });
     }
   ]);
