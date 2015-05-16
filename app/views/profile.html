@@ -4,28 +4,49 @@
 
 <div class="row">
 
+  <!-- FLASH MESSAGE INTERFACE -->
   <div ui-view="alerts"></div>
 
+  <!-- PROFILE CREATION INTERFACE -->
   <div class="well">
+
+    <!-- Display toggle for profile creation form. -->
     <button type="button" class="btn btn-primary btn-lg" ng-click="HomunculusProfileController.showCreateProfileForm = !HomunculusProfileController.showCreateProfileForm">
       <i class="fa fa-minus" ng-show="HomunculusProfileController.showCreateProfileForm"></i>
       <i class="fa fa-plus" ng-show="!HomunculusProfileController.showCreateProfileForm"></i>
       <span>Create New Profile</span>
     </button>
 
-    <!-- CREATE PROFILE FORM -->
+    <!-- PROFILE CREATION FORM -->
     <div class="well" ng-show="HomunculusProfileController.showCreateProfileForm">
-    <form class="create-profile-form" id="create-profile-form" name="createProfileForm" ng-show="HomunculusProfileController.showCreateProfileForm" novalidate>
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" class="form-control" id="profile-name" name="profile-name" placeholder="Enter a name..." ng-model="profile.name" required>
-        <span ng-show="createProfileForm.name.$error.required && (createProfileForm.name.$dirty || HomunculusProfileController.submittedCreateProfileForm)" class="help-block">Please provide a name.</span>
-      </div>
-      <button id="create-profile-form-submit-button" class="btn btn-primary" ng-click="HomunculusProfileController.create(createProfileForm.$valid, profile)">Create Profile</button>
-    </form>
-    </div>
-  </div>
 
+      <form class="create-profile-form" id="create-profile-form" name="createProfileForm" ng-show="HomunculusProfileController.showCreateProfileForm" novalidate>
+
+        <!-- NAME -->
+        <div class="form-group container-fluid" ng-class="{ 'has-error': createProfileForm.name.$invalid && (createProfileForm.name.$dirty || HomunculusProfileController.submittedCreateProfileForm) }">
+          <div class="row">
+            <label class="col-sm-3 control-label" for="name">Name</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="profile-name" name="name" ng-model="profile.name" required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-offset-3 col-sm-9">
+              <span class="text-danger" ng-show="createProfileForm.name.$error.required && (createProfileForm.name.$dirty || HomunculusProfileController.submittedCreateProfileForm)" class="help-block">Please provide a name.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUBMIT BUTTON -->
+        <button id="create-profile-form-submit-button" class="btn btn-primary btn-lg" ng-click="HomunculusProfileController.create(createProfileForm.$valid, profile)">Create Profile</button>
+
+      </form>
+
+    </div> <!-- END PROFILE CREATION FORM -->
+
+  </div> <!-- END PROFILE CREATION INTERFACE -->
+
+  <!-- PROFILE SELECTION INTERFACE -->
   <div class="well">
     <h2>Select a profile</h2>
     <form name="selectProfileForm" ng-submit="HomunculusProfileController.select(profile)" novalidate>
@@ -33,7 +54,7 @@
         <input type="radio" id="{{ profile.uuid }}" name="profile-select" ng-model="$parent.profile.uuid" ng-value="profile.uuid">
         <label for="{{ profile.uuid }}">{{ profile.name }}</label>
       </div>
-      <button class="btn btn-primary" type="submit">Select Profile</button>
+      <button class="btn btn-primary btn-lg" type="submit">Select Profile</button>
     </form>
   </div>
 </div>
