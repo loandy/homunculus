@@ -21,33 +21,53 @@ angular.module('homunculusApp.services')
         },
         'insertAlpha': function (insertElement, insertArray) {
 
-          // Binary search-like algorithm to find insertion point.
-          // Array should be lexicographically pre-sorted.
-          var i = 0;
-          var low = 0;
-          var high = insertArray.length - 1;
-          var mid;
+          var listLength = insertArray.length;
+          var isListEmpty = (listLength === 0);
 
-          while (high - low > 1) {
+          if ( isListEmpty ) {
+            insertArray.push(insertElement);
+          } else {
 
-            mid = Math.floor((low + high) / 2);
+            if (listLength === 1) {
 
-            if (insertElement.name < insertArray[mid].name) {
-              high = mid;
+              if (insertElement.name < insertArray[0]) {
+                insertArray.unshift(insertElement);
+              } else {
+                insertArray.pop(insertElement);
+              }
+
             } else {
-              low = mid;
+
+              // Binary search-like algorithm to find insertion point.
+              // Array should be lexicographically pre-sorted.
+              var i = 0;
+              var low = 0;
+              var high = listLength - 1;
+              var mid;
+
+              while (high - low > 1) {
+
+                mid = Math.floor((low + high) / 2);
+
+                if (insertElement.name < insertArray[mid].name) {
+                  high = mid;
+                } else {
+                  low = mid;
+                }
+
+              }
+
+              if (insertElement.name < insertArray[low].name) {
+                insertArray.unshift(insertElement);
+              } else if (insertElement.name > insertArray[high].name) {
+                insertArray.push(insertElement);
+              } else {
+                insertArray.splice(high, 0, insertElement);
+              }
+
             }
 
           }
-
-          if (insertElement.name < insertArray[low].name) {
-            insertArray.unshift(insertElement);
-          } else if (insertElement.name > insertArray[high].name) {
-            insertArray.push(insertElement);
-          } else {
-            insertArray.splice(high, 0, insertElement);
-          }
-
         }
       };
 
