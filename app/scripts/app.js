@@ -11,6 +11,7 @@
 angular
   .module('homunculusApp', [
     'ngAnimate',
+    'ngCookies',
     'ngResource',
     'ngSanitize',
     'ngTouch',
