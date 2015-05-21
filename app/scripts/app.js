@@ -32,7 +32,9 @@ angular
           'abstract': true,
           'views': {
             'header@': {
-              'templateUrl': 'views/header.html'
+              'templateUrl': 'views/header.html',
+              'controller': 'HomunculusHeaderController',
+              'controllerAs': 'HomunculusHeaderController'
             },
             'footer@': {
               'templateUrl': 'views/footer.html'

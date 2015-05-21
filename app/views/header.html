@@ -6,9 +6,12 @@
     <li ui-sref-active="active" class="active">
       <a ui-sref="main.profile">Profile</a>
     </li>
-    <li ui-sref-active="active" class="active">
+    <li ui-sref-active="active" class="active" ng-if="!!HomunculusHeaderController.currentProfile">
       <a ui-sref="main.character">Character</a>
     </li>
   </ul>
   <h3>Homunculus</h3>
+  <div class="well" ng-if="!!HomunculusHeaderController.currentProfile">
+    <span>You are currently signed in as {{HomunculusHeaderController.currentProfile.name}}.</span>
+  </div>
 </div>
