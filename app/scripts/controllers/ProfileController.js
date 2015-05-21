@@ -18,9 +18,34 @@ angular.module('homunculusApp.controllers')
 
       var self = this;
 
-      this.showCreateProfileForm = false;
-      this.submittedCreateProfileForm = false;
-      this.profiles = initialData.profiles; // Resolved by router.
+      var generateProfileLookup = function (profiles) {
+
+        var lookup = {};
+
+        for (var i = 0, l = profiles.length; i < l; i++) {
+          lookup[profiles[i].uuid] = profiles[i];
+        }
+
+        return lookup;
+
+      };
+
+      self.showCreateProfileForm = false;
+      self.submittedCreateProfileForm = false;
+      self.profiles = initialData.profiles; // Resolved by router.
+      self.profileLookup = generateProfileLookup(this.profiles);
+
+      Object.defineProperty(self, 'currentProfile', {
+        'enumerable': true,
+        'configurable': true,
+        'writeable': true,
+        'get': function () {
+          return ProfileService.currentProfile;
+        },
+        'set': function (newValue) {
+          ProfileService.currentProfile = newValue;
+        }
+      });
 
       this.create = function (isValid, form) {
 
@@ -65,6 +90,8 @@ angular.module('homunculusApp.controllers')
 
           self.profiles = results;
 
+          self.profileLookup = generateProfileLookup(self.profiles);
+
         }, function (error) {
 
           AlertService.addAlert({
@@ -76,9 +103,11 @@ angular.module('homunculusApp.controllers')
 
       };
 
-      this.select = function (profile) {
+      this.select = function (form) {
 
-        ProfileService.currentProfile = profile;
+        var profile = self.profileLookup[form.uuid];
+
+        self.currentProfile = profile;
 
       };
 

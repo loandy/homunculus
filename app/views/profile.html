@@ -48,13 +48,22 @@
 
   <!-- PROFILE SELECTION INTERFACE -->
   <div class="well">
+
     <h2>Select a profile</h2>
+
     <form name="selectProfileForm" ng-submit="HomunculusProfileController.select(profile)" novalidate>
-      <div ng-repeat="profile in HomunculusProfileController.profiles track by profile.uuid">
-        <input type="radio" id="{{ profile.uuid }}" name="profile-select" ng-model="$parent.profile.uuid" ng-value="profile.uuid">
-        <label for="{{ profile.uuid }}">{{ profile.name }}</label>
+
+      <div class="form-group" style="height: 200px; overflow-y: scroll;">
+        <div ng-repeat="profile in HomunculusProfileController.profiles track by profile.uuid">
+          <input type="radio" id="{{ profile.uuid }}" name="profile-select" ng-model="$parent.profile.uuid" ng-value="profile.uuid">
+          <label for="{{ profile.uuid }}">{{ profile.name }}</label>
+        </div>
       </div>
+
       <button class="btn btn-primary btn-lg" type="submit">Select Profile</button>
-    </form>
-  </div>
+
+    </form> <!-- END PROFILE SELECTION FORM -->
+
+  </div> <!-- END PROFILE SELECTION INTERFACE -->
+
 </div>

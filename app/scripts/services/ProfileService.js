@@ -10,13 +10,38 @@
 angular.module('homunculusApp.services')
   .factory('HomunculusProfileService', [
     '$http',
+    '$cookies',
     '$q',
     'HomunculusUtilityService',
     'configurations',
-    function ($http, $q, UtilityService, configurations) {
+    function ($http, $cookies, $q, UtilityService, configurations) {
 
       return {
-        'currentProfile': false,
+        get currentProfile () {
+
+          var profile = {};
+
+          try {
+
+            if (!this._currentProfile) {
+              profile = JSON.parse($cookies.currentProfile);
+            } else {
+              profile = this._currentProfile;
+            }
+
+          } catch (e) {
+            console.log(e.message);
+          } finally {
+            return profile;
+          }
+
+        },
+        set currentProfile (profile) {
+
+          this._currentProfile = profile;
+          $cookies.currentProfile = JSON.stringify(profile);
+
+        },
         'helper': {
           'alphaSort': function (a, b) {
 
