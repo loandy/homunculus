@@ -57,6 +57,22 @@
             </div>
           </div>
 
+          <!-- CHARACTER CLASS -->
+          <div class="form-group container-fluid" ng-class="{ 'has-error': createCharacterForm.level.$invalid && (createCharacterForm.level.$dirty || HomunculusCharacterController.submittedCreateCharacterForm) }">
+            <div class="row">
+              <label class="col-sm-3 control-label" for="level">Character Level</label>
+              <div class="col-sm-2">
+                <input type="number" class="form-control" id="character-character-level" name="level" ng-model="HomunculusCharacterController.character.level" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-offset-3 col-sm-9">
+                <span class="text-danger" ng-show="createCharacterForm.level.$error.number && (createCharacterForm.level.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter a valid numerical value.</span>
+                <span class="text-danger" ng-show="createCharacterForm.level.$error.required && (createCharacterForm.level.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter your character's level.</span>
+              </div>
+            </div>
+          </div>
+
           <!-- CLASS -->
           <div class="form-group container-fluid" ng-class="{ 'has-error': createCharacterForm.class.$invalid && (createCharacterForm.class.$dirty || HomunculusCharacterController.submittedCreateCharacterForm) }">
             <div class="row">
