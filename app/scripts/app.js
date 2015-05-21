@@ -100,6 +100,38 @@ angular
               'controller': 'HomunculusAlertController',
               'controllerAs': 'HomunculusAlertController'
             }
+          },
+          'resolve': {
+            'initialData': [
+              '$q',
+              'HomunculusProfileService',
+              'HomunculusCharacterService',
+              function ($q, ProfileService, CharacterService) {
+
+                console.log(ProfileService.currentProfile);
+
+                // Retrieve list of characters belonging to the current profile.
+                return CharacterService.getAllProfileCharacters(ProfileService.currentProfile.uuid)
+                  .then(function (results) {
+
+                    console.log(results);
+
+                    var characters = [];
+
+                    results.forEach(function (character) {
+                      characters.push(character.row[0]);
+                    });
+
+                    characters.sort(CharacterService.helper.alphaSort);
+
+                    return {
+                      'characters': characters
+                    };
+
+                });
+
+              }
+            ]
           }
         });
     }
