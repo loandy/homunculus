@@ -133,6 +133,40 @@ angular
               }
             ]
           }
+        })
+        .state('main.monster', {
+          'url': '/monster',
+          'views': {
+            'content@': {
+              'templateUrl': 'views/monster.html',
+              'controller': 'HomunculusMonsterController',
+              'controllerAs': 'HomunculusMonsterController'
+            },
+            'alerts@main.encounter': {
+              'templateUrl': 'views/alerts.html',
+              'controller': 'HomunculusAlertController',
+              'controllerAs': 'HomunculusAlertController'
+            }
+          },
+          'resolve': {
+            'initialData': [
+              '$q',
+              'HomunculusSkillService',
+              function ($q, SkillService) {
+
+                // Retrieve list skills.
+                return SkillService.getSkillList()
+                  .then(function (results) {
+
+                    return {
+                      'masterSkillList': results
+                    };
+
+                });
+
+              }
+            ]
+          }
         });
     }
   ]);

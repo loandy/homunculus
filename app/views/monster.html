@@ -1,0 +1,532 @@
+<div class="jumbotron">
+  <h1>Monster</h1>
+</div>
+
+<div class="row">
+
+  <!-- FLASH MESSAGE INTERFACE -->
+  <div ui-view="alerts"></div>
+
+  <!-- MONSTER CREATION INTERFACE -->
+  <div class="well">
+
+    <button class="btn btn-primary btn-lg" ng-click="HomunculusMonsterController.showCreateMonsterForm = !HomunculusMonsterController.showCreateEncounterForm">
+      <span><i class="fa fa-plus"></i></span>
+      <span>Create Monster</span>
+    </button>
+
+  </div>
+
+  <div class="well" ng-show="HomunculusMonsterController.showCreateMonsterForm">
+
+    <h3>Create Monster</h3>
+
+    <form name="createMonsterForm" novalidate>
+
+      <!-- SECTION: ESSENTIALS -->
+      <div class="well">
+
+        <!-- NAME -->
+        <div class="form-group container-fluid" ng-class="{ 'has-error': createMonsterForm.name.$invalid && (createMonsterForm.name.$dirty || HomunculusMonsterController.submittedCreateMonsterForm) }">
+          <div class="row">
+            <label class="col-xs-12 col-sm-3 control-label" for="name">Name</label>
+            <div class="col-xs-12 col-sm-9">
+              <input type="text" class="form-control" name="name" ng-model="HomunculusMonsterController.createMonsterForm.name" required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-offset-3 col-sm-9">
+              <span class="text-danger" ng-show="createMonsterForm.name.$error.required && (createMonsterForm.name.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please provide a name.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SIZE -->
+        <div class="form-group container-fluid" ng-class="{ 'has-error': createMonsterForm.size.$invalid && (createMonsterForm.size.$dirty || HomunculusMonsterController.submittedCreateMonsterForm) }">
+          <div class="row">
+            <label class="col-xs-12 col-sm-3 control-label" for="size">Size</label>
+            <div class="col-xs-12 col-sm-9">
+              <select class="form-control" name="size" ng-model="HomunculusMonsterController.createMonsterForm.size" required>
+                <option value="tiny">Tiny</option>
+                <option value="small">Small</option>
+                <option value="medium" selected="selected">Medium</option>
+                <option value="large">Large</option>
+                <option value="huge">Huge</option>
+                <option value="gargantuan">Gargantuan</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-offset-3 col-sm-9">
+              <span class="text-danger" ng-show="createMonsterForm.size.$error.required && (createMonsterForm.size.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please select a size.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ALIGNMENT -->
+        <div class="form-group container-fluid" ng-class="{ 'has-error': createMonsterForm.alignment.$invalid && (createMonsterForm.alignment.$dirty || HomunculusMonsterController.submittedCreateMonsterForm) }">
+          <div class="row">
+            <label class="col-xs-12 col-sm-3 control-label" for="alignment">Alignment</label>
+            <div class="col-xs-12 col-sm-9">
+              <select class="form-control" name="alignment" ng-model="HomunculusMonsterController.createMonsterForm.alignment" required>
+                <option value="Lawful Good">Lawful Good</option>
+                <option value="Neutral Good">Neutral Good</option>
+                <option value="Chaotic Good">Chaotic Good</option>
+                <option value="Neutral" selected="selected">Neutral</option>
+                <option value="Lawful Evil">Lawful Evil</option>
+                <option value="Neutral Evil">Neutral Evil</option>
+                <option value="Chaotic Evil">Chaotic Evil</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-offset-3 col-sm-9">
+              <span class="text-danger" ng-show="createMonsterForm.alignment.$error.required && (createMonsterForm.alignment.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please select an alignment.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ARMOR CLASS -->
+        <div class="form-group container-fluid" ng-class="{ 'has-error': createMonsterForm.armorClass.$invalid && (createMonsterForm.armorClass.$dirty || HomunculusMonsterController.submittedCreateMonsterForm) }">
+          <div class="row">
+            <label class="col-xs-12 col-sm-3 control-label" for="armorClass">Armor Class</label>
+            <div class="col-xs-12 col-sm-9">
+              <input type="number" class="form-control" name="armorClass" ng-model="HomunculusMonsterController.createMonsterForm.armorClass" required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-offset-3 col-sm-9">
+              <span class="text-danger" ng-show="createMonsterForm.armorClass.$error.number && (createMonsterForm.armorClass.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please enter a valid numerical value.</span>
+              <span class="text-danger" ng-show="createMonsterForm.armorClass.$error.required && (createMonsterForm.armorClass.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please provide an armor class.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- MAXIMUM HIT POINTS -->
+        <div class="form-group container-fluid" ng-class="{ 'has-error': createMonsterForm.maxHitPoints.$invalid && (createMonsterForm.maxHitPoints.$dirty || HomunculusMonsterController.submittedCreateMonsterForm) }">
+          <div class="row">
+            <label class="col-xs-12 col-sm-3 control-label" for="maxHitPoints">Hit Points</label>
+            <div class="col-xs-12 col-sm-9">
+              <input type="number" class="form-control" name="maxHitPoints" ng-model="HomunculusMonsterController.createMonsterForm.maxHitPoints" required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-offset-3 col-sm-9">
+              <span class="text-danger" ng-show="createMonsterForm.maxHitPoints.$error.number && (createMonsterForm.maxHitPoints.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please enter a valid numerical value.</span>
+              <span class="text-danger" ng-show="createMonsterForm.maxHitPoints.$error.required && (createMonsterForm.maxHitPoints.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please provide a hit point maximum.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SPEED -->
+        <div class="form-group container-fluid" ng-class="{ 'has-error': createMonsterForm.speed.$invalid && (createMonsterForm.speed.$dirty || HomunculusMonsterController.submittedCreateMonsterForm) }">
+          <div class="row">
+            <label class="col-xs-12 col-sm-3 control-label" for="speed">Speed</label>
+            <div class="col-xs-12 col-sm-9">
+              <input type="text" class="form-control" name="speed" ng-model="HomunculusMonsterController.createMonsterForm.speed" required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-offset-3 col-sm-9">
+              <span class="text-danger" ng-show="createMonsterForm.speed.$error.number && (createMonsterForm.speed.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please enter a valid numerical value.</span>
+              <span class="text-danger" ng-show="createMonsterForm.speed.$error.required && (createMonsterForm.speed.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please give a speed.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CHALLENGE RATING -->
+        <div class="form-group container-fluid" ng-class="{ 'has-error': createMonsterForm.challenge.$invalid && (createMonsterForm.challenge.$dirty || HomunculusMonsterController.submittedCreateMonsterForm) }">
+          <div class="row">
+            <label class="col-xs-12 col-sm-3 control-label" for="challenge">Challenge</label>
+            <div class="col-xs-12 col-sm-9">
+              <input type="number" class="form-control" name="challenge" ng-model="HomunculusMonsterController.createMonsterForm.challenge" required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-offset-3 col-sm-9">
+              <span class="text-danger" ng-show="createMonsterForm.challenge.$error.number && (createMonsterForm.challenge.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please enter a valid numerical value.</span>
+              <span class="text-danger" ng-show="createMonsterForm.challenge.$error.required && (createMonsterForm.challenge.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please provide a challenge rating.</span>
+            </div>
+          </div>
+        </div>
+
+      </div> <!-- END ESSENTIALS SECTION -->
+
+      <div class="container-fluid">
+        <div class="row">
+
+          <!-- SECTION: ABILITY SCORES -->
+          <div class="col-xs-12 col-sm-6">
+
+            <h3>Ability Scores</h3>
+
+            <div class="well">
+
+              <!-- ABILITY SCORE: STRENGTH -->
+              <div class="form-group container-fluid" ng-class="{ 'has-error': createMonsterForm.strength.$invalid && (createMonsterForm.strength.$dirty || HomunculusMonsterController.submittedCreateMonsterForm) }">
+                <div class="row">
+                  <label class="col-xs-3 control-label" for="strength">STR</label>
+                  <div class="col-xs-9">
+                    <input type="number" class="form-control" name="strength" ng-model="HomunculusMonsterController.createMonsterForm.abilities.strength" required>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-offset-3 col-xs-9">
+                    <span class="text-danger" ng-show="createMonsterForm.strength.$error.number && (createMonsterForm.strength.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please enter a valid numerical value.</span>
+                    <span class="text-danger" ng-show="createMonsterForm.strength.$error.required && (createMonsterForm.strength.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please enter your monster's strength value.</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ABILITY SCORE: DEXTERITY -->
+              <div class="form-group container-fluid" ng-class="{ 'has-error': createMonsterForm.dexterity.$invalid && (createMonsterForm.dexterity.$dirty || HomunculusMonsterController.submittedCreateMonsterForm) }">
+                <div class="row">
+                  <label class="col-xs-3 control-label" for="dexterity">DEX</label>
+                  <div class="col-xs-9">
+                    <input type="number" class="form-control" name="dexterity" ng-model="HomunculusMonsterController.createMonsterForm.abilities.dexterity" required>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-offset-3 col-xs-9">
+                    <span class="text-danger" ng-show="createMonsterForm.dexterity.$error.number && (createMonsterForm.dexterity.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please enter a valid numerical value.</span>
+                    <span class="text-danger" ng-show="createMonsterForm.dexterity.$error.required && (createMonsterForm.dexterity.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please enter your monster's dexterity score.</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ABILITY SCORE: CONSTITUTION -->
+              <div class="form-group container-fluid" ng-class="{ 'has-error': createMonsterForm.constitution.$invalid && (createMonsterForm.constitution.$dirty || HomunculusMonsterController.submittedCreateMonsterForm) }">
+                <div class="row">
+                  <label class="col-xs-3 control-label" for="constitution">CON</em></label>
+                  <div class="col-xs-9">
+                    <input type="number" class="form-control" name="constitution" ng-model="HomunculusMonsterController.createMonsterForm.abilities.constitution" required>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-offset-3 col-xs-9">
+                    <span class="text-danger" ng-show="createMonsterForm.constitution.$error.number && (createMonsterForm.constitution.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please enter a valid numerical value.</span>
+                    <span class="text-danger" ng-show="createMonsterForm.constitution.$error.required && (createMonsterForm.constitution.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please enter your monster's constitution score.</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ABILITY SCORE: INTELLIGENCE -->
+              <div class="form-group container-fluid" ng-class="{ 'has-error': createMonsterForm.intelligence.$invalid && (createMonsterForm.intelligence.$dirty || HomunculusMonsterController.submittedCreateMonsterForm) }">
+                <div class="row">
+                  <label class="col-xs-3 control-label" for="intelligence">INT</label>
+                  <div class="col-xs-9">
+                    <input type="number" class="form-control" name="intelligence" ng-model="HomunculusMonsterController.createMonsterForm.abilities.intelligence" required>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-offset-3 col-xs-9">
+                    <span class="text-danger" ng-show="createMonsterForm.intelligence.$error.number && (createMonsterForm.intelligence.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please enter a valid numerical value.</span>
+                    <span class="text-danger" ng-show="createMonsterForm.intelligence.$error.required && (createMonsterForm.intelligence.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please enter your monster's intelligence score.</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ABILITY SCORE: WISDOM -->
+              <div class="form-group container-fluid" ng-class="{ 'has-error': createMonsterForm.wisdom.$invalid && (createMonsterForm.wisdom.$dirty || HomunculusMonsterController.submittedCreateMonsterForm) }">
+                <div class="row">
+                  <label class="col-xs-3 control-label" for="wisdom">WIS</label>
+                  <div class="col-xs-9">
+                    <input type="number" class="form-control" name="wisdom" ng-model="HomunculusMonsterController.createMonsterForm.abilities.wisdom" required>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-offset-3 col-xs-9">
+                    <span class="text-danger" ng-show="createMonsterForm.wisdom.$error.number && (createMonsterForm.wisdom.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please enter a valid numerical value.</span>
+                    <span class="text-danger" ng-show="createMonsterForm.wisdom.$error.required && (createMonsterForm.wisdom.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please enter your monster's wisdom score.</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ABILITY SCORE: CHARISMA -->
+              <div class="form-group container-fluid" ng-class="{ 'has-error': createMonsterForm.charisma.$invalid && (createMonsterForm.charisma.$dirty || HomunculusMonsterController.submittedCreateMonsterForm) }">
+                <div class="row">
+                  <label class="col-xs-3 control-label" for="charisma">CHA</label>
+                  <div class="col-xs-9">
+                    <input type="number" class="form-control" name="charisma" ng-model="HomunculusMonsterController.createMonsterForm.abilities.charisma" required>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-offset-3 col-xs-9">
+                    <span class="text-danger" ng-show="createMonsterForm.charisma.$error.number && (createMonsterForm.charisma.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please enter a valid numerical value.</span>
+                    <span class="text-danger" ng-show="createMonsterForm.charisma.$error.required && (createMonsterForm.charisma.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please enter your monster's charisma score.</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div> <!-- END ABILITY SCORES SECTION -->
+
+          <!-- SECTION: SAVING THROWS -->
+          <div class="col-xs-12 col-sm-6">
+
+            <h3>Saving Throw Modifiers</h3>
+
+            <div class="well">
+
+              <!-- SAVING THROW: STRENGTH -->
+              <div class="form-group container-fluid" ng-class="{ 'has-error': createMonsterForm.savingThrowStrength.$invalid && (createMonsterForm.savingThrowStrength.$dirty || HomunculusMonsterController.submittedCreateMonsterForm) }">
+                <div class="row">
+                  <label class="col-xs-3 control-label" for="savingThrowStrength">STR</label>
+                  <div class="col-xs-9">
+                    <input type="number" class="form-control" name="savingThrowStrength" ng-model="HomunculusMonsterController.createMonsterForm.savingThrows.strength" required>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-offset-3 col-xs-9">
+                    <span class="text-danger" ng-show="createMonsterForm.savingThrowStrength.$error.number && (createMonsterForm.strength.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please enter a valid numerical value.</span>
+                    <span class="text-danger" ng-show="createMonsterForm.savingThrowStrength.$error.required && (createMonsterForm.savingThrowStrength.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please enter your monster's strength saving throw modifier.</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SAVING THROW: DEXTERITY -->
+              <div class="form-group container-fluid" ng-class="{ 'has-error': createMonsterForm.savingThrowDexterity.$invalid && (createMonsterForm.savingThrowDexterity.$dirty || HomunculusMonsterController.submittedCreateMonsterForm) }">
+                <div class="row">
+                  <label class="col-xs-3 control-label" for="savingThrowDexterity">DEX</label>
+                  <div class="col-xs-9">
+                    <input type="number" class="form-control" name="savingThrowDexterity" ng-model="HomunculusMonsterController.createMonsterForm.savingThrows.dexterity" required>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-offset-3 col-xs-9">
+                    <span class="text-danger" ng-show="createMonsterForm.savingThrowDexterity.$error.number && (createMonsterForm.savingThrowDexterity.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please enter a valid numerical value.</span>
+                    <span class="text-danger" ng-show="createMonsterForm.savingThrowDexterity.$error.required && (createMonsterForm.savingThrowDexterity.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please enter your monster's dexterity saving throw modifier.</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SAVING THROW: CONSTITUTION -->
+              <div class="form-group container-fluid" ng-class="{ 'has-error': createMonsterForm.savingThrowConstitution.$invalid && (createMonsterForm.savingThrowConstitution.$dirty || HomunculusMonsterController.submittedCreateMonsterForm) }">
+                <div class="row">
+                  <label class="col-xs-3 control-label" for="savingThrowConstitution">CON</em></label>
+                  <div class="col-xs-9">
+                    <input type="number" class="form-control" name="savingThrowConstitution" ng-model="HomunculusMonsterController.createMonsterForm.savingThrows.savingThrowConstitution" required>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-offset-3 col-xs-9">
+                    <span class="text-danger" ng-show="createMonsterForm.savingThrowConstitution.$error.number && (createMonsterForm.savingThrowConstitution.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please enter a valid numerical value.</span>
+                    <span class="text-danger" ng-show="createMonsterForm.savingThrowConstitution.$error.required && (createMonsterForm.savingThrowConstitution.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please enter your monster's constitution saving throw modifier.</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SAVING THROW: INTELLIGENCE -->
+              <div class="form-group container-fluid" ng-class="{ 'has-error': createMonsterForm.savingThrowIntelligence.$invalid && (createMonsterForm.savingThrowIntelligence.$dirty || HomunculusMonsterController.submittedCreateMonsterForm) }">
+                <div class="row">
+                  <label class="col-xs-3 control-label" for="savingThrowIntelligence">INT</label>
+                  <div class="col-xs-9">
+                    <input type="number" class="form-control" name="savingThrowIntelligence" ng-model="HomunculusMonsterController.createMonsterForm.savingThrows.intelligence" required>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-offset-3 col-xs-9">
+                    <span class="text-danger" ng-show="createMonsterForm.savingThrowIntelligence.$error.number && (createMonsterForm.savingThrowIntelligence.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please enter a valid numerical value.</span>
+                    <span class="text-danger" ng-show="createMonsterForm.savingThrowIntelligence.$error.required && (createMonsterForm.savingThrowIntelligence.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please enter your monster's intelligence saving throw modifier.</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SAVING THROW: WISDOM -->
+              <div class="form-group container-fluid" ng-class="{ 'has-error': createMonsterForm.savingThrowWisdom.$invalid && (createMonsterForm.savingThrowWisdom.$dirty || HomunculusMonsterController.submittedCreateMonsterForm) }">
+                <div class="row">
+                  <label class="col-xs-3 control-label" for="savingThrowWisdom">WIS</label>
+                  <div class="col-xs-9">
+                    <input type="number" class="form-control" name="savingThrowWisdom" ng-model="HomunculusMonsterController.createMonsterForm.savingThrows.wisdom" required>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-offset-3 col-xs-9">
+                    <span class="text-danger" ng-show="createMonsterForm.savingThrowWisdom.$error.number && (createMonsterForm.savingThrowWisdom.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please enter a valid numerical value.</span>
+                    <span class="text-danger" ng-show="createMonsterForm.savingThrowWisdom.$error.required && (createMonsterForm.savingThrowWisdom.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please enter your monster's wisdom saving throw modifier.</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SAVING THROW: CHARISMA -->
+              <div class="form-group container-fluid" ng-class="{ 'has-error': createMonsterForm.savingThrowCharisma.$invalid && (createMonsterForm.savingThrowCharisma.$dirty || HomunculusMonsterController.submittedCreateMonsterForm) }">
+                <div class="row">
+                  <label class="col-xs-3 control-label" for="savingThrowCharisma">CHA</label>
+                  <div class="col-xs-9">
+                    <input type="number" class="form-control" name="savingThrowCharisma" ng-model="HomunculusMonsterController.createMonsterForm.savingThrows.charisma" required>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-offset-3 col-xs-9">
+                    <span class="text-danger" ng-show="createMonsterForm.savingThrowCharisma.$error.number && (createMonsterForm.savingThrowCharisma.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please enter a valid numerical value.</span>
+                    <span class="text-danger" ng-show="createMonsterForm.savingThrowCharisma.$error.required && (createMonsterForm.savingThrowCharisma.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please enter your monster's charisma saving throw modifier.</span>
+                  </div>
+                </div>
+
+              </div>
+
+            </div> <!-- END SAVING THROWS SECTION -->
+
+          </div>
+        </div>
+
+        <!-- SECTION: ACTIONS -->
+        <h3>Actions</h3>
+
+        <div class="well">
+
+          <div id="monster-actions-toolbar" class="btn-toolbar">
+            <div class="btn-group" role="group">
+              <!-- REMOVE SKILL -->
+              <button type="button" class="btn btn-primary btn-sm" ng-click="HomunculusMonsterController.removeAction()" ng-disabled="HomunculusMonsterController.disableRemoveAction()"><i class="fa fa-minus"></i></button>
+
+              <!-- ADD SKILL -->
+              <button type="button" class="btn btn-primary btn-sm" ng-click="HomunculusMonsterController.addAction()"><i class="fa fa-plus"></i></button>
+            </div>
+          </div>
+
+          <div ng-repeat="action in HomunculusMonsterController.createMonsterForm.actions track by $index">
+            <fieldset>
+
+              <legend>#{{$index + 1}}</legend>
+
+              <!-- ACTION NAME -->
+              <div class="form-group container-fluid">
+                <div class="row" ng-class="{ 'has-error': createMonsterForm.action{{$index}}Name.$invalid && (createMonsterForm.action{{$index}}Name.$dirty || HomunculusMonsterController.submittedCreateMonsterForm) }">
+                  <label class="col-xs-12 col-sm-3 control-label" for="action{{$index}}Name">Name</label>
+                  <div class="col-xs-12 col-sm-9">
+                    <input type="text" class="form-control" name="action{{$index}}Name" list="masterActionList" ng-model="HomunculusMonsterController.createMonsterForm.actions[$index].name" required>
+                    <datalist id="masterActionList">
+                      <option ng-repeat="action in HomunculusMonsterController.masterActionList" value="{{action.name}}">{{action.name}}</option>
+                    </datalist>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12 col-sm-offset-3 col-sm-9">
+                    <span class="text-danger" ng-show="createMonsterForm.action{{$index}}Name.$error.required && (createMonsterForm.action{{$index}}Name.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please provide an action name.</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ACTION DESCRIPTION -->
+              <div class="form-group container-fluid">
+                <div class="row">
+                  <label class="col-xs-12 col-sm-3 control-label" for="action{{$index}}Description">Description</label>
+                  <div class="col-xs-12 col-sm-9">
+                    <textarea class="form-control" name="action{{$index}}Description" rows="3" ng-model="HomunculusMonsterController.createMonsterForm.actions[$index].description"></textarea>
+                  </div>
+                </div>
+              </div>
+
+            </fieldset>
+          </div>
+
+        </div> <!-- END ACTIONS SECTION -->
+
+        <!-- SECTION: SKILLS -->
+        <h3>Skills</h3>
+
+        <div class="well">
+
+          <div id="monster-skills-toolbar" class="btn-toolbar">
+            <div class="btn-group" role="group">
+              <!-- REMOVE SKILL -->
+              <button type="button" class="btn btn-primary btn-sm" ng-click="HomunculusMonsterController.removeSkill()" ng-disabled="HomunculusMonsterController.disableRemoveSkill()"><i class="fa fa-minus"></i></button>
+
+              <!-- ADD SKILL -->
+              <button type="button" class="btn btn-primary btn-sm" ng-click="HomunculusMonsterController.addSkill()"><i class="fa fa-plus"></i></button>
+            </div>
+          </div>
+
+          <div ng-repeat="skill in HomunculusMonsterController.createMonsterForm.skills track by $index">
+            <fieldset class="container-fluid">
+
+              <legend>#{{$index + 1}}</legend>
+
+              <!-- SKILL NAME -->
+              <div class="form-group">
+                <div class="row" ng-class="{ 'has-error': createMonsterForm.skill{{$index}}Name.$invalid && (createMonsterForm.skill{{$index}}Name.$dirty || HomunculusMonsterController.submittedCreateMonsterForm) }">
+                  <label class="col-xs-12 col-sm-3 control-label" for="skill{{$index}}Name">Name</label>
+                  <div class="col-xs-12 col-sm-9">
+                    <input type="text" class="form-control" name="skill{{$index}}Name" list="masterSkillList" ng-model="HomunculusMonsterController.createMonsterForm.skills[$index].name" required>
+                    <datalist id="masterSkillList">
+                      <option ng-repeat="skill in HomunculusMonsterController.masterSkillList" value="{{skill.name}}">{{skill.name}}</option>
+                    </datalist>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12 col-sm-offset-3 col-sm-9">
+                    <span class="text-danger" ng-show="createMonsterForm.skill{{$index}}Name.$error.required && (createMonsterForm.skill{{$index}}Name.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please provide a skill name.</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SKILL MODIFIER -->
+              <div class="form-group">
+                <div class="row">
+                  <label class="col-xs-12col-sm-3 control-label" for="skill{{$index}}Modifier">Modifier</label>
+                  <div class="col-xs-12 col-sm-3">
+                    <input type="number" class="form-control" name="skill{{$index}}Modifier" rows="3" ng-model="HomunculusMonsterController.createMonsterForm.skills[$index].modifier">
+                  </div>
+                </div>
+              </div>
+
+            </fieldset>
+          </div>
+
+        </div> <!-- END SKILLS SECTION -->
+
+        <!-- SECTION: VULNERABILITIES, RESISITANCES, AND IMMUNITIES -->
+        <div class="well">
+
+          <!-- DAMAGE VULNERABILITIES -->
+          <div class="form-group container-fluid">
+            <div class="row" ng-class="{ 'has-error': createMonsterForm.damageVulnerabilities.$invalid && (createMonsterForm.damageVulnerabilities.$dirty || HomunculusMonsterController.submittedCreateMonsterForm) }">
+              <label class="col-xs-12 col-sm-3 control-label" for="damageVulnerabilities">Damage Vulnerabilities</label>
+              <div class="col-xs-12 col-sm-9">
+                <textarea class="form-control" name="damageVulnerabilities" rows="3" ng-model="HomunculusMonsterController.createMonsterForm.damageVulnerabilities"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- DAMAGE RESISTANANCES -->
+          <div class="form-group container-fluid">
+            <div class="row" ng-class="{ 'has-error': createMonsterForm.damageResistances.$invalid && (createMonsterForm.damageResistances.$dirty || HomunculusMonsterController.submittedCreateMonsterForm) }">
+              <label class="col-xs-12 col-sm-3 control-label" for="damageResistances">Damage Resistances</label>
+              <div class="col-xs-12 col-sm-9">
+                <textarea class="form-control" name="damageResistances" rows="3" ng-model="HomunculusMonsterController.createMonsterForm.damageResistances"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- DAMAGE IMMUNITIES -->
+          <div class="form-group container-fluid">
+            <div class="row" ng-class="{ 'has-error': createMonsterForm.damageImmunities.$invalid && (createMonsterForm.damageImmunities.$dirty || HomunculusMonsterController.submittedCreateMonsterForm) }">
+              <label class="col-xs-12 col-sm-3 control-label" for="damageImmunities">Damage Immunities</label>
+              <div class="col-xs-12 col-sm-9">
+                <textarea class="form-control" name="damageImmunities" rows="3" ng-model="HomunculusMonsterController.createMonsterForm.damageImmunities"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- CONDITION IMMUNITIES -->
+          <div class="form-group container-fluid">
+            <div class="row" ng-class="{ 'has-error': createMonsterForm.conditionImmunities.$invalid && (createMonsterForm.conditionImmunities.$dirty || HomunculusMonsterController.submittedCreateMonsterForm) }">
+              <label class="col-xs-12 col-sm-3 control-label" for="conditionImmunities">Condition Immunities</label>
+              <div class="col-xs-12 col-sm-9">
+                <textarea class="form-control" name="conditionImmunities" rows="3" ng-model="HomunculusMonsterController.createMonsterForm.conditionImmunities"></textarea>
+              </div>
+            </div>
+          </div>
+
+        </div> <!-- END VULNERABILITIES, RESISITANCES, AND IMMUNITIES SECTION -->
+
+        <!-- SUBMIT BUTTON -->
+        <button class="btn btn-primary btn-lg" ng-click="HomunculusMonsterController.create(createMonsterForm.$valid, HomunculusMonsterController.createMonsterForm)">Create Monster</button>
+
+      </div>
+
+    </form>
+
+  </div>
