@@ -17,12 +17,30 @@ textarea {
   resize: vertical;
 }
 
+.btn {
+  border-radius: 0;
+}
+
 .list-group {
   margin: 0;
 }
 
+.list-group-item:first-child,
+.list-group-item:last-child {
+  border-radius: 0;
+}
+
 .list-group-item {
   padding: 0;
+}
+
+.navbar-toggle {
+  border: 0;
+  border-radius: 0;
+}
+
+.well {
+  border-radius: 0;
 }
 
 .navbar {
@@ -36,6 +54,14 @@ textarea {
 
 .navbar-collapse {
   border-top: 0;
+}
+
+.nav-pills > li {
+  border-radius: 0;
+}
+
+.modal-content {
+  border-radius: 0;
 }
 
 .content {
