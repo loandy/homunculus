@@ -23,6 +23,14 @@ textarea {
   resize: vertical;
 }
 
+.list-group {
+  margin: 0;
+}
+
+.list-group-item {
+  padding: 0;
+}
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
@@ -46,9 +54,12 @@ textarea {
 
 /* Custom page footer */
 .footer {
-  padding-top: 19px;
   color: #777;
   border-top: 1px solid #e5e5e5;
+}
+
+.form-control-bar {
+  margin-top: 5px;
 }
 
 .container-narrow > hr {
@@ -75,6 +86,36 @@ textarea {
   }
 }
 
+.profile-list {
+  height: 250px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  overflow-y: scroll;
+}
+
+.profile-list-item {
+  height: 50px;
+  border: 0;
+  line-height: 50px;
+}
+
+.profile-list-item {
+  input {
+    display: none;
+  }
+
+  input:checked + label {
+    border: 1px solid #d6e9c6;
+    background: #dff0d8;
+    color: #3c763d;
+  }
+
+  label {
+    display: block;
+    margin: 0;
+    padding: 0 15px;
+  }
+}
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {

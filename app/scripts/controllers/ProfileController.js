@@ -16,8 +16,6 @@ angular.module('homunculusApp.controllers')
     'initialData',
     function (ProfileService, AlertService, UtilityService, uuid, initialData) {
 
-      var self = this;
-
       var generateProfileLookup = function (profiles) {
 
         var lookup = {};
@@ -30,8 +28,11 @@ angular.module('homunculusApp.controllers')
 
       };
 
+      var self = this;
+
       self.showCreateProfileForm = false;
       self.submittedCreateProfileForm = false;
+      self.createProfileForm = {};
       self.profiles = initialData.profiles; // Resolved by router.
       self.profileLookup = generateProfileLookup(this.profiles);
 
@@ -47,7 +48,14 @@ angular.module('homunculusApp.controllers')
         }
       });
 
-      this.create = function (isValid, form) {
+      self.cancelCreateProfileForm = function () {
+
+        self.createProfileForm = {};
+        self.showCreateProfileForm = false;
+
+      };
+
+      this.createProfile = function (isValid, form) {
 
         self.submittedCreateProfileForm = true;
 
