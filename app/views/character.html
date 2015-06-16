@@ -88,13 +88,23 @@
           <div class="form-group container-fluid" ng-class="{ 'has-error': createCharacterForm.alignment.$invalid && (createCharacterForm.alignment.$dirty || HomunculusCharacterController.submittedCreateCharacterForm) }">
             <div class="row">
               <label class="col-sm-3 control-label" for="alignment">Alignment</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="character-alignment" name="alignment" ng-model="HomunculusCharacterController.character.alignment" required>
+              <div class="col-xs-12 col-sm-9">
+                <select class="form-control" name="alignment" ng-model="HomunculusMonsterController.createMonsterForm.alignment" required>
+                  <option value="Lawful Good">Lawful Good</option>
+                  <option value="Neutral Good">Neutral Good</option>
+                  <option value="Chaotic Good">Chaotic Good</option>
+                  <option value="Lawful Neutral">Lawful Neutral</option>
+                  <option value="Neutral">Neutral</option>
+                  <option value="Chaotic Neutral">Chaotic Neutral</option>
+                  <option value="Lawful Evil">Lawful Evil</option>
+                  <option value="Neutral Evil">Neutral Evil</option>
+                  <option value="Chaotic Evil">Chaotic Evil</option>
+                </select>
               </div>
             </div>
             <div class="row">
               <div class="col-sm-offset-3 col-sm-9">
-                <span class="text-danger" ng-show="createCharacterForm.alignment.$error.required && (createCharacterForm.alignment.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please enter your character's alignment.</span>
+                <span class="text-danger" ng-show="createCharacterForm.alignment.$error.required && (createCharacterForm.alignment.$dirty || HomunculusCharacterController.submittedCreateCharacterForm)" class="help-block">Please select your character's alignment.</span>
               </div>
             </div>
           </div>
