@@ -74,6 +74,13 @@ angular.module('homunculusApp.controllers')
       this.submittedCreateCharacterForm = false;
       this.characters = initialData.characters; // Resolved by router.
 
+      self.cancelCreateCharacterForm = function () {
+
+        self.createCharacterForm = {};
+        self.showCreateCharacterForm = false;
+
+      };
+
       this.create = function (isValid, characterForm) {
 
         self.submittedCreateCharacterForm = true;
