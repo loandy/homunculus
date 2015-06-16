@@ -13,12 +13,6 @@ $fa-font-path: "../bower_components/components-font-awesome/fonts";
   padding: 0.2em 0;
 }
 
-/* Space out content a bit */
-body {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
 textarea {
   resize: vertical;
 }
@@ -31,9 +25,26 @@ textarea {
   padding: 0;
 }
 
+.navbar {
+  margin-bottom: 0;
+}
+
+.navbar-nav {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.navbar-collapse {
+  border-top: 0;
+}
+
+.content {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
+.content,
 .footer {
   padding-left: 15px;
   padding-right: 15px;
