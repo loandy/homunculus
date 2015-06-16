@@ -76,8 +76,6 @@ angular.module('homunculusApp.controllers')
 
       this.create = function (isValid, characterForm) {
 
-        console.log(characterForm);
-
         self.submittedCreateCharacterForm = true;
 
         if (isValid) {
@@ -98,8 +96,6 @@ angular.module('homunculusApp.controllers')
             }
 
           });
-
-          console.log(characterNode);
 
           CharacterService.createCharacter(characterNode).then(function (results) {
 

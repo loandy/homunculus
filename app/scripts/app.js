@@ -108,13 +108,9 @@ angular
               'HomunculusCharacterService',
               function ($q, ProfileService, CharacterService) {
 
-                console.log(ProfileService.currentProfile);
-
                 // Retrieve list of characters belonging to the current profile.
                 return CharacterService.getAllProfileCharacters(ProfileService.currentProfile.uuid)
                   .then(function (results) {
-
-                    console.log(results);
 
                     var characters = [];
 

@@ -61,8 +61,6 @@ angular.module('homunculusApp.controllers')
 
       self.create = function (isValid, monsterForm) {
 
-        console.log(monsterForm);
-
         self.submittedCreateMonsterForm = true;
 
         if (isValid) {
