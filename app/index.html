@@ -21,11 +21,9 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container">
-      <div ui-view="header"></div>
-      <div ui-view="content"></div>
-      <div ui-view="footer"></div>
-    </div>
+    <div class="header" ui-view="header"></div>
+    <div class="content" ui-view="content"></div>
+    <!--<div class="footer" ui-view="footer"></div>-->
 
     <!-- build:js(.) scripts/oldieshim.js -->
     <!--[if lt IE 9]>

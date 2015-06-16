@@ -1,20 +1,28 @@
-<div class="header">
-  <ul class="nav nav-pills pull-right">
+<div class="navbar navbar-default navbar-header">
+  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#primaryNavigation">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <a class="navbar-brand" href="#">Homunculus</a>
+</div>
+
+<nav id="primaryNavigation" class="navbar-collapse collapse" role="navigation">
+  <ul class="nav navbar-nav">
     <li ui-sref-active="active" class="active">
-      <a ui-sref="main.home">Home</a>
+      <a ui-sref="main.home" data-toggle="collapse" data-target="#primaryNavigation" >Home</a>
     </li>
     <li ui-sref-active="active" class="active">
-      <a ui-sref="main.profile">Profile</a>
+      <a ui-sref="main.profile" data-toggle="collapse" data-target="#primaryNavigation" >Profile</a>
     </li>
     <li ui-sref-active="active" class="active" ng-if="!!HomunculusHeaderController.currentProfile">
-      <a ui-sref="main.character">Character</a>
+      <a ui-sref="main.character" data-toggle="collapse" data-target="#primaryNavigation" >Character</a>
     </li>
     <li ui-sref-active="active" class="active" ng-if="!!HomunculusHeaderController.currentProfile">
-      <a ui-sref="main.monster">Monster</a>
+      <a ui-sref="main.monster" data-toggle="collapse" data-target="#primaryNavigation" >Monster</a>
+    </li>
+    <li ui-sref-active="active" class="active" ng-if="!!HomunculusHeaderController.currentProfile">
+      <a ui-sref="main.encounter" data-toggle="collapse" data-target="#primaryNavigation" >Encounter</a>
     </li>
   </ul>
-  <h3>Homunculus</h3>
-  <div class="well" ng-if="!!HomunculusHeaderController.currentProfile">
-    <span>You are currently signed in as {{HomunculusHeaderController.currentProfile.name}}.</span>
-  </div>
-</div>
+</nav>
