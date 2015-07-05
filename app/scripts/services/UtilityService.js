@@ -12,11 +12,19 @@ angular.module('homunculusApp.services')
     function () {
 
       return {
-        'objectToArray': function (obj) {
+        'objectToArray': function (object) {
 
-          return Object.keys(obj).map(function (key) {
-            return obj[key];
-          });
+          var result = object;
+
+          if (!Array.isArray(object)) {
+
+            result = Object.keys(object).map(function (key) {
+              return object[key];
+            });
+
+          }
+
+          return result;
 
         },
         'insertAlpha': function (insertElement, insertArray) {
