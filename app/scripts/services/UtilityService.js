@@ -12,6 +12,9 @@ angular.module('homunculusApp.services')
     function () {
 
       return {
+        'isNonEmptyObject': function (object) {
+          return object && 'null' !== object && 'undefined' !== object;
+        },
         'objectToArray': function (object) {
 
           var result = object;
