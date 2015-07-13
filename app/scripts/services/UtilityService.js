@@ -9,7 +9,8 @@
  */
 angular.module('homunculusApp.services')
   .factory('HomunculusUtilityService', [
-    function () {
+    '$q',
+    function ($q) {
 
       return {
         'isNonEmptyObject': function (object) {
@@ -28,6 +29,41 @@ angular.module('homunculusApp.services')
           }
 
           return result;
+
+        },
+        'generateLookup': function (objectArray, keyField) {
+
+          var deferred = $q.defer();
+
+          if (keyField) {
+
+            var lookup = {};
+
+            var arrayLength = objectArray.length;
+
+            if (Array.isArray(objectArray) && arrayLength > 0) {
+
+              for (var i = 0; i < arrayLength; i++) {
+
+                if (objectArray[i][keyField]) {
+                  lookup[objectArray[i][keyField]] = objectArray[i];
+                }
+
+              }
+
+            } else {
+
+              deferred.reject('Cannot generate lookup table on provided array.');
+
+            }
+
+            deferred.resolve(lookup);
+
+          } else {
+            deferred.reject('Cannot generate lookup table on unspecified key field.');
+          }
+
+          return deferred.promise;
 
         },
         'insertAlpha': function (insertElement, insertArray) {
