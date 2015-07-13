@@ -115,6 +115,13 @@ angular.module('homunculusApp.services')
             }
 
           }
+        },
+        'calculateModifier': function (value) {
+
+          var modifier = Math.floor((value - 10) / 2);
+
+          return modifier;
+
         }
       };
 
