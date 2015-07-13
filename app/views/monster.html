@@ -120,6 +120,28 @@
           </div>
         </div>
 
+        <!-- HIT DICE -->
+        <div class="form-group container-fluid" ng-class="{ 'has-error': createMonsterForm.hitDice.$invalid && (createMonsterForm.hitDice.$dirty || HomunculusMonsterController.submittedCreateMonsterForm) }">
+          <div class="row">
+            <label class="col-xs-12 col-sm-3 control-label" for="hitDice">Hit Dice</label>
+            <div class="col-xs-12 col-sm-9">
+              <select class="form-control" name="alignment" ng-model="HomunculusMonsterController.createMonsterForm.hitDice" required>
+                <option value="4">d4</option>
+                <option value="6">d6</option>
+                <option value="8">d8</option>
+                <option value="10">d10</option>
+                <option value="12">d12</option>
+                <option value="20">d20</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-offset-3 col-sm-9">
+              <span class="text-danger" ng-show="createMonsterForm.hitDice.$error.required && (createMonsterForm.hitDice.$dirty || HomunculusMonsterController.submittedCreateMonsterForm)" class="help-block">Please select hit dice type.</span>
+            </div>
+          </div>
+        </div>
+
         <!-- SPEED -->
         <div class="form-group container-fluid" ng-class="{ 'has-error': createMonsterForm.speed.$invalid && (createMonsterForm.speed.$dirty || HomunculusMonsterController.submittedCreateMonsterForm) }">
           <div class="row">
