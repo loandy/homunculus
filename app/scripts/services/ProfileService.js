@@ -2,17 +2,17 @@
 
 /**
  * @ngdoc service
- * @name homunculusApp.services:HomunculusProfileService
+ * @name homunculusApp.services:hcProfileService
  * @description
- * # HomunculusProfileService
+ * # hcProfileService
  * Service for managing profiles.
  */
 angular.module('homunculusApp.services')
-  .factory('HomunculusProfileService', [
+  .factory('hcProfileService', [
     '$http',
     '$cookies',
     '$q',
-    'HomunculusUtilityService',
+    'hcUtilityService',
     'configurations',
     function ($http, $cookies, $q, UtilityService, configurations) {
 
@@ -30,7 +30,7 @@ angular.module('homunculusApp.services')
             }
 
           } catch (e) {
-            console.log(e.message);
+            //console.log(e.message);
           } finally {
             return profile;
           }

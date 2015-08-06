@@ -1,0 +1,57 @@
+<!-- ENCOUNTER CREATION FORM DISPLAY -->
+<div class="container-fluid" ng-show="!EncounterCreationForm.isVisible">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="well">
+        <button class="btn btn-primary btn-lg btn-block" ng-click="EncounterCreationForm.open()">
+          <span>Create New Encounter</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ENCOUNTER CREATION FORM -->
+<ng-form class="form-horizontal" id="encounter-creation-form" name="EncounterCreationForm.encounter" ng-if="EncounterCreationForm.isVisible" editable-form novalidate>
+  <div class="container-fluid form-control-bar">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="well">
+          <!-- CHARACTER SELECTION MODAL -->
+          <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="EncounterCreationForm.openSelectCharacterModal()">
+            <span>Add Character</span>
+          </button>
+          <!-- MONSTER SELECTION MODAL -->
+          <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="EncounterCreationForm.openSelectMonsterModal()">
+            <span>Add Monster</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- LIST OF ENCOUNTER PARTICIPANTS -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12">
+          <ul class="list-group participant-list" ui-sortable="EncounterCreationForm.participantOptions" ng-model="EncounterCreationForm.encounter.participants">
+            <li class="list-group-item participant-list-item" ng-repeat="participant in EncounterCreationForm.encounter.participants track by $index" ng-switch on="participant.template">
+              <div hc-character-panel="participant" ng-switch-when="Character"></div>
+              <div hc-monster-panel="participant" ng-switch-when="Monster"></div>
+            </li>
+          </ul>
+      </div>
+    </div>
+  </div>
+  <!-- ENCOUNTER OPTIONS -->
+  <div class="container-fluid form-control-bar" ng-if="0 < EncounterCreationForm.participants.length">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="well">
+          <div class="btn-toolbar btn-toolbar-justified">
+            <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="">Save</button>
+            <button type="button" class="btn btn-default btn-lg btn-block" ng-click="EncounterCreationForm.cancel()">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-form> <!-- END ENCOUNTER CREATION FORM -->

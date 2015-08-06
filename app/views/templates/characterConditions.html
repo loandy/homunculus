@@ -1,0 +1,40 @@
+<div ng-if="CharacterConditions.isResolved">
+  <div class="btn-group btn-group-justified">
+    <!-- CREATE CONDITION -->
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-primary btn-block" ng-click="CharacterConditions.openCreateConditionModal()">
+        <span>Create New Condition</span>
+      </button>
+    </div> <!-- END CREATE CONDITION -->
+  </div>
+  <div class="btn-group btn-group-justified">
+    <!-- REMOVE CONDITION -->
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-primary btn-block" ng-click="CharacterConditions.removeCondition()" ng-disabled="CharacterConditions.isRemoveConditionsDisabled()">
+        <span class="icon fa fa-minus"></span>
+      </button>
+    </div> <!-- END REMOVE CONDITION -->
+    <!-- ADD CONDITION -->
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-primary btn-block" ng-click="CharacterConditions.addCondition()">
+        <span class="icon fa fa-plus"></span>
+      </button>
+    </div> <!-- END ADD CONDITION -->
+  </div>
+  <!-- CONDITION LIST -->
+  <ul class="container-fluid attribute-list">
+    <li class="row attribute-list-item" ng-repeat="condition in CharacterConditions.character.conditions track by $index" ng-click="condition.isVisible = !condition.isVisible">
+      <div class="col-xs-12">
+        <button type="button" class="close" ng-click="CharacterConditions.removeCondition($index)" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <!-- CONDITION SELECTION -->
+        <select ng-model="CharacterConditions.character.conditions[$index]" ng-options="condition.name for condition in CharacterConditions.conditionList track by condition.name" required></select>
+      </div>
+      <!--<div class="col-xs-12">
+        <span hc-editable="condition.name"></span>
+      </div>-->
+      <div class="col-xs-12" ng-if="condition.isVisible">
+        <span>{{condition.description}}</span>
+      </div>
+    </li>
+  </ul> <!-- END CONDITION LIST -->
+</div>

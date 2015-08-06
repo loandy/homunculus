@@ -1,0 +1,53 @@
+<div ng-if="CharacterAttacks.isResolved">
+  <div class="btn-group btn-group-justified">
+    <!-- CREATE ATTACK -->
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-primary btn-block" ng-click="CharacterAttacks.openCreateWeaponModal()">
+        <span>Create New Weapon</span>
+      </button>
+    </div> <!-- END CREATE ATTACK -->
+  </div>
+  <div class="btn-group btn-group-justified">
+    <!-- REMOVE ATTACK -->
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-primary btn-block" ng-click="CharacterAttacks.removeAttack()" ng-disabled="CharacterAttacks.isRemoveAttacksDisabled()">
+        <span class="icon fa fa-minus"></span>
+      </button>
+    </div> <!-- END REMOVE ATTACK -->
+    <!-- ADD ATTACK -->
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-primary btn-block" ng-click="CharacterAttacks.addAttack()">
+        <span class="icon fa fa-plus"></span>
+      </button>
+    </div> <!-- END ADD ATTACK -->
+  </div>
+  <!-- ATTACK LIST -->
+  <ul class="container-fluid attribute-list-group">
+    <li class="row attribute-list-item" ng-repeat="attack in CharacterAttacks.character.attacks track by $index">
+      <div class="col-xs-12">
+        <span class="attribute-list-item-heading">Weapon</span>
+        <button type="button" class="close" ng-click="CharacterAttacks.removeAttack($index)" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="col-xs-12">
+        <!-- WEAPON SELECTION -->
+        <select ng-model="CharacterAttacks.character.attacks[$index]" ng-options="weapon.name for weapon in CharacterAttacks.weaponList track by weapon.name" required></select>
+      </div>
+      <div class="col-xs-12">
+        <span hc-editable="attack.category"></span>
+        <span> Weapon</span>
+      </div>
+      <div class="col-xs-12">
+        <span>Damage: </span>
+        <span hc-editable="attack.baseDamage.diceNumber"></span>
+        <span hc-editable="attack.baseDamage.diceType"></span>
+        <span>/</span>
+        <span hc-editable="attack.damageType"></span>
+      </div>
+      <div class="col-xs-12">
+        <span>Weight: </span>
+        <span hc-editable="attack.weight"></span>
+        <span> lb.</span>
+      </div>
+    </li>
+  </ul> <!-- END ATTACK LIST -->
+</div>

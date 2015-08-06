@@ -1,0 +1,364 @@
+<!-- CHARACTER PANEL -->
+<div ng-if="CharacterPanel.isResolved">
+  <!-- EXPERIENCE BAR -->
+  <div class="xp-bar">
+    <!--<span>{{CharacterPanel.character.xp}} XP / {{CharacterPanel.character.nextLevelXp}} XP</span>-->
+    <div class="xp-bar-meter" role="progressbar" aria-valuenow="CharacterPanel.character.xp" aria-valuemin="0" aria-valuemax="CharacterPanel.character.nextLevelXp - 1" ng-style="{'width': (CharacterPanel.character.xp / CharacterPanel.character.nextLevelXp * 100) + '%'}"></div>
+  </div> <!-- END EXPERIENCE BAR -->
+  <!-- NAME CARD -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="name-card">
+          <div>
+            <!-- MOVE HANDLE -->
+            <span class="pull-left handle">
+              <i class="glyphicon glyphicon-th"></i>
+            </span> <!-- END MOVE HANDLE -->
+            <button type="button" class="close" ng-click="" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <span hc-editable="CharacterPanel.character.name"></span>
+          </div>
+          <div>
+            <span><em>Level <span hc-editable="CharacterPanel.character.level"></span> <span hc-editable="CharacterPanel.character.class"></em></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> <!-- END NAME CARD -->
+  <!-- HP BAR -->
+  <div class="hp-bar">
+    <span>{{CharacterPanel.character.currentHitPoints}} HP / {{CharacterPanel.character.maximumHitPoints}} HP</span>
+    <div class="hp-bar-meter" role="progressbar" aria-valuenow="CharacterPanel.character.currentHitPoints" aria-valuemin="0" aria-valuemax="CharacterPanel.character.maximumHitPoints" ng-class="HomunculusEncounterController.hpBarColor(CharacterPanel.character.currentHitPoints, CharacterPanel.character.maximumHitPoints)" ng-style="{'width': (CharacterPanel.character.currentHitPoints / CharacterPanel.character.maximumHitPoints * 100) + '%'}"></div>
+  </div> <!-- END HP BAR -->
+  <!-- QUICK INFO PANEL -->
+  <table class="table table-condensed quick-info-panel">
+    <tbody>
+      <tr>
+        <td class="col-xs-3">
+          <span class="icon" data-icon="&#xe156;"></span>
+          <span hc-editable="CharacterPanel.character.passivePerception"></span>
+        </td>
+        <td class="col-xs-3">
+          <span class="icon" data-icon="&#xe2b6;"></span>
+          <span hc-editable="CharacterPanel.character.abilities.dexterity.modifier"><span ng-if="CharacterPanel.character.abilities.dexterity.modifier >= 0">+</span></span>
+        </td>
+        <td class="col-xs-3">
+          <span class="icon" data-icon="&#xe28b;"></span>
+          <span hc-editable="CharacterPanel.character.armorClass"></span>
+        </td>
+      </tr>
+    </tbody>
+  </table> <!-- END QUICK INFO PANEL -->
+</div> <!-- END CHARACTER PANEL -->
+
+<!-- EXTENDED MENU SHOW/HIDE BUTTON -->
+<button type="button" class="btn btn-default btn-block expand-menu-button" ng-click="CharacterPanel.character.menuExtended = !CharacterPanel.character.menuExtended">
+  <span><i class="fa fa-ellipsis-h"></i></span>
+</button>
+
+<!-- EXTENDED MENU NAVIGATION -->
+<div class="btn-group btn-group-justified" role="group" ng-if="!!CharacterPanel.character.menuExtended">
+  <div class="btn-group" role="group">
+    <button class="btn btn-default" ng-click="CharacterPanel.selectedMenu = 'character'">
+      <span class="icon" data-icon="&#xe130;"></span>
+    </button>
+  </div>
+  <div class="btn-group" role="group" ng-click="CharacterPanel.selectedMenu = 'attacks'">
+    <button class="btn btn-default">
+      <span class="icon" data-icon="&#xe107;"></span>
+    </button>
+  </div>
+  <div class="btn-group" role="group" ng-click="CharacterPanel.selectedMenu = 'conditions'">
+    <button class="btn btn-default">
+      <span class="icon" data-icon="&#xe149;"></span>
+    </button>
+  </div>
+  <div class="btn-group" role="group" ng-click="CharacterPanel.selectedMenu = 'inventory'">
+    <button class="btn btn-default">
+      <span class="icon" data-icon="&#xe26e;"></span>
+    </button>
+  </div>
+</div> <!-- END MENU NAVIGATION -->
+
+<!-- EXTENDED MENU -->
+<div class="extended-menu" ng-if="CharacterPanel.character.menuExtended">
+  <!-- CHARACTER INFORMATION TAB -->
+  <div class="extended-menu-tab" ng-if="'character' === CharacterPanel.selectedMenu">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12">
+          <!-- CHARACTER INFORMATION MENU NAVIGATION -->
+          <div class="btn-group btn-group-justified" role="group">
+            <div class="btn-group" role="group" ng-click="CharacterPanel.selectedCharacterInfoMenu = 'vitals'">
+              <button type="button" class="btn btn-default">
+                <span class="icon" data-icon="&#xe01c;"></span>
+              </button>
+            </div>
+            <div class="btn-group" role="group" ng-click="CharacterPanel.selectedCharacterInfoMenu = 'skills'">
+              <button type="button" class="btn btn-default">
+                <span class="icon" data-icon="&#xe1d6;"></span>
+              </button>
+            </div>
+          </div> <!-- END CHARACTER INFORMATION MENU NAVIGATION -->
+        </div>
+      </div>
+    </div>
+    <!-- VITALS -->
+    <div ng-if="'vitals' === CharacterPanel.selectedCharacterInfoMenu">
+      <!-- SECTION: BASIC ATTRIBUTES-->
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-12">
+            <!-- SECTION HEADER -->
+            <div class="text-center">
+              <h4>Basic Attributes</h4>
+            </div> <!-- END SECTION HEADER -->
+            <ul class="container-fluid attribute-list">
+              <li class="row attribute-list-item flex-grid">
+                <div class="col-xs-6 attribute-list-item-heading flex-grid-cell">
+                  <span>Level</span>
+                </div>
+                <div class="col-xs-6 attribute-list-item-text flex-grid-cell">
+                  <span hc-editable="CharacterPanel.character.level"></span>
+                </div>
+              </li>
+              <li class="row attribute-list-item flex-grid">
+                <div class="col-xs-6 attribute-list-item-heading flex-grid-cell">
+                  <span>Class</span>
+                </div>
+                <div class="col-xs-6 attribute-list-item-text flex-grid-cell">
+                  <span hc-editable="CharacterPanel.character.class"></span>
+                </div>
+              </li>
+              <li class="row attribute-list-item flex-grid">
+                <div class="col-xs-6 attribute-list-item-heading flex-grid-cell">
+                  <span>Race</span>
+                </div>
+                <div class="col-xs-6 attribute-list-item-text flex-grid-cell">
+                  <span hc-editable="CharacterPanel.character.race"></span>
+                </div>
+              </li>
+              <li class="row attribute-list-item flex-grid">
+                <div class="col-xs-6 attribute-list-item-heading flex-grid-cell">
+                  <span>Alignment</span>
+                </div>
+                <div class="col-xs-6 attribute-list-item-text flex-grid-cell">
+                  <span hc-editable="CharacterPanel.character.alignment"></span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div> <!-- END BASIC ATTRIBUTES SECTION -->
+      <!-- SECTION: ABILITY SCORES -->
+      <!-- SECTION HEADER -->
+      <div class="text-center">
+        <h4>Ability Scores</h4>
+      </div> <!-- END SECTION HEADER -->
+      <table class="table table-bordered table-condensed ability-score-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>
+              <span>Score</span>
+            </th>
+            <th>
+              <span>Mod</span>
+            </th>
+            <th>
+              <span>Save</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>STR</strong></td>
+            <td>
+              <span hc-editable="CharacterPanel.character.abilities.strength.score"></span>
+            </td>
+            <td>
+              <span hc-editable="CharacterPanel.character.abilities.strength.modifier"><span ng-if="CharacterPanel.character.abilities.strength.modifier >= 0">+</span></span>
+            </td>
+            <td>
+              <span hc-editable="CharacterPanel.character.abilities.strength.save"><span ng-if="CharacterPanel.character.abilities.strength.save >= 0">+</span></span>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>DEX</strong></td>
+            <td>
+              <span hc-editable="CharacterPanel.character.abilities.dexterity.score"></span>
+            </td>
+            <td>
+              <span hc-editable="CharacterPanel.character.abilities.dexterity.modifier"><span ng-if="CharacterPanel.character.abilities.dexterity.modifier >= 0">+</span></span>
+            </td>
+            <td>
+              <span hc-editable="CharacterPanel.character.abilities.dexterity.save"><span ng-if="CharacterPanel.character.abilities.dexterity.save >= 0">+</span></span>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>CON</strong></td>
+            <td>
+              <span hc-editable="CharacterPanel.character.abilities.constitution.score"></span>
+            </td>
+            <td>
+              <span hc-editable="CharacterPanel.character.abilities.constitution.modifier"><span ng-if="CharacterPanel.character.abilities.constitution.modifier >= 0">+</span></span>
+            </td>
+            <td>
+              <span hc-editable="CharacterPanel.character.abilities.constitution.save"><span ng-if="CharacterPanel.character.abilities.constitution.save >= 0">+</span></span>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>INT</strong></td>
+            <td>
+              <span hc-editable="CharacterPanel.character.abilities.intelligence.score"></span>
+            </td>
+            <td>
+              <span hc-editable="CharacterPanel.character.abilities.intelligence.modifier"><span ng-if="CharacterPanel.character.abilities.intelligence.modifier >= 0">+</span></span>
+            </td>
+            <td>
+              <span hc-editable="CharacterPanel.character.abilities.intelligence.save"><span ng-if="CharacterPanel.character.abilities.intelligence.save >= 0">+</span></span>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>WIS</strong></td>
+            <td>
+               <span hc-editable="CharacterPanel.character.abilities.wisdom.score"></span>
+            </td>
+            <td>
+               <span hc-editable="CharacterPanel.character.abilities.wisdom.modifier"><span ng-if="CharacterPanel.character.abilities.wisdom.modifier >= 0">+</span></span>
+            </td>
+            <td>
+               <span hc-editable="CharacterPanel.character.abilities.wisdom.save"><span ng-if="CharacterPanel.character.abilities.wisdom.save >= 0">+</span></span>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>CHA</strong></td>
+            <td>
+              <span hc-editable="CharacterPanel.character.abilities.charisma.score"></span>
+            </td>
+            <td>
+              <span hc-editable="CharacterPanel.character.abilities.charisma.modifier"><span ng-if="CharacterPanel.character.abilities.charisma.modifier >= 0">+</span></span>
+            </td>
+            <td>
+              <span hc-editable="CharacterPanel.character.abilities.charisma.save"><span ng-if="CharacterPanel.character.abilities.charisma.save >= 0">+</span></span>
+            </td>
+          </tr>
+        </tbody>
+      </table> <!-- END ABILITY SCORES SECTION -->
+      <!-- SECTION: ENCOUNTER ATTRIBUTES -->
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-12">
+            <!-- SECTION HEADER -->
+            <div class="text-center">
+              <h4>Encounter Attributes</h4>
+            </div> <!-- END SECTION HEADER -->
+            <ul class="container-fluid attribute-list">
+              <li class="row attribute-list-item flex-grid">
+                <div class="col-xs-9 attribute-list-item-heading flex-grid-cell">
+                  <span>Passive Perception</span>
+                </div>
+                <div class="col-xs-3 attribute-list-item-text flex-grid-cell flex-grid-cell-center">
+                  <span hc-editable="CharacterPanel.character.passivePerception"></span>
+                </div>
+              </li>
+              <li class="row attribute-list-item flex-grid">
+                <div class="col-xs-9 attribute-list-item-heading flex-grid-cell">
+                  <span>Initiative Modifier</span>
+                </div>
+                <div class="col-xs-3 attribute-list-item-text flex-grid-cell">
+                  <span hc-editable="CharacterPanel.character.abilities.dexterity.modifier"><span ng-if="CharacterPanel.character.abilities.charisma.modifier > 0">+</span></span>
+                </div>
+              </li>
+              <li class="row attribute-list-item flex-grid">
+                <div class="col-xs-9 attribute-list-item-heading flex-grid-cell">
+                  <span>Armor Class</span>
+                </div>
+                <div class="col-xs-3 attribute-list-item-text flex-grid-cell">
+                  <span hc-editable="CharacterPanel.character.armorClass"></span>
+                </div>
+              </li>
+              <li class="row attribute-list-item flex-grid">
+                <div class="col-xs-9 attribute-list-item-heading flex-grid-cell">
+                  <span>Speed</span>
+                </div>
+                <div class="col-xs-3 attribute-list-item-text flex-grid-cell flex-grid-cell-center">
+                  <span hc-editable="CharacterPanel.character.speed"></span><span>ft.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div> <!-- END ENCOUNTER ATTRIBUTES SECTION -->
+      <!-- SECTION: PERSONAL CHARACTERISTICS -->
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-12">
+            <ul class="container-fluid attribute-list">
+              <li class="row attribute-list-item" ng-if="CharacterPanel.character.personalityTraits">
+                <span class="attribute-list-item-heading">Personality Traits</span>
+                <p class="attribute-list-item-text">{{CharacterPanel.character.personalityTraits}}</p>
+              </li>
+              <li class="row attribute-list-item" ng-if="CharacterPanel.character.ideals">
+                <span class="attribute-list-item-heading">Ideals</span>
+                <p class="attribute-list-item-text">{{CharacterPanel.character.ideals}}</p>
+              </li>
+              <li class="row attribute-list-item" ng-if="CharacterPanel.character.bonds">
+                <span class="attribute-list-item-heading">Bonds</span>
+                <p class="attribute-list-item-text">{{CharacterPanel.character.bonds}}</p>
+              </li>
+              <li class="row attribute-list-item" ng-if="CharacterPanel.character.flaws">
+                <span class="attribute-list-item-heading">Flaws</span>
+                <p class="attribute-list-item-text">{{CharacterPanel.character.flaws}}</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div> <!-- SECTION: END PERSONAL CHARACTERISTICS -->
+    </div> <!-- END VITALS -->
+    <div ng-if="'skills' === CharacterPanel.selectedCharacterInfoMenu">
+      <table class="table table-bordered table-condensed">
+        <thead>
+          <tr>
+            <th>Skill</th>
+            <th>Modifier</th>
+            <th>Proficiency</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="skill in CharacterPanel.skillList">
+            <td>{{skill.name}}</td>
+            <td class="text-center">
+              <span hc-editable="CharacterPanel.character.skills[skill.name].modifier"><span ng-if="CharacterPanel.character.abilities.dexterity.modifier >= 0">+</span></span>
+            </td>
+            <td>
+              <input type="checkbox" class="form-control" ng-model="CharacterPanel.character.skills[skill.name].proficient">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div> <!-- END CHARACTER INFORMATION TAB -->
+  <!-- ATTACKS & SPELLCASTING TAB -->
+  <div class="extended-menu-tab" ng-if="'attacks' === CharacterPanel.selectedMenu">
+    <!-- ATTACKS & SPELLCASTING MENU NAVIGATION -->
+    <div class="btn-group btn-group-justified" role="group" ng-if="!!CharacterPanel.character.menuExtended">
+      <div class="btn-group" role="group" ng-click="CharacterPanel.selectedAttackMenu = 'weapons'">
+        <button class="btn btn-default">
+          <span class="icon" data-icon="&#xe0bf;"></span>
+        </button>
+      </div>
+      <div class="btn-group" role="group" ng-click="CharacterPanel.selectedAttackMenu = 'spells'">
+        <button class="btn btn-default">
+          <span class="icon" data-icon="&#xe1b5;"></span>
+        </button>
+      </div>
+    </div> <!-- END ATTACKS & SPELLCASTING MENU NAVIGATION -->
+    <hc-character-attacks character="CharacterPanel.character" ng-if="'weapons' === CharacterPanel.selectedAttackMenu"></hc-character-attacks>
+    <hc-character-spells character="CharacterPanel.character" ng-if="'spells' === CharacterPanel.selectedAttackMenu"></hc-character-spells>
+  </div> <!-- END ATTACKS & SPELLCASTING MENU -->
+  <!-- CONDITIONS TAB -->
+  <div class="extended-menu-tab" ng-if="'conditions' === CharacterPanel.selectedMenu">
+    <hc-character-conditions character="CharacterPanel.character"></hc-character-conditions>
+  </div> <!-- END CONDITIONS TAB -->
+</div> <!-- END EXTENDED MENU -->

@@ -1,0 +1,21 @@
+<div class="modal-header">
+  <button type="button" class="close" aria-label="Close" ng-click="CharacterSelectionModal.cancel()"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title">Character List</h4>
+</div>
+<div class="modal-body">
+  <ng-form name="CharacterSelectionModal.characterSelectionForm">
+    <ul class="list-group character-list">
+      <li class="list-group-item character-list-item no-select" ng-repeat="character in CharacterSelectionModal.characters track by $index">
+        <input type="checkbox" id="character-{{$index}}" name="character[{{$index}}]" ng-model="CharacterSelectionModal.characterSelectionForm.characters[character.uuid].selected">
+        <label for="character-{{$index}}">
+          <div>{{character.name}}</div>
+          <div><em>Level {{character.level}} {{character.class}}</em></div>
+        </label>
+      </li>
+    </ul>
+  </ng-form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" ng-click="CharacterSelectionModal.cancel()">Cancel</button>
+  <button type="button" class="btn btn-primary" ng-click="CharacterSelectionModal.addSelection()">Add</button>
+</div>

@@ -1,0 +1,7 @@
+<span ng-hide="Editable.isEditingEnabled">
+  <span class="clickable" ng-click="Editable.enableEditing()"><span ng-transclude></span>{{Editable.data}}</span>
+</span>
+<span ng-show="Editable.isEditingEnabled">
+  <input type="text" ng-model="Editable.data" ng-click="Editable.clickIntercept($event)" ng-blur="Editable.disableEditing()" ng-keypress="Editable.keyPress($event)">
+  <!--<span class="clickable" ng-click="Editable.disableEditing()">Close</span>-->
+</span>

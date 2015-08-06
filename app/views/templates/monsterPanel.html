@@ -1,0 +1,161 @@
+<!-- MONSTER PANEL -->
+<div>
+  <!-- MOVE HANDLE -->
+  <span class="pull-right handle">
+    <i class="glyphicon glyphicon-th"></i>
+  </span>
+
+  <div hc-editable="MonsterPanel.monster.name"></div>
+  <div><em>{{MonsterPanel.monster.size}} {{MonsterPanel.monster.type}}, {{MonsterPanel.monster.alignment}}</em></div>
+
+  <!-- HP BAR -->
+  <div class="hp-bar">
+    <span>{{MonsterPanel.monster.currentHitPoints}} HP / {{MonsterPanel.monster.maximumHitPoints}} HP</span>
+    <div class="hp-bar-meter" role="progressbar" aria-valuenow="MonsterPanel.monster.currentHitPoints" aria-valuemin="0" aria-valuemax="MonsterPanel.monster.maximumHitPoints" ng-class="HomunculusEncounterController.hpBarColor(MonsterPanel.monster.currentHitPoints, MonsterPanel.monster.maximumHitPoints)" ng-style="{'width': (MonsterPanel.monster.currentHitPoints / MonsterPanel.monster.maximumHitPoints * 100) + '%'}"></div>
+  </div> <!-- END HP BAR -->
+
+  <!-- QUICK INFO PANEL -->
+  <table class="table table-condensed quick-info-panel">
+    <tbody>
+      <tr>
+        <td class="col-xs-3">
+          <i class="fa fa-shield"></i>
+          <span hc-editable="MonsterPanel.monster.armorClass"></span>
+        </td>
+      </tr>
+    </tbody>
+  </table> <!-- END QUICK INFO PANEL -->
+
+</div> <!-- END MONSTER PANEL -->
+
+<!-- EXTENDED MENU SHOW/HIDE BUTTON -->
+<button type="button" class="btn btn-default btn-block expand-menu-button" ng-click="MonsterPanel.monster.menuExtended = !MonsterPanel.monster.menuExtended">
+  <span class="glyphicon glyphicon-chevron-down" ng-if="!MonsterPanel.monster.menuExtended"></span>
+  <span class="glyphicon glyphicon-chevron-up" ng-if="!!MonsterPanel.monster.menuExtended"></span>
+</button>
+
+<!-- EXTENDED MENU NAVIGATION -->
+<div class="btn-group btn-group-justified" role="group" ng-if="!!MonsterPanel.monster.menuExtended">
+  <div class="btn-group" role="group">
+    <button class="btn btn-default" ng-click="MonsterPanel.monster.selectedMenu = 'vitals'"><i class="fa fa-heartbeat"></i></button>
+  </div>
+  <div class="btn-group" role="group" ng-click="MonsterPanel.monster.selectedMenu = 'attacks'">
+    <button class="btn btn-default"><i class="fa fa-bullseye"></i></button>
+  </div>
+  <div class="btn-group" role="group" ng-click="MonsterPanel.monster.selectedMenu = 'conditions'">
+    <button class="btn btn-default"><span class="fa fa-eye-slash"></i></button>
+  </div>
+  <div class="btn-group" role="group" ng-click="">
+    <button class="btn btn-default"><i class="fa fa-flask"></i></button>
+  </div>
+</div> <!-- END MENU NAVIGATION -->
+
+<!-- EXTENDED MENU -->
+<div class="extended-menu" ng-if="MonsterPanel.monster.menuExtended">
+
+  <!-- VITALS TAB -->
+  <div class="extended-menu-tab" ng-if="'vitals' === MonsterPanel.monster.selectedMenu">
+
+    <!-- ABILITY SCORE TABLE -->
+      <div>Ability Scores</div>
+      <table class="table table-bordered table-condensed ability-score-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Score</th>
+            <th>Mod</th>
+            <th>Save</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>STR</strong></td>
+            <td>
+              <span hc-editable="MonsterPanel.monster.abilities.strength.score"></span>
+            </td>
+            <td>
+              <span ng-if="MonsterPanel.monster.abilities.strength.modifier > 0">+</span>{{MonsterPanel.monster.abilities.strength.modifier}}
+            </td>
+            <td>
+              <span ng-if="MonsterPanel.monster.abilities.strength.save > 0">+</span>{{MonsterPanel.monster.abilities.strength.save}}
+            </td>
+          </tr>
+          <tr>
+            <td><strong>DEX</strong></td>
+            <td>
+              <span hc-editable="MonsterPanel.monster.abilities.dexterity.score"></span>
+            </td>
+            <td>
+              <span ng-if="MonsterPanel.monster.abilities.dexterity.modifier > 0">+</span>{{MonsterPanel.monster.abilities.dexterity.modifier}}
+            </td>
+            <td>
+              <span ng-if="MonsterPanel.monster.abilities.dexterity.save > 0">+</span>{{MonsterPanel.monster.abilities.dexterity.save}}
+            </td>
+          </tr>
+          <tr>
+            <td><strong>CON</strong></td>
+            <td>
+              <span hc-editable="MonsterPanel.monster.abilities.constitution.score"></span>
+            </td>
+            <td>
+              <span ng-if="MonsterPanel.monster.abilities.constitution.modifier > 0">+</span>{{MonsterPanel.monster.abilities.constitution.modifier}}
+            </td>
+            <td>
+              <span ng-if="MonsterPanel.monster.abilities.constitution.save > 0">+</span>{{MonsterPanel.monster.abilities.constitution.save}}
+            </td>
+          </tr>
+          <tr>
+            <td><strong>INT</strong></td>
+            <td>
+              <span hc-editable="MonsterPanel.monster.abilities.intelligence.score"></span>
+            </td>
+            <td>
+              <span ng-if="MonsterPanel.monster.abilities.intelligence.modifier > 0">+</span>{{MonsterPanel.monster.abilities.intelligence.modifier}}
+            </td>
+            <td>
+              <span ng-if="MonsterPanel.monster.abilities.intelligence.save > 0">+</span>{{MonsterPanel.monster.abilities.intelligence.save}}
+            </td>
+          </tr>
+          <tr>
+            <td><strong>WIS</strong></td>
+            <td>
+              <span hc-editable="MonsterPanel.monster.abilities.wisdom.score"></span>
+            </td>
+            <td>
+              <span ng-if="MonsterPanel.monster.abilities.wisdom.modifier > 0">+</span>{{MonsterPanel.monster.abilities.wisdom.modifier}}
+            </td>
+            <td>
+              <span ng-if="MonsterPanel.monster.abilities.wisdom.save > 0">+</span>{{MonsterPanel.monster.abilities.wisdom.save}}
+            </td>
+          </tr>
+          <tr>
+            <td><strong>CHA</strong></td>
+            <td>
+              <span hc-editable="MonsterPanel.monster.abilities.charisma.score"></span>
+            </td>
+            <td>
+              <span ng-if="MonsterPanel.monster.abilities.charisma.modifier > 0">+</span>{{MonsterPanel.monster.abilities.charisma.modifier}}</td>
+              <td>
+              <span ng-if="MonsterPanel.monster.abilities.charisma.save > 0">+</span>{{MonsterPanel.monster.abilities.charisma.save}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <span hc-editable="MonsterPanel.monster.speed"></span>
+
+  </div> <!-- END VITALS TAB -->
+
+  <!-- ACTIONS TAB -->
+  <div class="extended-menu-tab" ng-if="'action' === MonsterPanel.monster.selectedMenu">
+
+    <ul class="attributes-list-group">
+      <li class="attributes-list-item" ng-repeat="action in MonsterPanel.monster.actions">
+        <span hc-editable="action.name"></span>
+        <span>{{action.description}}</span>
+      </li>
+    </ul>
+
+  </div> <!-- END ACTIONS MENU -->
+
+</div> <!-- END EXTENDED MENU -->

@@ -5,7 +5,7 @@
 <div class="row">
 
   <!-- FLASH MESSAGE INTERFACE -->
-  <div ui-view="alerts"></div>
+  <homunculus-flash></homunculus-flash>
 
   <!-- PROFILE CREATION INTERFACE -->
   <div class="well">
@@ -21,13 +21,13 @@
       <!-- NAME -->
       <div class="form-group container-fluid" ng-class="{ 'has-error': createProfileForm.name.$invalid && (createProfileForm.name.$dirty || HomunculusProfileController.submittedCreateProfileForm) }">
         <div class="row">
-          <label class="col-xs-12 col-sm-3 control-label" for="name">Name</label>
-          <div class="col-xs-12 col-sm-9">
+          <label class="col-xs-12 control-label" for="name">Name</label>
+          <div class="col-xs-12">
             <input type="text" class="form-control" name="name" ng-model="HomunculusProfileController.createProfileForm.name" required>
           </div>
         </div>
         <div class="row">
-          <div class="col-xs-12 col-sm-offset-3 col-sm-9">
+          <div class="col-xs-12">
             <span class="text-danger" ng-show="createProfileForm.name.$error.required && (createProfileForm.name.$dirty || HomunculusProfileController.submittedCreateProfileForm)" class="help-block">Please provide a name.</span>
           </div>
         </div>

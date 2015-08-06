@@ -2,19 +2,19 @@
 
 /**
  * @ngdoc service
- * @name homunculusApp.services:HomunculusSkillService
+ * @name homunculusApp.services:hcSkillService
  * @description
- * # HomunculusSkillService
+ * # hcSkillService
  * Service for managing character skills.
  */
 angular.module('homunculusApp.services')
-  .factory('HomunculusSkillService', [
+  .factory('hcSkillService', [
     '$q',
     function ($q) {
 
       var Skill = {
         'name': '',
-        'ability': ''
+        'ability': '',
       };
 
       var skillList = {
@@ -59,7 +59,7 @@ angular.module('homunculusApp.services')
 
             for (var i = 0, l = skillList[ability].length; i < l; i++) {
 
-              var skill = Object.create(Skill);
+              var skill = angular.copy(Skill);
               skill.name = skillList[ability][i];
               skill.ability = ability;
 
@@ -74,8 +74,8 @@ angular.module('homunculusApp.services')
           return deferred.promise;
 
         },
-        'generateSkillObject': function () {
-          return Object.create(Skill);
+        'createSkillObject': function () {
+          return angular.copy(Skill);
         }
       };
 

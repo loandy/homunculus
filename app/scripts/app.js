@@ -18,9 +18,12 @@ angular
     'ui.bootstrap',
     'ui.router',
     'ui.sortable',
+    'angularModalService',
     'angular-uuid',
+    'ngTagsInput',
+    'homunculusApp.services',
     'homunculusApp.controllers',
-    'homunculusApp.services'
+    'homunculusApp.directives'
   ])
   .config(['$stateProvider', '$urlRouterProvider',
     function ($stateProvider, $urlRouterProvider) {
@@ -29,17 +32,7 @@ angular
 
       $stateProvider.
         state('main', {
-          'abstract': true,
-          'views': {
-            'header@': {
-              'templateUrl': 'views/header.html',
-              'controller': 'HomunculusHeaderController',
-              'controllerAs': 'HomunculusHeaderController'
-            },
-            'footer@': {
-              'templateUrl': 'views/footer.html'
-            }
-          }
+          'abstract': true
         }).
         state('main.home', {
           'url': '/',
@@ -54,13 +47,8 @@ angular
           'views': {
             'content@': {
               'templateUrl': 'views/profile.html',
-              'controller': 'HomunculusProfileController',
+              'controller': 'hcProfileController',
               'controllerAs': 'HomunculusProfileController'
-            },
-            'alerts@main.profile': {
-              'templateUrl': 'views/alerts.html',
-              'controller': 'HomunculusAlertController',
-              'controllerAs': 'HomunculusAlertController'
             }
           },
           'resolve': {
@@ -91,77 +79,24 @@ angular
           'url': '/character',
           'views': {
             'content@': {
-              'templateUrl': 'views/character.html',
-              'controller': 'HomunculusCharacterController',
-              'controllerAs': 'HomunculusCharacterController',
-            },
-            'alerts@main.character': {
-              'templateUrl': 'views/alerts.html',
-              'controller': 'HomunculusAlertController',
-              'controllerAs': 'HomunculusAlertController'
+              'templateUrl': 'views/character.html'
             }
-          },
-          'resolve': {
-            'initialData': [
-              '$q',
-              'HomunculusProfileService',
-              'HomunculusCharacterService',
-              function ($q, ProfileService, CharacterService) {
-
-                // Retrieve list of characters belonging to the current profile.
-                return CharacterService.getAllProfileCharacters(ProfileService.currentProfile.uuid)
-                  .then(function (results) {
-
-                    var characters = [];
-
-                    results.forEach(function (character) {
-                      characters.push(character.row[0]);
-                    });
-
-                    characters.sort(CharacterService.helper.alphaSort);
-
-                    return {
-                      'characters': characters
-                    };
-
-                });
-
-              }
-            ]
+          }
+        })
+        .state('main.encounter', {
+          'url': '/encounter',
+          'views': {
+            'content@': {
+              'templateUrl': 'views/encounter.html'
+            }
           }
         })
         .state('main.monster', {
           'url': '/monster',
           'views': {
             'content@': {
-              'templateUrl': 'views/monster.html',
-              'controller': 'HomunculusMonsterController',
-              'controllerAs': 'HomunculusMonsterController'
-            },
-            'alerts@main.encounter': {
-              'templateUrl': 'views/alerts.html',
-              'controller': 'HomunculusAlertController',
-              'controllerAs': 'HomunculusAlertController'
+              'templateUrl': 'views/monster.html'
             }
-          },
-          'resolve': {
-            'initialData': [
-              '$q',
-              'HomunculusSkillService',
-              function ($q, SkillService) {
-
-                // Retrieve list skills.
-                return SkillService.getSkillList()
-                  .then(function (results) {
-
-                    return {
-                      'masterSkillList': results
-                    };
-
-                });
-
-              }
-            ]
           }
         });
     }

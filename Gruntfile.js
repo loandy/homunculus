@@ -178,7 +178,7 @@ module.exports = function (grunt) {
 
     browserify: {
         js: {
-            src: 'modules.js',
+            src: 'modulelist.js',
             dest: '<%= yeoman.app %>/scripts/bundle.js'
         }
     },

@@ -15,13 +15,13 @@
     <li ui-sref-active="active" class="active">
       <a ui-sref="main.profile" data-toggle="collapse" data-target="#primaryNavigation" >Profile</a>
     </li>
-    <li ui-sref-active="active" class="active" ng-if="!!HomunculusHeaderController.currentProfile">
+    <li ui-sref-active="active" class="active" ng-if="!!Header.currentProfile">
       <a ui-sref="main.character" data-toggle="collapse" data-target="#primaryNavigation" >Character</a>
     </li>
-    <li ui-sref-active="active" class="active" ng-if="!!HomunculusHeaderController.currentProfile">
+    <li ui-sref-active="active" class="active" ng-if="!!Header.currentProfile">
       <a ui-sref="main.monster" data-toggle="collapse" data-target="#primaryNavigation" >Monster</a>
     </li>
-    <li ui-sref-active="active" class="active" ng-if="!!HomunculusHeaderController.currentProfile">
+    <li ui-sref-active="active" class="active" ng-if="!!Header.currentProfile">
       <a ui-sref="main.encounter" data-toggle="collapse" data-target="#primaryNavigation" >Encounter</a>
     </li>
   </ul>

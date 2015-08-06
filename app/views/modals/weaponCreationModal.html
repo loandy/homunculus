@@ -1,0 +1,104 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="WeaponCreationModal.close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title">Create New Weapon</h4>
+</div>
+<div class="modal-body">
+  <ng-form name="WeaponCreationModal.weaponCreationForm">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12">
+          <!-- FIELD: NAME -->
+          <div class="form-group container-fluid" ng-class="{ 'has-error': WeaponCreationModal.weaponCreationForm.name.$invalid && (WeaponCreationModal.weaponCreationForm.name.$dirty || WeaponCreationModal.isSubmitted) }">
+            <div class="row">
+              <label class="col-xs-12 control-label" for="name">Name</label>
+              <div class="col-xs-12">
+                <input type="text" class="form-control" name="name" ng-model="WeaponCreationModal.weapon.name" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <span class="text-danger" ng-show="WeaponCreationModal.weaponCreationForm.name.$error.required && (WeaponCreationModal.weaponCreationForm.name.$dirty || WeaponCreationModal.isSubmitted)" class="help-block">Please provide the weapon name.</span>
+              </div>
+            </div>
+          </div> <!-- END NAME FIELD -->
+          <!-- FIELD: CATEGORY -->
+          <div class="form-group container-fluid" ng-class="{ 'has-error': WeaponCreationModal.weaponCreationForm.category.$invalid && (WeaponCreationModal.weaponCreationForm.category.$dirty || WeaponCreationModal.isSubmitted) }">
+            <div class="row">
+              <label class="col-xs-12 control-label" for="category">Category</label>
+              <div class="col-xs-12">
+                <input type="text" class="form-control" name="category" list="categoryList" ng-model="WeaponCreationModal.weapon.category" required>
+                <datalist id="categoryList">
+                  <option value="Simple">Simple</option>
+                  <option value="Martial">Martial</option>
+                </datalist>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <span class="text-danger" ng-show="WeaponCreationModal.weaponCreationForm.category.$error.required && (WeaponCreationModal.weaponCreationForm.category.$dirty || WeaponCreationModal.isSubmitted)" class="help-block">Please provide the weapon category.</span>
+              </div>
+            </div>
+          </div> <!-- END CATEGORY FIELD -->
+          <!-- FIELD: BASE DAMAGE -->
+          <div class="form-group container-fluid" ng-class="{ 'has-error': WeaponCreationModal.weaponCreationForm.baseDamage.$invalid && (WeaponCreationModal.weaponCreationForm.baseDamage.$dirty || WeaponCreationModal.isSubmitted) }">
+            <div class="row">
+              <label class="col-xs-12 control-label" for="diceNumber">Base Damage</label>
+              <div class="col-xs-6">
+                <input type="number" class="form-control" name="diceNumber" min="0" ng-model="WeaponCreationModal.weapon.baseDamage.diceNumber" required>
+              </div>
+              <div class="col-xs-6">
+                <select class="form-control" name="diceNumber" ng-model="WeaponCreationModal.weapon.baseDamage.diceType" required>
+                  <option value="d4">d4</option>
+                  <option value="d6">d6</option>
+                  <option value="d8">d8</option>
+                  <option value="d10">d10</option>
+                  <option value="d12">d12</option>
+                  <option value="d20">d20</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <span class="text-danger" ng-show="WeaponCreationModal.weaponCreationForm.baseDamage.$error.required && (WeaponCreationModal.weaponCreationForm.baseDamage.$dirty || WeaponCreationModal.isSubmitted)" class="help-block">Please provide the weapon damage.</span>
+              </div>
+            </div>
+          </div> <!-- END BASE DAMAGE FIELD -->
+          <!-- FIELD: DAMAGE TYPE -->
+          <div class="form-group container-fluid" ng-class="{ 'has-error': WeaponCreationModal.weaponCreationForm.damageType.$invalid && (WeaponCreationModal.weaponCreationForm.damageType.$dirty || WeaponCreationModal.isSubmitted) }">
+            <div class="row">
+              <label class="col-xs-12 control-label" for="damageType">Damage Type</label>
+              <div class="col-xs-12">
+                <input type="text" class="form-control" name="damageType" list="damageTypeList" ng-model="WeaponCreationModal.weapon.damageType" required>
+                <datalist id="damageTypeList">
+                  <option value="Piercing"></option>
+                  <option value="Slashing"></option>
+                  <option value="Bludgeoning"></option>
+                </datalist>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <span class="text-danger" ng-show="WeaponCreationModal.weaponCreationForm.damageType.$error.required && (WeaponCreationModal.weaponCreationForm.damageType.$dirty || WeaponCreationModal.isSubmitted)" class="help-block">Please provide the weapon damage type.</span>
+              </div>
+            </div>
+          </div> <!-- END DAMAGE TYPE FIELD -->
+          <!-- FIELD: WEAPON PROPERTIES -->
+          <div class="form-group container-fluid">
+            <div class="row">
+              <label class="control-label" for="properties">Properties</label>
+              <div class="col-xs-12">
+                <tags-input name="properties" ng-model="WeaponCreationModal.weapon.properties"></tags-input>
+              </div>
+            </div>
+          </div> <!-- END WEAPON PROPERTIES FIELD -->
+        </div>
+      </div>
+    </div>
+  </ng-form>
+</div>
+<div class="modal-footer">
+  <!-- SUBMIT BUTTON -->
+  <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="WeaponCreationModal.createWeapon(WeaponCreationModal.weaponCreationForm.$valid)">Create</button>
+  <!-- CLOSE BUTTON -->
+  <button type="button" class="btn btn-default btn-lg btn-block" ng-click="WeaponCreationModal.cancel()">Cancel</button>
+</div>

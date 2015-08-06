@@ -10,11 +10,11 @@
 angular.module('homunculusApp.controllers')
   .controller('HomunculusProfileController', [
     'HomunculusProfileService',
-    'HomunculusAlertService',
+    'HomunculusFlashService',
     'HomunculusUtilityService',
     'uuid',
     'initialData',
-    function (ProfileService, AlertService, UtilityService, uuid, initialData) {
+    function (ProfileService, FlashService, UtilityService, uuid, initialData) {
 
       var generateProfileLookup = function (profiles) {
 
@@ -71,7 +71,7 @@ angular.module('homunculusApp.controllers')
 
             UtilityService.insertAlpha(profileNode, self.profiles);
 
-            AlertService.addAlert({
+            FlashService.addAlert({
               'type': 'success',
               'message': 'Successfully created profile.'
             });
@@ -80,7 +80,7 @@ angular.module('homunculusApp.controllers')
 
           }, function (error) {
 
-            AlertService.addAlert({
+            FlashService.addAlert({
               'type': 'danger',
               'message': 'Error creating profile: ' + error.message
             });
@@ -102,7 +102,7 @@ angular.module('homunculusApp.controllers')
 
         }, function (error) {
 
-          AlertService.addAlert({
+          FlashService.addAlert({
             'type': 'danger',
             'message': 'Error retrieving profiles.'
           });

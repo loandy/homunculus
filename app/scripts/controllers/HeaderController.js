@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc function
- * @name homunculusApp.controllers:HomunculusHeaderController
+ * @name homunculusApp.controllers:hcHeaderController
  * @description
- * # HomunculusHeaderController
+ * # hcHeaderController
  * Controller for the primary header.
  */
 angular.module('homunculusApp.controllers')
-  .controller('HomunculusHeaderController', [
-    'HomunculusProfileService',
+  .controller('hcHeaderController', [
+    'hcProfileService',
     function (ProfileService) {
 
       var self = this;

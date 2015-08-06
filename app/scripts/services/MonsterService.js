@@ -2,18 +2,59 @@
 
 /**
  * @ngdoc service
- * @name homunculusApp.services:HomunculusMonsterService
+ * @name homunculusApp.services:hcMonsterService
  * @description
- * # HomunculusMonsterService
+ * # hcMonsterService
  * Service for managing monsters.
  */
 angular.module('homunculusApp.services')
-  .factory('HomunculusMonsterService', [
+  .factory('hcMonsterService', [
     '$http',
     '$q',
-    'HomunculusUtilityService',
+    'uuid',
+    'hcUtilityService',
     'configurations',
-    function ($http, $q, UtilityService, configurations) {
+    function ($http, $q, uuid, UtilityService, configurations) {
+
+      var Monster = {
+        'name': '',
+        'size': '',
+        'armorClass':  '',
+        'challenge': '',
+        'abilities': {
+          'strength': '',
+          'dexterity': '',
+          'constitution': '',
+          'wisdom': '',
+          'intelligence': ''
+        },
+        'savingThrows': {
+          'strength': '',
+          'dexterity': '',
+          'constitution': '',
+          'wisdom': '',
+          'intelligence': ''
+        },
+        'maximumHitPoints': '',
+        'hitDice': '',
+        'traits': [],
+        'actions': [],
+        'skills': [],
+        'damageVulnerabilities': '',
+        'damageResistances': '',
+        'damageImmunities': '',
+        'conditionImmunities': ''
+      };
+
+      var Trait = {
+        'name': '',
+        'description': ''
+      };
+
+      var Action = {
+        'name': '',
+        'description': ''
+      };
 
       return {
         'helper': {
@@ -46,7 +87,7 @@ angular.module('homunculusApp.services')
 
           $http.post(endpoint, queries)
             .success(function (data, status, headers, config) {
-              deferred.resolve(data);
+              deferred.resolve(UtilityService.parseObject(data));
             })
             .error(function (data, status, headers, config) {
               deferred.reject(status);
@@ -67,7 +108,19 @@ angular.module('homunculusApp.services')
 
           $http.post(endpoint, queries)
             .success(function (data, status, headers, config) {
-              deferred.resolve(UtilityService.objectToArray(data.results[0].data));
+
+              var results = [];
+
+              UtilityService.objectToArray(data.results[0].data).forEach(function(element) {
+
+                var monster = UtilityService.parseObject(element.row[0]);
+
+                results.push(monster);
+
+              });
+
+              deferred.resolve(results);
+
             })
             .error(function (data, status, headers, config) {
               deferred.reject(status);
@@ -76,7 +129,35 @@ angular.module('homunculusApp.services')
           return deferred.promise;
 
         },
-        'createMonster': function (monster) {
+        'createMonsterObject': function () {
+          return angular.copy(Monster);
+        },
+        'createTraitObject': function () {
+          return angular.copy(Trait);
+        },
+        'createActionObject': function () {
+          return angular.copy(Action);
+        },
+        'createMonster': function (monsterForm) {
+
+          // Generate monster object from form values.
+          var monster = {
+            'uuid': uuid.v1()
+          };
+
+          Object.getOwnPropertyNames(Object.getPrototypeOf(monsterForm)).forEach(function (property) {
+
+            // Using instanceof instead of typeof to avoid null issues.
+            if (monster[property] instanceof Object) {
+              monster[property] = JSON.stringify(monster[property]);
+            } else {
+              monster[property] = monster[property];
+            }
+
+          });
+
+          // Initialize hit points.
+          monster.currentHitPoints = monster.maximumHitPoints;
 
           var endpoint = configurations.neo4j.serviceRoot + 'transaction/commit';
           var queries = {

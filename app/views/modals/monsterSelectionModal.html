@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <button type="button" class="close" aria-label="Close" ng-click="MonsterSelectionModal.cancel()"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title">Monster List</h4>
+</div>
+<div class="modal-body">
+  <ng-form name="MonsterSelectionModal.monsterSelectionForm">
+    <ul class="list-group monster-list">
+      <li class="list-group-item monster-list-item no-select" ng-repeat="monster in MonsterSelectionModal.monsters track by $index">
+        <input type="checkbox" id="monster-{{$index}}" name="monster[{{$index}}]Selected" ng-model="MonsterSelectionModal.monsters[monster.uuid].selected">
+        <label for="monster-{{$index}}">
+          <div class="monster-name">
+            <span>{{monster.name}}</span>
+          </div>
+          <div class="monster-quantity">
+            <input type="number" name="monster[{{$index}}]Quantity" min="1" ng-model="MonsterSelectionModal.monsters[monster.uuid].quantity">
+          </div>
+        </label>
+      </li>
+    </ul>
+  </ng-form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" ng-click="MonsterSelectionModal.cancel()">Cancel</button>
+  <button type="button" class="btn btn-primary" ng-click="MonsterSelectionModal.addSelection()">Add</button>
+</div>

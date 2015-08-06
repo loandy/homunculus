@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc service
- * @name homunculusApp.services:HomunculusUtilityService
+ * @name homunculusApp.services:hcUtilityService
  * @description
- * # HomunculusUtilityService
+ * # hcUtilityService
  * Service for providing miscellaneous utility helper functions.
  */
 angular.module('homunculusApp.services')
-  .factory('HomunculusUtilityService', [
+  .factory('hcUtilityService', [
     '$q',
     function ($q) {
 
@@ -29,6 +29,36 @@ angular.module('homunculusApp.services')
           }
 
           return result;
+
+        },
+        // Copies values for attributes that exist in the destination object,
+        // from the source object.
+        'transfer': function (destination, source) {
+          Object.keys(destination).forEach(function (key) {
+            destination[key] = source[key] ? source[key] : '';
+          });
+        },
+        'parseObject': function (object) {
+
+          if (this.isNonEmptyObject(object)) {
+
+            var objectKeys = Object.keys(object);
+            var objectKeysLength = objectKeys.length;
+
+            for (var i = 0; i < objectKeysLength; i++) {
+
+              // Only convert properties that are stringified JSON objects.
+              try {
+                object[objectKeys[i]] = JSON.parse(object[objectKeys[i]]);
+              } catch (e) {
+                // Do nothing.
+              }
+
+            }
+
+          }
+
+          return object;
 
         },
         'generateLookup': function (objectArray, keyField) {
@@ -119,6 +149,13 @@ angular.module('homunculusApp.services')
         'calculateModifier': function (value) {
 
           var modifier = Math.floor((value - 10) / 2);
+
+          return modifier;
+
+        },
+        'calculateProficiencyBonus': function (level) {
+
+          var modifier = Math.ceil(level / 4) + 1;
 
           return modifier;
 

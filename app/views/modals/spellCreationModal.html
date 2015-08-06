@@ -1,0 +1,143 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="SpellCreationModal.close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title">Create New Spell</h4>
+</div>
+<div class="modal-body">
+  <ng-form name="SpellCreationModal.spellCreationForm">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12">
+          <!-- FIELD: NAME -->
+          <div class="form-group container-fluid" ng-class="{ 'has-error': SpellCreationModal.spellCreationForm.name.$invalid && (SpellCreationModal.spellCreationForm.name.$dirty || SpellCreationModal.isSubmitted) }">
+            <div class="row">
+              <label class="col-xs-12 control-label" for="name">Name</label>
+              <div class="col-xs-12">
+                <input type="text" class="form-control" name="name" ng-model="SpellCreationModal.spell.name" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <span class="text-danger" ng-show="SpellCreationModal.spellCreationForm.name.$error.required && (SpellCreationModal.spellCreationForm.name.$dirty || SpellCreationModal.isSubmitted)" class="help-block">Please provide the spell name.</span>
+              </div>
+            </div>
+          </div> <!-- END NAME FIELD -->
+          <!-- FIELD: LEVEL -->
+          <div class="form-group container-fluid" ng-class="{ 'has-error': SpellCreationModal.spellCreationForm.level.$invalid && (SpellCreationModal.spellCreationForm.level.$dirty || SpellCreationModal.isSubmitted) }">
+            <div class="row">
+              <label class="col-xs-12 control-label" for="level">Level</label>
+              <div class="col-xs-12">
+                <input type="number" class="form-control" name="level" min="0" ng-model="SpellCreationModal.spell.level" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <span class="text-danger" ng-show="SpellCreationModal.spellCreationForm.level.$error.required && (SpellCreationModal.spellCreationForm.level.$dirty || SpellCreationModal.isSubmitted)" class="help-block">Please provide the spell level.</span>
+                <span class="text-danger" ng-show="SpellCreationModal.spellCreationForm.level.$error.min && (SpellCreationModal.spellCreationForm.level.$dirty || SpellCreationModal.isSubmitted)" class="help-block">Please provide a non-negative value.</span>
+              </div>
+            </div>
+          </div> <!-- END LEVEL FIELD -->
+          <!-- FIELD: SCHOOL -->
+          <div class="form-group container-fluid" ng-class="{ 'has-error': SpellCreationModal.spellCreationForm.school.$invalid && (SpellCreationModal.spellCreationForm.school.$dirty || SpellCreationModal.isSubmitted) }">
+            <div class="row">
+              <label class="col-xs-12 control-label" for="school">School</label>
+              <div class="col-xs-12">
+                <input type="text" class="form-control" name="level" min="0" list="schoolList" ng-model="SpellCreationModal.spell.school" required>
+                <datalist id="schoolList">
+                  <option value="Abjuration"></option>
+                  <option value="Conjuration"></option>
+                  <option value="Divination"></option>
+                  <option value="Enchantment"></option>
+                  <option value="Evocation"></option>
+                  <option value="Illusion"></option>
+                  <option value="Necromancy"></option>
+                  <option value="Transmutation"></option>
+                </datalist>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <span class="text-danger" ng-show="SpellCreationModal.spellCreationForm.school.$error.required && (SpellCreationModal.spellCreationForm.school.$dirty || SpellCreationModal.isSubmitted)" class="help-block">Please provide the spell school.</span>
+              </div>
+            </div>
+          </div> <!-- END SCHOOL FIELD -->
+          <!-- FIELD: CASTING TIME -->
+          <div class="form-group container-fluid" ng-class="{ 'has-error': SpellCreationModal.spellCreationForm.castingTime.$invalid && (SpellCreationModal.spellCreationForm.castingTime.$dirty || SpellCreationModal.isSubmitted) }">
+            <div class="row">
+              <label class="col-xs-12 control-label" for="castingTime">Casting Time</label>
+              <div class="col-xs-12">
+                <input type="text" class="form-control" name="castingTime" ng-model="SpellCreationModal.spell.castingTime" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <span class="text-danger" ng-show="SpellCreationModal.spellCreationForm.castingTime.$error.required && (SpellCreationModal.spellCreationForm.castingTime.$dirty || SpellCreationModal.isSubmitted)" class="help-block">Please provide the spell casting time.</span>
+              </div>
+            </div>
+          </div> <!-- END CASTING TIME FIELD -->
+          <!-- FIELD: RANGE -->
+          <div class="form-group container-fluid" ng-class="{ 'has-error': SpellCreationModal.spellCreationForm.range.$invalid && (SpellCreationModal.spellCreationForm.range.$dirty || SpellCreationModal.isSubmitted) }">
+            <div class="row">
+              <label class="col-xs-12 control-label" for="range">Range</label>
+              <div class="col-xs-12">
+                <input type="text" class="form-control" name="range" ng-model="SpellCreationModal.spell.range" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <span class="text-danger" ng-show="SpellCreationModal.spellCreationForm.range.$error.required && (SpellCreationModal.spellCreationForm.range.$dirty || SpellCreationModal.isSubmitted)" class="help-block">Please provide the spell range.</span>
+              </div>
+            </div>
+          </div> <!-- END RANGE FIELD -->
+          <!-- FIELD: COMPONENTS -->
+          <div class="form-group container-fluid" ng-class="{ 'has-error': SpellCreationModal.spellCreationForm.components.$invalid && (SpellCreationModal.spellCreationForm.components.$dirty || SpellCreationModal.isSubmitted) }">
+            <div class="row">
+              <label class="col-xs-12 control-label" for="components">Components</label>
+              <div class="col-xs-12">
+                <textarea class="form-control" name="components" rows="3" ng-model="SpellCreationModal.spell.components" required></textarea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <span class="text-danger" ng-show="SpellCreationModal.spellCreationForm.components.$error.required && (SpellCreationModal.spellCreationForm.components.$dirty || SpellCreationModal.isSubmitted)" class="help-block">Please provide the spell components.</span>
+              </div>
+            </div>
+          </div> <!-- END COMPONENTS FIELD -->
+          <!-- FIELD: DURATION -->
+          <div class="form-group container-fluid" ng-class="{ 'has-error': SpellCreationModal.spellCreationForm.duration.$invalid && (SpellCreationModal.spellCreationForm.duration.$dirty || SpellCreationModal.isSubmitted) }">
+            <div class="row">
+              <label class="col-xs-12 control-label" for="duration">Duration</label>
+              <div class="col-xs-12">
+                <input type="text" class="form-control" name="duration" ng-model="SpellCreationModal.spell.duration" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <span class="text-danger" ng-show="SpellCreationModal.spellCreationForm.duration.$error.required && (SpellCreationModal.spellCreationForm.duration.$dirty || SpellCreationModal.isSubmitted)" class="help-block">Please provide the spell duration.</span>
+              </div>
+            </div>
+          </div> <!-- END DURATION FIELD -->
+          <!-- FIELD: DESCRIPTION -->
+          <div class="form-group container-fluid" ng-class="{ 'has-error': SpellCreationModal.spellCreationForm.description.$invalid && (SpellCreationModal.spellCreationForm.description.$dirty || SpellCreationModal.isSubmitted) }">
+            <div class="row">
+              <label class="col-xs-12 control-label" for="description">Description</label>
+              <div class="col-xs-12">
+                <textarea class="form-control" name="description" rows="3" ng-model="SpellCreationModal.spell.description" required></textarea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <span class="text-danger" ng-show="SpellCreationModal.spellCreationForm.description.$error.required && (SpellCreationModal.spellCreationForm.description.$dirty || SpellCreationModal.isSubmitted)" class="help-block">Please provide the spell description.</span>
+              </div>
+            </div>
+          </div> <!-- END DESCRIPTION FIELD -->
+        </div>
+      </div>
+    </div>
+  </ng-form>
+</div>
+<div class="modal-footer">
+  <!-- SUBMIT BUTTON -->
+  <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="SpellCreationModal.createSpell(SpellCreationModal.spellCreationForm.$valid)">Create</button>
+  <!-- CLOSE BUTTON -->
+  <button type="button" class="btn btn-default btn-lg btn-block" ng-click="SpellCreationModal.cancel()">Cancel</button>
+</div>

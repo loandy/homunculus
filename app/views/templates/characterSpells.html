@@ -1,0 +1,71 @@
+<div ng-if="CharacterSpells.isResolved">
+  <div class="btn-group btn-group-justified">
+    <!-- CREATE SPELL -->
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-primary btn-block" ng-click="CharacterSpells.openCreateSpellModal()">
+        <span>Create New Spell</span>
+      </button>
+    </div> <!-- END CREATE SPELL -->
+  </div>
+  <div class="btn-group btn-group-justified">
+    <!-- REMOVE SPELL -->
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-primary btn-block" ng-click="CharacterSpells.removeSpell()" ng-disabled="CharacterSpells.isRemoveSpellsDisabled()">
+        <span class="icon fa fa-minus"></span>
+      </button>
+    </div> <!-- END REMOVE SPELL -->
+    <!-- ADD SPELL -->
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-primary btn-block" ng-click="CharacterSpells.addSpell()">
+        <span class="icon fa fa-plus"></span>
+      </button>
+    </div> <!-- END ADD SPELL -->
+  </div>
+  <!-- SPELL LIST -->
+  <ul class="container-fluid attribute-list-group">
+    <li class="row attribute-list-item" ng-repeat="spell in CharacterSpells.character.spells track by $index">
+      <div class="col-xs-12">
+        <span class="attribute-list-item-heading">Spell</span>
+        <button type="button" class="close" ng-click="CharacterSpells.removeSpell($index)" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="col-xs-12">
+        <!-- SPELL SELECTION -->
+        <select ng-model="CharacterSpells.character.spells[$index]" ng-options="spell.name for spell in CharacterSpells.spellList track by spell.name"></select>
+      </div>
+      <div ng-if="CharacterSpells.character.spells[$index].name">
+        <div class="col-xs-12">
+          <span>Name: </span>
+          <span hc-editable="spell.name"></span>
+        </div>
+        <div class="col-xs-12">
+          <span>Level: </span>
+          <span hc-editable="spell.level"></span>
+        </div>
+        <div class="col-xs-12">
+          <span>School: </span>
+          <span hc-editable="spell.school"></span>
+        </div>
+        <div class="col-xs-12">
+          <span>Casting Time: </span>
+          <span hc-editable="spell.castingTime"></span>
+        </div>
+        <div class="col-xs-12">
+          <span>Range: </span>
+          <span hc-editable="spell.range"></span>
+        </div>
+        <div class="col-xs-12">
+          <span>Components: </span>
+          <span hc-editable="spell.components"></span>
+        </div>
+        <div class="col-xs-12">
+          <span>Duration: </span>
+          <span hc-editable="spell.duration"></span>
+        </div>
+        <div class="col-xs-12">
+          <span>Description: </span>
+          <span hc-editable="spell.description"></span>
+        </div>
+      </div>
+    </li>
+  </ul> <!-- END SPELL LIST -->
+</div>

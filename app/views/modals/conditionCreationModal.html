@@ -1,0 +1,48 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="ConditionCreationModal.close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title">Create New Condition</h4>
+</div>
+<div class="modal-body">
+  <ng-form name="ConditionCreationModal.conditionCreationForm">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12">
+          <!-- FIELD: NAME -->
+          <div class="form-group container-fluid" ng-class="{ 'has-error': ConditionCreationModal.conditionCreationForm.name.$invalid && (ConditionCreationModal.conditionCreationForm.name.$dirty || ConditionCreationModal.isSubmitted) }">
+            <div class="row">
+              <label class="col-xs-12 control-label" for="name">Name</label>
+              <div class="col-xs-12">
+                <input type="text" class="form-control" name="name" ng-model="ConditionCreationModal.condition.name" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <span class="text-danger" ng-show="ConditionCreationModal.conditionCreationForm.name.$error.required && (ConditionCreationModal.conditionCreationForm.name.$dirty || ConditionCreationModal.isSubmitted)" class="help-block">Please provide the condition name.</span>
+              </div>
+            </div>
+          </div> <!-- END NAME FIELD -->
+          <!-- FIELD: DESCRIPTION -->
+          <div class="form-group container-fluid">
+            <div class="row">
+              <label class="col-xs-12 control-label" for="description">Description</label>
+              <div class="col-xs-12">
+                <textarea class="form-control" name="description" rows="3" ng-model="ConditionCreationModal.condition.description" required></textarea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <span class="text-danger" ng-show="ConditionCreationModal.conditionCreationForm.description.$error.required && (ConditionCreationModal.conditionCreationForm.description.$dirty || ConditionCreationModal.isSubmitted)" class="help-block">Please provide the condition description.</span>
+              </div>
+            </div>
+          </div> <!-- END DESCRIPTION FIELD -->
+        </div>
+      </div>
+    </div>
+  </ng-form>
+</div>
+<div class="modal-footer">
+  <!-- SUBMIT BUTTON -->
+  <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="ConditionCreationModal.createCondition(ConditionCreationModal.conditionCreationForm.$valid)">Create</button>
+  <!-- CLOSE BUTTON -->
+  <button type="button" class="btn btn-default btn-lg btn-block" ng-click="ConditionCreationModal.cancel()">Cancel</button>
+</div>
