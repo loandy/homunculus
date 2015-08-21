@@ -13,8 +13,7 @@ angular.module('homunculusApp.controllers')
     'hcProfileService',
     'hcSkillService',
     'hcFlashMessagesService',
-    'hcUtilityService',
-    function (CharacterService, ProfileService, SkillService, FlashMessagesService, UtilityService) {
+    function (CharacterService, ProfileService, SkillService, FlashMessagesService) {
 
       // Maintain reference to controller "scope."
       var self = this;
