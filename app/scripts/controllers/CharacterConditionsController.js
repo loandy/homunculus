@@ -11,7 +11,8 @@ angular.module('homunculusApp.controllers')
   .controller('hcCharacterConditionsController', [
     '$modal',
     'hcConditionService',
-    function ($modal, ConditionService) {
+    'hcUtilityService',
+    function ($modal, ConditionService, UtilityService) {
 
       // Maintain reference to controller "scope."
       var self = this;
@@ -37,6 +38,10 @@ angular.module('homunculusApp.controllers')
             }
           },
           'backdrop': 'static'
+        });
+
+        modalInstance.result.then(function (createdCondition) {
+          UtilityService.insertAlpha(createdCondition, self.conditionList);
         });
 
       };

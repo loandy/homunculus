@@ -86,7 +86,7 @@ angular.module('homunculusApp.services')
           var endpoint = configurations.neo4j.serviceRoot + 'transaction/commit';
           var queries = {
             'statements': [{
-              'statement': 'CREATE (c:Condition {condition}) RETURN c.uuid',
+              'statement': 'CREATE (c:Condition {condition}) RETURN c',
               'parameters': {
                 'condition': condition
               }
@@ -96,7 +96,11 @@ angular.module('homunculusApp.services')
 
           $http.post(endpoint, queries)
             .success(function (data, status, headers, config) {
-              deferred.resolve(data);
+
+              var createdCondition = UtilityService.parseObject(data.results[0].data[0].row[0]);
+
+              deferred.resolve(createdCondition);
+
             })
             .error(function (data, status, headers, config) {
               deferred.reject(status);

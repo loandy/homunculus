@@ -33,7 +33,9 @@ angular.module('homunculusApp.controllers')
           self.isSubmitted = false;
 
           ConditionService.createCondition(self.condition).then(function (results) {
-            console.log(results);
+
+            $modalInstance.close(results);
+
           }, function (error) {
 
             FlashMessagesService.addFlashMessage({
