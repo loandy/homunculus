@@ -393,13 +393,19 @@
     <div class="row">
       <div class="col-xs-12">
         <h3>Special Traits</h3>
-        <div class="btn-toolbar array-item-toolbar monster-traits-toolbar">
-          <div class="btn-group" role="group">
+        <div class="btn-group btn-group-justified">
           <!-- REMOVE SPECIAL TRAIT -->
-            <button type="button" class="btn btn-primary btn-sm" ng-click="MonsterCreationForm.removeTrait()" ng-disabled="MonsterCreationForm.disableRemoveTrait()"><i class="fa fa-minus"></i></button>
-            <!-- ADD SPECIAL TRAIT -->
-            <button type="button" class="btn btn-primary btn-sm" ng-click="MonsterCreationForm.addTrait()"><i class="fa fa-plus"></i></button>
-          </div>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-primary btn-sm" ng-click="MonsterCreationForm.removeTrait()" ng-disabled="MonsterCreationForm.disableRemoveTrait()">
+              <span class="fa fa-minus"></span>
+            </button>
+          </div> <!-- END REMOVE SPECIAL TRAIT -->
+          <!-- ADD SPECIAL TRAIT -->
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-primary btn-sm" ng-click="MonsterCreationForm.addTrait()">
+              <span class="fa fa-plus"></span>
+            </button>
+          </div> <!-- END ADD SPECIAL TRAIT -->
         </div>
         <!-- SPECIAL TRAIT LIST -->
         <div class="well array-item monster-trait" ng-repeat="trait in MonsterCreationForm.monster.traits track by $index">
@@ -435,13 +441,19 @@
     <div class="row">
       <div class="col-xs-12">
         <h3>Actions</h3>
-        <div class="btn-toolbar array-item-toolbar monster-actions-toolbar">
+        <div class="btn-group btn-group-justified">
+          <!-- REMOVE ACTION -->
           <div class="btn-group" role="group">
-            <!-- REMOVE ACTION -->
-            <button type="button" class="btn btn-primary btn-sm" ng-click="MonsterCreationForm.removeAction()" ng-disabled="MonsterCreationForm.disableRemoveAction()"><i class="fa fa-minus"></i></button>
-            <!-- ADD ACTION -->
-            <button type="button" class="btn btn-primary btn-sm" ng-click="MonsterCreationForm.addAction()"><i class="fa fa-plus"></i></button>
-          </div>
+            <button type="button" class="btn btn-primary btn-sm" ng-click="MonsterCreationForm.removeAction()" ng-disabled="MonsterCreationForm.disableRemoveAction()">
+              <span class="fa fa-minus"></span>
+            </button>
+          </div> <!-- END REMOVE ACTION -->
+          <!-- ADD ACTION -->
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-primary btn-sm" ng-click="MonsterCreationForm.addAction()">
+              <span class="fa fa-plus"></span>
+            </button>
+          </div> <!-- END ADD ACTION -->
         </div>
         <!-- ACTION LIST -->
         <div class="well array-item monster-action" ng-repeat="action in MonsterCreationForm.monster.actions track by $index">
