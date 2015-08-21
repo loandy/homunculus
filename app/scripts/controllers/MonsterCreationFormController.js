@@ -62,7 +62,7 @@ angular.module('homunculusApp.controllers')
 
       };
 
-      self.create = function (isValid) {
+      self.createMonster = function (isValid) {
 
         self.isSubmitted = true;
 

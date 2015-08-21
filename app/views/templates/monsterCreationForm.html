@@ -12,7 +12,7 @@
   </div>
 </div>
 <!-- MONSTER CREATION FORM -->
-<ng-form class="form-horizontal" id="monster-creation-form" name="MonsterCreationForm.monster" ng-if="MonsterCreationForm.isVisible" novalidate>
+<ng-form class="form-horizontal" id="monster-creation-form" name="MonsterCreationForm.form" ng-if="MonsterCreationForm.isVisible" novalidate>
   <!-- SECTION: ESSENTIALS -->
   <div class="container-fluid">
     <div class="row">
@@ -20,7 +20,7 @@
         <h3>Essentials</h3>
         <div class="well">
           <!-- NAME -->
-          <div class="form-group container-fluid" ng-class="{ 'has-error': MonsterCreationForm.monster.name.$invalid && (MonsterCreationForm.monster.name.$dirty || MonsterCreationForm.isSubmitted) }">
+          <div class="form-group container-fluid" ng-class="{ 'has-error': MonsterCreationForm.form.name.$invalid && (MonsterCreationForm.form.name.$dirty || MonsterCreationForm.isSubmitted) }">
             <div class="row">
               <label class="col-xs-12 control-label" for="name">Name</label>
               <div class="col-xs-12">
@@ -29,12 +29,12 @@
             </div>
             <div class="row">
               <div class="col-xs-12">
-                <span class="text-danger" ng-show="MonsterCreationForm.monster.name.$error.required && (MonsterCreationForm.monster.name.$dirty || MonsterCreationForm.isSubmitted)" class="help-block">Please provide a name.</span>
+                <span class="text-danger" ng-show="MonsterCreationForm.form.name.$error.required && (MonsterCreationForm.form.name.$dirty || MonsterCreationForm.isSubmitted)" class="help-block">Please provide a name.</span>
               </div>
             </div>
           </div>
           <!-- SIZE -->
-          <div class="form-group container-fluid" ng-class="{ 'has-error': MonsterCreationForm.monster.size.$invalid && (MonsterCreationForm.monster.size.$dirty || MonsterCreationForm.isSubmitted) }">
+          <div class="form-group container-fluid" ng-class="{ 'has-error': MonsterCreationForm.form.size.$invalid && (MonsterCreationForm.form.size.$dirty || MonsterCreationForm.isSubmitted) }">
             <div class="row">
               <label class="col-xs-12 control-label" for="size">Size</label>
               <div class="col-xs-12">
@@ -50,12 +50,12 @@
             </div>
             <div class="row">
               <div class="col-xs-12">
-                <span class="text-danger" ng-show="MonsterCreationForm.monster.size.$error.required && (MonsterCreationForm.monster.size.$dirty || MonsterCreationForm.isSubmitted)" class="help-block">Please select a size.</span>
+                <span class="text-danger" ng-show="MonsterCreationForm.form.size.$error.required && (MonsterCreationForm.form.size.$dirty || MonsterCreationForm.isSubmitted)" class="help-block">Please select a size.</span>
               </div>
             </div>
           </div>
           <!-- TYPE -->
-          <div class="form-group container-fluid" ng-class="{ 'has-error': MonsterCreationForm.monster.type.$invalid && (MonsterCreationForm.monster.type.$dirty || MonsterCreationForm.isSubmitted) }">
+          <div class="form-group container-fluid" ng-class="{ 'has-error': MonsterCreationForm.form.type.$invalid && (MonsterCreationForm.form.type.$dirty || MonsterCreationForm.isSubmitted) }">
             <div class="row">
               <label class="col-xs-12 control-label" for="type">Type</label>
               <div class="col-xs-12">
@@ -80,12 +80,12 @@
             </div>
             <div class="row">
               <div class="col-xs-12">
-                <span class="text-danger" ng-show="MonsterCreationForm.monster.type.$error.required && (MonsterCreationForm.monster.type.$dirty || MonsterCreationForm.isSubmitted)" class="help-block">Please select or enter a monster type.</span>
+                <span class="text-danger" ng-show="MonsterCreationForm.form.type.$error.required && (MonsterCreationForm.form.type.$dirty || MonsterCreationForm.isSubmitted)" class="help-block">Please select or enter a monster type.</span>
               </div>
             </div>
           </div>
           <!-- ALIGNMENT -->
-          <div class="form-group container-fluid" ng-class="{ 'has-error': MonsterCreationForm.monster.alignment.$invalid && (MonsterCreationForm.monster.alignment.$dirty || MonsterCreationForm.isSubmitted) }">
+          <div class="form-group container-fluid" ng-class="{ 'has-error': MonsterCreationForm.form.alignment.$invalid && (MonsterCreationForm.form.alignment.$dirty || MonsterCreationForm.isSubmitted) }">
             <div class="row">
               <label class="col-xs-12 control-label" for="alignment">Alignment</label>
               <div class="col-xs-12">
@@ -105,12 +105,12 @@
             </div>
             <div class="row">
               <div class="col-xs-12">
-                <span class="text-danger" ng-show="MonsterCreationForm.monster.alignment.$error.required && (MonsterCreationForm.monster.alignment.$dirty || MonsterCreationForm.isSubmitted)" class="help-block">Please select or enter an alignment.</span>
+                <span class="text-danger" ng-show="MonsterCreationForm.form.alignment.$error.required && (MonsterCreationForm.form.alignment.$dirty || MonsterCreationForm.isSubmitted)" class="help-block">Please select or enter an alignment.</span>
               </div>
             </div>
           </div>
           <!-- ARMOR CLASS -->
-          <div class="form-group container-fluid" ng-class="{ 'has-error': MonsterCreationForm.monster.armorClass.$invalid && (MonsterCreationForm.monster.armorClass.$dirty || MonsterCreationForm.isSubmitted) }">
+          <div class="form-group container-fluid" ng-class="{ 'has-error': MonsterCreationForm.form.armorClass.$invalid && (MonsterCreationForm.form.armorClass.$dirty || MonsterCreationForm.isSubmitted) }">
             <div class="row">
               <label class="col-xs-12 control-label" for="armorClass">Armor Class</label>
               <div class="col-xs-12">
@@ -119,13 +119,13 @@
             </div>
             <div class="row">
               <div class="col-xs-12">
-                <span class="text-danger" ng-show="MonsterCreationForm.monster.armorClass.$error.number && (MonsterCreationForm.monster.armorClass.$dirty || MonsterCreationForm.isSubmitted)" class="help-block">Please enter a valid numerical value.</span>
-                <span class="text-danger" ng-show="MonsterCreationForm.monster.armorClass.$error.required && (MonsterCreationForm.monster.armorClass.$dirty || MonsterCreationForm.isSubmitted)" class="help-block">Please provide an armor class.</span>
+                <span class="text-danger" ng-show="MonsterCreationForm.form.armorClass.$error.number && (MonsterCreationForm.form.armorClass.$dirty || MonsterCreationForm.isSubmitted)" class="help-block">Please enter a valid numerical value.</span>
+                <span class="text-danger" ng-show="MonsterCreationForm.form.armorClass.$error.required && (MonsterCreationForm.form.armorClass.$dirty || MonsterCreationForm.isSubmitted)" class="help-block">Please provide an armor class.</span>
               </div>
             </div>
           </div>
           <!-- MAXIMUM HIT POINTS -->
-          <div class="form-group container-fluid" ng-class="{ 'has-error': MonsterCreationForm.monster.maximumHitPoints.$invalid && (MonsterCreationForm.monster.maximumHitPoints.$dirty || MonsterCreationForm.isSubmitted) }">
+          <div class="form-group container-fluid" ng-class="{ 'has-error': MonsterCreationForm.form.maximumHitPoints.$invalid && (MonsterCreationForm.form.maximumHitPoints.$dirty || MonsterCreationForm.isSubmitted) }">
             <div class="row">
               <label class="col-xs-12 control-label" for="maximumHitPoints">Hit Points</label>
               <div class="col-xs-12">
@@ -134,14 +134,14 @@
             </div>
             <div class="row">
               <div class="col-xs-12">
-                <span class="text-danger" ng-show="MonsterCreationForm.monster.maximumHitPoints.$error.number && (MonsterCreationForm.monster.maximumHitPoints.$dirty || MonsterCreationForm.isSubmitted)" class="help-block">Please enter a valid numerical value.</span>
-                <span class="text-danger" ng-show="MonsterCreationForm.monster.maximumHitPoints.$error.min && (MonsterCreationForm.monster.maximumHitPoints.$dirty || MonsterCreationForm.isSubmitted)" class="help-block">Please enter a non-negative value.</span>
-                <span class="text-danger" ng-show="MonsterCreationForm.monster.maximumHitPoints.$error.required && (MonsterCreationForm.monster.maximumHitPoints.$dirty || MonsterCreationForm.isSubmitted)" class="help-block">Please provide a hit point maximum.</span>
+                <span class="text-danger" ng-show="MonsterCreationForm.form.maximumHitPoints.$error.number && (MonsterCreationForm.form.maximumHitPoints.$dirty || MonsterCreationForm.isSubmitted)" class="help-block">Please enter a valid numerical value.</span>
+                <span class="text-danger" ng-show="MonsterCreationForm.form.maximumHitPoints.$error.min && (MonsterCreationForm.form.maximumHitPoints.$dirty || MonsterCreationForm.isSubmitted)" class="help-block">Please enter a non-negative value.</span>
+                <span class="text-danger" ng-show="MonsterCreationForm.form.maximumHitPoints.$error.required && (MonsterCreationForm.form.maximumHitPoints.$dirty || MonsterCreationForm.isSubmitted)" class="help-block">Please provide a hit point maximum.</span>
               </div>
             </div>
           </div>
           <!-- HIT DICE -->
-          <div class="form-group container-fluid" ng-class="{ 'has-error': MonsterCreationForm.monster.hitDice.$invalid && (MonsterCreationForm.monster.hitDice.$dirty || MonsterCreationForm.isSubmitted) }">
+          <div class="form-group container-fluid" ng-class="{ 'has-error': MonsterCreationForm.form.hitDice.$invalid && (MonsterCreationForm.form.hitDice.$dirty || MonsterCreationForm.isSubmitted) }">
             <div class="row">
               <label class="col-xs-12 control-label" for="hitDice">Hit Dice</label>
               <div class="col-xs-12">
@@ -157,12 +157,12 @@
             </div>
             <div class="row">
               <div class="col-xs-12">
-                <span class="text-danger" ng-show="MonsterCreationForm.monster.hitDice.$error.required && (MonsterCreationForm.monster.hitDice.$dirty || MonsterCreationForm.isSubmitted)" class="help-block">Please select a hit dice type.</span>
+                <span class="text-danger" ng-show="MonsterCreationForm.form.hitDice.$error.required && (MonsterCreationForm.form.hitDice.$dirty || MonsterCreationForm.isSubmitted)" class="help-block">Please select a hit dice type.</span>
               </div>
             </div>
           </div>
           <!-- SPEED -->
-          <div class="form-group container-fluid" ng-class="{ 'has-error': MonsterCreationForm.monster.speed.$invalid && (MonsterCreationForm.monster.speed.$dirty || MonsterCreationForm.isSubmitted) }">
+          <div class="form-group container-fluid" ng-class="{ 'has-error': MonsterCreationForm.form.speed.$invalid && (MonsterCreationForm.form.speed.$dirty || MonsterCreationForm.isSubmitted) }">
             <div class="row">
               <label class="col-xs-12 control-label" for="speed">Speed</label>
               <div class="col-xs-12">
@@ -171,8 +171,8 @@
             </div>
             <div class="row">
               <div class="col-xs-12">
-                <span class="text-danger" ng-show="MonsterCreationForm.monster.speed.$error.number && (MonsterCreationForm.monster.speed.$dirty || MonsterCreationForm.isSubmitted)" class="help-block">Please enter a valid numerical value.</span>
-                <span class="text-danger" ng-show="MonsterCreationForm.monster.speed.$error.required && (MonsterCreationForm.monster.speed.$dirty || MonsterCreationForm.isSubmitted)" class="help-block">Please give a speed.</span>
+                <span class="text-danger" ng-show="MonsterCreationForm.form.speed.$error.number && (MonsterCreationForm.form.speed.$dirty || MonsterCreationForm.isSubmitted)" class="help-block">Please enter a valid numerical value.</span>
+                <span class="text-danger" ng-show="MonsterCreationForm.form.speed.$error.required && (MonsterCreationForm.form.speed.$dirty || MonsterCreationForm.isSubmitted)" class="help-block">Please give a speed.</span>
               </div>
             </div>
           </div>
@@ -195,7 +195,7 @@
             </div>
           </div>
           <!-- CHALLENGE RATING -->
-          <div class="form-group container-fluid" ng-class="{ 'has-error': MonsterCreationForm.monster.challenge.$invalid && (MonsterCreationForm.monster.challenge.$dirty || MonsterCreationForm.isSubmitted) }">
+          <div class="form-group container-fluid" ng-class="{ 'has-error': MonsterCreationForm.form.challenge.$invalid && (MonsterCreationForm.form.challenge.$dirty || MonsterCreationForm.isSubmitted) }">
             <div class="row">
               <label class="col-xs-12 control-label" for="challenge">Challenge</label>
               <div class="col-xs-12">
@@ -204,8 +204,8 @@
             </div>
             <div class="row">
               <div class="col-xs-12">
-                <span class="text-danger" ng-show="MonsterCreationForm.monster.challenge.$error.number && (MonsterCreationForm.monster.challenge.$dirty || MonsterCreationForm.isSubmitted)" class="help-block">Please enter a valid numerical value.</span>
-                <span class="text-danger" ng-show="MonsterCreationForm.monster.challenge.$error.required && (MonsterCreationForm.monster.challenge.$dirty || MonsterCreationForm.isSubmitted)" class="help-block">Please provide a challenge rating.</span>
+                <span class="text-danger" ng-show="MonsterCreationForm.form.challenge.$error.number && (MonsterCreationForm.form.challenge.$dirty || MonsterCreationForm.isSubmitted)" class="help-block">Please enter a valid numerical value.</span>
+                <span class="text-danger" ng-show="MonsterCreationForm.form.challenge.$error.required && (MonsterCreationForm.form.challenge.$dirty || MonsterCreationForm.isSubmitted)" class="help-block">Please provide a challenge rating.</span>
               </div>
             </div>
           </div>
@@ -233,7 +233,7 @@
                 <span>Strength</span>
               </td>
               <td>
-                <span ng-class="{ 'has-error': MonsterCreationForm.monster.abilities.strength.score.$invalid && (MonsterCreationForm.monster.abilities.strength.score.$dirty || MonsterCreationForm.isSubmitted) }">
+                <span ng-class="{ 'has-error': MonsterCreationForm.form.abilities.strength.score.$invalid && (MonsterCreationForm.form.abilities.strength.score.$dirty || MonsterCreationForm.isSubmitted) }">
                   <input type="number" class="form-control" name="strengthScore" ng-model="MonsterCreationForm.monster.abilities.strength.score" required>
                 </span>
               </td>
@@ -247,7 +247,7 @@
                 <span>Dexterity</span>
               </td>
               <td>
-                <span ng-class="{ 'has-error': MonsterCreationForm.monster.abilities.dexterity.score.$invalid && (MonsterCreationForm.monster.abilities.dexterity.score.$dirty || MonsterCreationForm.isSubmitted) }">
+                <span ng-class="{ 'has-error': MonsterCreationForm.form.abilities.dexterity.score.$invalid && (MonsterCreationForm.form.abilities.dexterity.score.$dirty || MonsterCreationForm.isSubmitted) }">
                   <input type="number" class="form-control" name="dexterityScore" ng-model="MonsterCreationForm.monster.abilities.dexterity.score" required>
                 </span>
               </td>
@@ -261,12 +261,12 @@
                 <span>Constitution</span>
               </td>
               <td>
-                <span ng-class="{ 'has-error': MonsterCreationForm.monster.abilities.constitution.score.$invalid && (MonsterCreationForm.monster.abilities.constitution.score.$dirty || MonsterCreationForm.isSubmitted) }">
+                <span ng-class="{ 'has-error': MonsterCreationForm.form.abilities.constitution.score.$invalid && (MonsterCreationForm.form.abilities.constitution.score.$dirty || MonsterCreationForm.isSubmitted) }">
                   <input type="number" class="form-control" name="constitutionScore" ng-model="MonsterCreationForm.monster.abilities.constitution.score" required>
                 </span>
               </td>
               <td>
-                <span ng-class="{ 'has-error': MonsterCreationForm.monster.abilities.constitution.saveModifier.$invalid && (MonsterCreationForm.monster.abilities.constitution.saveModifier.$dirty || MonsterCreationForm.isSubmitted) }">
+                <span ng-class="{ 'has-error': MonsterCreationForm.form.abilities.constitution.saveModifier.$invalid && (MonsterCreationForm.form.abilities.constitution.saveModifier.$dirty || MonsterCreationForm.isSubmitted) }">
                   <input type="number" class="form-control" name="constitutionSave" ng-model="MonsterCreationForm.monster.abilities.constitution.saveModifier" required>
                 </span>
               </td>
@@ -277,7 +277,7 @@
                 <span>Intelligence</span>
               </td>
               <td>
-                <span ng-class="{ 'has-error': MonsterCreationForm.monster.abilities.intelligence.score.$invalid && (MonsterCreationForm.monster.abilities.intelligence.score.$dirty || MonsterCreationForm.isSubmitted) }">
+                <span ng-class="{ 'has-error': MonsterCreationForm.form.abilities.intelligence.score.$invalid && (MonsterCreationForm.form.abilities.intelligence.score.$dirty || MonsterCreationForm.isSubmitted) }">
                   <input type="number" class="form-control" name="intelligenceScore" ng-model="MonsterCreationForm.monster.abilities.intelligence.score" required>
                 </span>
               </td>
@@ -291,7 +291,7 @@
                 <span>Wisdom</span>
               </td>
               <td>
-                <span ng-class="{ 'has-error': MonsterCreationForm.monster.abilities.wisdom.score.$invalid && (MonsterCreationForm.monster.abilities.wisdom.score.$dirty || MonsterCreationForm.isSubmitted) }">
+                <span ng-class="{ 'has-error': MonsterCreationForm.form.abilities.wisdom.score.$invalid && (MonsterCreationForm.form.abilities.wisdom.score.$dirty || MonsterCreationForm.isSubmitted) }">
                   <input type="number" class="form-control" name="wisdomScore" ng-model="MonsterCreationForm.monster.abilities.wisdom.score" required>
                 </span>
               </td>
@@ -305,7 +305,7 @@
                 <span>Charisma</span>
               </td>
               <td>
-                <span ng-class="{ 'has-error': MonsterCreationForm.monster.abilities.charisma.score.$invalid && (MonsterCreationForm.monster.abilities.charisma.score.$dirty || MonsterCreationForm.isSubmitted) }">
+                <span ng-class="{ 'has-error': MonsterCreationForm.form.abilities.charisma.score.$invalid && (MonsterCreationForm.form.abilities.charisma.score.$dirty || MonsterCreationForm.isSubmitted) }">
                   <input type="number" class="form-control" name="charismaScore" ng-model="MonsterCreationForm.monster.abilities.charisma.score" required>
                 </span>
               </td>
@@ -350,7 +350,7 @@
         <div class="well">
           <!-- DAMAGE VULNERABILITIES -->
           <div class="form-group container-fluid">
-            <div class="row" ng-class="{ 'has-error': MonsterCreationForm.monster.damageVulnerabilities.$invalid && (MonsterCreationForm.monster.damageVulnerabilities.$dirty || MonsterCreationForm.isSubmitted) }">
+            <div class="row" ng-class="{ 'has-error': MonsterCreationForm.form.damageVulnerabilities.$invalid && (MonsterCreationForm.form.damageVulnerabilities.$dirty || MonsterCreationForm.isSubmitted) }">
               <label class="col-xs-12 control-label" for="damageVulnerabilities">Damage Vulnerabilities</label>
               <div class="col-xs-12">
                 <textarea class="form-control" name="damageVulnerabilities" rows="3" ng-model="MonsterCreationForm.monster.damageVulnerabilities"></textarea>
@@ -359,7 +359,7 @@
           </div>
           <!-- DAMAGE RESISTANANCES -->
           <div class="form-group container-fluid">
-            <div class="row" ng-class="{ 'has-error': MonsterCreationForm.monster.damageResistances.$invalid && (MonsterCreationForm.monster.damageResistances.$dirty || MonsterCreationForm.isSubmitted) }">
+            <div class="row" ng-class="{ 'has-error': MonsterCreationForm.form.damageResistances.$invalid && (MonsterCreationForm.form.damageResistances.$dirty || MonsterCreationForm.isSubmitted) }">
               <label class="col-xs-12 control-label" for="damageResistances">Damage Resistances</label>
               <div class="col-xs-12">
                 <textarea class="form-control" name="damageResistances" rows="3" ng-model="MonsterCreationForm.monster.damageResistances"></textarea>
@@ -368,7 +368,7 @@
           </div>
           <!-- DAMAGE IMMUNITIES -->
           <div class="form-group container-fluid">
-            <div class="row" ng-class="{ 'has-error': MonsterCreationForm.monster.damageImmunities.$invalid && (MonsterCreationForm.monster.damageImmunities.$dirty || MonsterCreationForm.isSubmitted) }">
+            <div class="row" ng-class="{ 'has-error': MonsterCreationForm.form.damageImmunities.$invalid && (MonsterCreationForm.form.damageImmunities.$dirty || MonsterCreationForm.isSubmitted) }">
               <label class="col-xs-12 control-label" for="damageImmunities">Damage Immunities</label>
               <div class="col-xs-12">
                 <textarea class="form-control" name="damageImmunities" rows="3" ng-model="MonsterCreationForm.monster.damageImmunities"></textarea>
@@ -377,7 +377,7 @@
           </div>
           <!-- CONDITION IMMUNITIES -->
           <div class="form-group container-fluid">
-            <div class="row" ng-class="{ 'has-error': MonsterCreationForm.monster.conditionImmunities.$invalid && (MonsterCreationForm.monster.conditionImmunities.$dirty || MonsterCreationForm.isSubmitted) }">
+            <div class="row" ng-class="{ 'has-error': MonsterCreationForm.form.conditionImmunities.$invalid && (MonsterCreationForm.form.conditionImmunities.$dirty || MonsterCreationForm.isSubmitted) }">
               <label class="col-xs-12 control-label" for="conditionImmunities">Condition Immunities</label>
               <div class="col-xs-12">
                 <textarea class="form-control" name="conditionImmunities" rows="3" ng-model="MonsterCreationForm.monster.conditionImmunities"></textarea>
@@ -405,7 +405,7 @@
         <div class="well array-item monster-trait" ng-repeat="trait in MonsterCreationForm.monster.traits track by $index">
           <!-- SPECIAL TRAIT NAME -->
           <div class="form-group container-fluid monster-trait-name">
-            <div class="row" ng-class="{ 'has-error': MonsterCreationForm.monster.trait{{$index}}Name.$invalid && (MonsterCreationForm.monster.trait{{$index}}Name.$dirty || MonsterCreationForm.isSubmitted) }">
+            <div class="row" ng-class="{ 'has-error': MonsterCreationForm.form.trait{{$index}}Name.$invalid && (MonsterCreationForm.form.trait{{$index}}Name.$dirty || MonsterCreationForm.isSubmitted) }">
               <label class="col-xs-12 control-label" for="trait{{$index}}Name">Trait Name</label>
               <div class="col-xs-12">
                 <input type="text" class="form-control" name="trait{{$index}}Name" ng-model="MonsterCreationForm.monster.traits[$index].name" required>
@@ -413,7 +413,7 @@
             </div>
             <div class="row">
               <div class="col-xs-12">
-                <span class="text-danger" ng-show="MonsterCreationForm.monster.trait{{$index}}Name.$error.required && (MonsterCreationForm.monster.trait{{$index}}Name.$dirty || MonsterCreationForm.isSubmitted)" class="help-block">Please provide an trait name.</span>
+                <span class="text-danger" ng-show="MonsterCreationForm.form.trait{{$index}}Name.$error.required && (MonsterCreationForm.form.trait{{$index}}Name.$dirty || MonsterCreationForm.isSubmitted)" class="help-block">Please provide an trait name.</span>
               </div>
             </div>
           </div>
@@ -447,7 +447,7 @@
         <div class="well array-item monster-action" ng-repeat="action in MonsterCreationForm.monster.actions track by $index">
           <!-- ACTION NAME -->
           <div class="form-group container-fluid monster-action-name">
-            <div class="row" ng-class="{ 'has-error': MonsterCreationForm.monster.action{{$index}}Name.$invalid && (MonsterCreationForm.monster.action{{$index}}Name.$dirty || MonsterCreationForm.isSubmitted) }">
+            <div class="row" ng-class="{ 'has-error': MonsterCreationForm.form.action{{$index}}Name.$invalid && (MonsterCreationForm.form.action{{$index}}Name.$dirty || MonsterCreationForm.isSubmitted) }">
               <label class="col-xs-12 control-label" for="action{{$index}}Name">Action Name</label>
               <div class="col-xs-12">
                 <input type="text" class="form-control" name="action{{$index}}Name" ng-model="MonsterCreationForm.monster.actions[$index].name" required>
@@ -455,7 +455,7 @@
             </div>
             <div class="row">
               <div class="col-xs-12">
-                <span class="text-danger" ng-show="MonsterCreationForm.monster.action{{$index}}Name.$error.required && (MonsterCreationForm.monster.action{{$index}}Name.$dirty || MonsterCreationForm.isSubmitted)" class="help-block">Please provide an action name.</span>
+                <span class="text-danger" ng-show="MonsterCreationForm.form.action{{$index}}Name.$error.required && (MonsterCreationForm.form.action{{$index}}Name.$dirty || MonsterCreationForm.isSubmitted)" class="help-block">Please provide an action name.</span>
               </div>
             </div>
           </div>
@@ -479,7 +479,7 @@
         <div class="well">
           <div class="btn-toolbar btn-toolbar-justified">
             <!-- SUBMIT BUTTON -->
-            <button class="btn btn-primary btn-lg btn-block" ng-click="MonsterCreationForm.createMonster(MonsterCreationForm.monster.$valid)">Create Monster</button>
+            <button class="btn btn-primary btn-lg btn-block" ng-click="MonsterCreationForm.createMonster(MonsterCreationForm.form.$valid)">Create Monster</button>
             <!-- CANCEL BUTTON -->
             <button class="btn btn-default btn-lg btn-block" ng-click="MonsterCreationForm.cancel()">Cancel</button>
           </div>
