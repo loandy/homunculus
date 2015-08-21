@@ -373,13 +373,19 @@
     <div class="row">
       <div class="col-xs-12">
         <h3>Features & Traits</h3>
-        <div class="btn-toolbar array-item-toolbar character-features-toolbar">
+        <div class="btn-group btn-group-justified">
+          <!-- REMOVE FEATURE -->
           <div class="btn-group" role="group">
-            <!-- REMOVE FEATURE -->
-            <button type="button" class="btn btn-primary btn-sm" ng-click="CharacterCreationForm.removeFeature()" ng-disabled="CharacterCreationForm.isRemoveFeaturesDisabled()"><i class="fa fa-minus"></i></button>
-            <!-- ADD FEATURE -->
-            <button type="button" class="btn btn-primary btn-sm" ng-click="CharacterCreationForm.addFeature()"><i class="fa fa-plus"></i></button>
-          </div>
+            <button type="button" class="btn btn-primary btn-block" ng-click="CharacterCreationForm.removeFeature()" ng-disabled="CharacterCreationForm.isRemoveFeaturesDisabled()">
+              <span class="fa fa-minus"></span>
+            </button>
+          </div> <!-- END REMOVE FEATURE -->
+          <!-- ADD FEATURE -->
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-primary btn-block" ng-click="CharacterCreationForm.addFeature()">
+              <span class="fa fa-plus"></span>
+            </button>
+          </div> <!-- END ADD FEATURE -->
         </div>
         <!-- FEATURE LIST -->
         <div class="well array-item character-feature" ng-repeat="feature in CharacterCreationForm.character.features track by $index">
@@ -415,13 +421,19 @@
     <div class="row">
       <div class="col-xs-12">
         <h3>Feats</h3>
-        <div class="btn-toolbar array-item-toolbar character-feats-toolbar">
+        <div class="btn-group btn-group-justified">
           <div class="btn-group" role="group">
             <!-- REMOVE FEAT -->
-            <button type="button" class="btn btn-primary btn-sm" ng-click="CharacterCreationForm.removeFeat()" ng-disabled="CharacterCreationForm.isRemoveFeatsDisabled()"><i class="fa fa-minus"></i></button>
-            <!-- ADD FEAT -->
-            <button type="button" class="btn btn-primary btn-sm" ng-click="CharacterCreationForm.addFeat()"><i class="fa fa-plus"></i></button>
-          </div>
+            <button type="button" class="btn btn-primary btn-block" ng-click="CharacterCreationForm.removeFeat()" ng-disabled="CharacterCreationForm.isRemoveFeatsDisabled()">
+              <span class="fa fa-minus"></span>
+            </button>
+          </div> <!-- END REMOVE FEAT -->
+          <!-- ADD FEAT -->
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-primary btn-block" ng-click="CharacterCreationForm.addFeat()">
+              <span class="fa fa-plus"></span>
+            </button>
+          </div> <!-- END ADD FEAT -->
         </div>
         <!-- FEAT LIST -->
         <div class="well array-item" ng-repeat="feat in CharacterCreationForm.character.feats track by $index">
