@@ -15,10 +15,10 @@ angular.module('homunculusApp.controllers')
       // Maintain reference to controller "scope."
       var self = this;
 
-      this.flashMessages = FlashMessagesService.flashMessages;
+      this.list = FlashMessagesService.flashMessages;
 
-      this.closeFlashMessage = function (index) {
-        FlashMessagesService.flashMessages.splice(index, 1);
+      this.close = function (index) {
+        FlashMessagesService.removeFlashMessage(index);
       };
 
     }

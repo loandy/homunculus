@@ -21,6 +21,9 @@ angular.module('homunculusApp.services')
           });
 
         },
+        'removeFlashMessage': function (index) {
+          this.flashMessages.splice(index, 1);
+        },
         'clearFlashMessages': function () {
           this.flashMessages = [];
         }

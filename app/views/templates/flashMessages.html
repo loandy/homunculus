@@ -1,1 +1,1 @@
-<alert ng-repeat="flashMessage in FlashController.flashMessages" type="{{flashMessage.type}}" close="FlashController.closeFlashMessage($index)">{{flashMessage.message}}</alert>
+<alert ng-repeat="flashMessage in FlashMessages.list track by $index" type="{{flashMessage.type}}" close="FlashMessages.close($index)">{{flashMessage.message}}</alert>
