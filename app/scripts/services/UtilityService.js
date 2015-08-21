@@ -13,14 +13,46 @@ angular.module('homunculusApp.services')
     function ($q) {
 
       return {
+        /**
+         * Converts line break characters to line break elements for presentation in
+         * HTML documents.
+         *
+         * @param {string} string - The string to convert line breaks for.
+         * @returns {string}
+         */
+        'nl2br': function (string) {
+
+          var result = '';
+
+          // Check whether the replace function exists - argument provided may
+          // not be a string.
+          if ('function' === typeof string.replace) {
+            result = string.replace(/(?:\r\n|\r|\n)/g, '<br>');
+          }
+
+          return result;
+
+        },
+        /**
+         * Checks whether an object is usable.
+         *
+         * @param {Object} object - The object to perform checking for.
+         * @returns {boolean}
+         */
         'isNonEmptyObject': function (object) {
           return object && 'null' !== object && 'undefined' !== object;
         },
+        /**
+         * Converts an object into an array.
+         *
+         * @param {Object} object - The object to convert into an array.
+         */
         'objectToArray': function (object) {
 
           var result = object;
 
-          if (!Array.isArray(object)) {
+          // Skip conversion if the object is already an array.
+          if (!Array.isArray(object) && this.isNonEmptyObject(object)) {
 
             result = Object.keys(object).map(function (key) {
               return object[key];
@@ -31,13 +63,12 @@ angular.module('homunculusApp.services')
           return result;
 
         },
-        // Copies values for attributes that exist in the destination object,
-        // from the source object.
-        'transfer': function (destination, source) {
-          Object.keys(destination).forEach(function (key) {
-            destination[key] = source[key] ? source[key] : '';
-          });
-        },
+        /**
+         * Attempts to parse JSON-formatted attributes on an object back into objects.
+         *
+         * @param {Object} object - The object to parse attributes for.
+         * @returns {Object}
+         */
         'parseObject': function (object) {
 
           if (this.isNonEmptyObject(object)) {
@@ -47,11 +78,12 @@ angular.module('homunculusApp.services')
 
             for (var i = 0; i < objectKeysLength; i++) {
 
-              // Only convert properties that are stringified JSON objects.
+              // Convert properties that are stringified JSON objects.
               try {
                 object[objectKeys[i]] = JSON.parse(object[objectKeys[i]]);
               } catch (e) {
-                // Do nothing.
+                // Do nothing.  Here to catch exception for attempting to parse a
+                // non-JSON value.
               }
 
             }
@@ -61,6 +93,13 @@ angular.module('homunculusApp.services')
           return object;
 
         },
+        /**
+         * Generates a "lookup hash" object for an array of objects.
+         *
+         * @param {Object[]} objectArray - The array of objects to create a lookup hash for.
+         * @param {string} keyField - The attribute to key the lookup hash with.
+         * @returns {}
+         */
         'generateLookup': function (objectArray, keyField) {
 
           var deferred = $q.defer();
@@ -68,7 +107,6 @@ angular.module('homunculusApp.services')
           if (keyField) {
 
             var lookup = {};
-
             var arrayLength = objectArray.length;
 
             if (Array.isArray(objectArray) && arrayLength > 0) {
@@ -96,6 +134,13 @@ angular.module('homunculusApp.services')
           return deferred.promise;
 
         },
+        /**
+         * Insert an object into an array in lexicographic order based on its name
+         * attribute.
+         *
+         * @param {Object} insertElement - The object to insert into array.
+         * @param {Object[]} insertArray - The array to receive the given object.
+         */
         'insertAlpha': function (insertElement, insertArray) {
 
           var listLength = insertArray.length;
@@ -145,7 +190,14 @@ angular.module('homunculusApp.services')
             }
 
           }
+
         },
+        /**
+         * Calculate ability modifier.
+         *
+         * @param {number} value - The value to calculate the modifier for.
+         * @returns {number}
+         */
         'calculateModifier': function (value) {
 
           var modifier = Math.floor((value - 10) / 2);
@@ -153,6 +205,12 @@ angular.module('homunculusApp.services')
           return modifier;
 
         },
+        /**
+         * Calculate proficiency bonus.
+         *
+         * @param {number} level - The character level to calculate the proficiency bonus for.
+         * @returns {number}
+         */
         'calculateProficiencyBonus': function (level) {
 
           var modifier = Math.ceil(level / 4) + 1;
