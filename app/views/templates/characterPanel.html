@@ -15,7 +15,10 @@
             <span class="pull-left handle">
               <i class="glyphicon glyphicon-th"></i>
             </span> <!-- END MOVE HANDLE -->
-            <button type="button" class="close" ng-click="" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <!-- REMOVE PANEL BUTTON -->
+            <button type="button" class="close" ng-click="CharacterPanel.remove()" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button> <!-- END REMOVE PANEL BUTTON -->
             <span hc-editable="CharacterPanel.character.name"></span>
           </div>
           <div>

@@ -1,9 +1,13 @@
 <!-- MONSTER PANEL -->
 <div>
   <!-- MOVE HANDLE -->
-  <span class="pull-right handle">
-    <i class="glyphicon glyphicon-th"></i>
+  <span class="pull-left handle">
+    <span class="glyphicon glyphicon-th"></span>
   </span>
+            <!-- REMOVE PANEL BUTTON -->
+            <button type="button" class="close" ng-click="MonsterPanel.remove()" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button> <!-- END REMOVE PANEL BUTTON -->
 
   <div hc-editable="MonsterPanel.monster.name"></div>
   <div><em>{{MonsterPanel.monster.size}} {{MonsterPanel.monster.type}}, {{MonsterPanel.monster.alignment}}</em></div>

@@ -34,8 +34,8 @@
       <div class="col-xs-12">
           <ul class="list-group participant-list" ui-sortable="EncounterCreationForm.participantOptions" ng-model="EncounterCreationForm.encounter.participants">
             <li class="list-group-item participant-list-item" ng-repeat="participant in EncounterCreationForm.encounter.participants track by $index" ng-switch on="participant.template">
-              <div hc-character-panel="participant" ng-switch-when="Character"></div>
-              <div hc-monster-panel="participant" ng-switch-when="Monster"></div>
+              <div hc-character-panel="participant" ng-switch-when="Character" on-remove="EncounterCreationForm.encounter.participants.splice($index, 1)"></div>
+              <div hc-monster-panel="participant" ng-switch-when="Monster" on-remove="EncounterCreationForm.encounter.participants.splice($index, 1)"></div>
             </li>
           </ul>
       </div>

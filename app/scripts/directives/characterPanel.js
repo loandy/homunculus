@@ -14,7 +14,8 @@ angular.module('homunculusApp.directives')
       return {
         'restrict': 'A',
         'scope': {
-          'character': '=hcCharacterPanel'
+          'character': '=hcCharacterPanel',
+          'remove': '&onRemove'
         },
         'bindToController': true,
         'controller': 'hcCharacterPanelController',
