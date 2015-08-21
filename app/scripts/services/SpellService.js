@@ -78,8 +78,6 @@ angular.module('homunculusApp.services')
         },
         'createSpell': function (spellForm) {
 
-          console.log(spellForm);
-
           // Generate spell object from form values.
           var spell = {
             'uuid': uuid.v1()
@@ -100,7 +98,7 @@ angular.module('homunculusApp.services')
           var endpoint = configurations.neo4j.serviceRoot + 'transaction/commit';
           var queries = {
             'statements': [{
-              'statement': 'CREATE (s:Spell {spell}) RETURN s.uuid',
+              'statement': 'CREATE (s:Spell {spell}) RETURN s',
               'parameters': {
                 'spell': spell
               }
@@ -110,7 +108,11 @@ angular.module('homunculusApp.services')
 
           $http.post(endpoint, queries)
             .success(function (data, status, headers, config) {
-              deferred.resolve(spell);
+
+              var createdSpell = UtilityService.parseObject(data.results[0].data[0].row[0]);
+
+              deferred.resolve(createdSpell);
+
             })
             .error(function (data, status, headers, config) {
               deferred.reject(status);

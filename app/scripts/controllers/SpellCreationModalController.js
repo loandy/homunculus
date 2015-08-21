@@ -34,7 +34,6 @@ angular.module('homunculusApp.controllers')
 
           SpellService.createSpell(self.spell).then(function (results) {
 
-            console.log(results);
             $modalInstance.close(results);
 
           }, function (error) {

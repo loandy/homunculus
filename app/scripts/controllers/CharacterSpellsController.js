@@ -11,7 +11,8 @@ angular.module('homunculusApp.controllers')
   .controller('hcCharacterSpellsController', [
     '$modal',
     'hcSpellService',
-    function ($modal, SpellService) {
+    'hcUtilityService',
+    function ($modal, SpellService, UtilityService) {
 
       // Maintain reference to controller "scope."
       var self = this;
@@ -30,6 +31,10 @@ angular.module('homunculusApp.controllers')
           'controller': 'hcSpellCreationModalController',
           'controllerAs': 'SpellCreationModal',
           'backdrop': 'static'
+        });
+
+        modalInstance.result.then(function (createdSpell) {
+          UtilityService.insertAlpha(createdSpell, self.spellList);
         });
 
       };
