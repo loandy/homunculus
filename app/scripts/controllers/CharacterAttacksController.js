@@ -11,7 +11,8 @@ angular.module('homunculusApp.controllers')
   .controller('hcCharacterAttacksController', [
     '$modal',
     'hcWeaponService',
-    function ($modal, WeaponService) {
+    'hcUtilityService',
+    function ($modal, WeaponService, UtilityService) {
 
       // Maintain reference to controller "scope."
       var self = this;
@@ -35,6 +36,10 @@ angular.module('homunculusApp.controllers')
             }
           },
           'backdrop': 'static'
+        });
+
+        modalInstance.result.then(function (createdWeapon) {
+          UtilityService.insertAlpha(createdWeapon, self.weaponList);
         });
 
       };

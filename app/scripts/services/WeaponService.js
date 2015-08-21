@@ -87,40 +87,44 @@ angular.module('homunculusApp.services')
         'createWeapon': function (weaponForm) {
 
           // Generate weapon object from form values.
-            var weapon = {
-              'uuid': uuid.v1()
-            };
+          var weapon = {
+            'uuid': uuid.v1()
+          };
 
           // Iterate through form-filled properties.
-            Object.getOwnPropertyNames(Object.getPrototypeOf(weaponForm)).forEach(function (property) {
+          Object.getOwnPropertyNames(weaponForm).forEach(function (property) {
 
             // Using instanceof instead of typeof to avoid null issues.
-              if (weaponForm[property] instanceof Object) {
-                weapon[property] = JSON.stringify(weaponForm[property]);
-              } else {
-                weapon[property] = weaponForm[property];
-              }
+            if (weaponForm[property] instanceof Object) {
+              weapon[property] = JSON.stringify(weaponForm[property]);
+            } else {
+              weapon[property] = weaponForm[property];
+            }
 
           });
 
           var endpoint = configurations.neo4j.serviceRoot + 'transaction/commit';
-            var queries = {
-              'statements': [{
-                'statement': 'CREATE (w:Weapon {weapon}) RETURN w.uuid',
-                'parameters': {
-                  'weapon': weapon
-                }
-              }]
-            };
-            var deferred = $q.defer();
+          var queries = {
+            'statements': [{
+              'statement': 'CREATE (w:Item:Weapon {weapon}) RETURN w',
+              'parameters': {
+                'weapon': weapon
+              }
+            }]
+          };
+          var deferred = $q.defer();
 
           $http.post(endpoint, queries)
-              .success(function (data, status, headers, config) {
-                deferred.resolve(data);
-              })
-              .error(function (data, status, headers, config) {
-                deferred.reject(status);
-              });
+            .success(function (data, status, headers, config) {
+
+              var createdWeapon = UtilityService.parseObject(data.results[0].data[0].row[0]);
+
+              deferred.resolve(createdWeapon);
+
+            })
+            .error(function (data, status, headers, config) {
+              deferred.reject(status);
+            });
 
           return deferred.promise;
 
